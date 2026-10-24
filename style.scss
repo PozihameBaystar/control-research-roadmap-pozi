@@ -8,11 +8,12 @@
   max-width: 90rem;
 }
 
-.main-content table {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+.main-content {
+  max-width: none !important;
+  width: 100% !important;
+  margin: 0 auto;
+  padding: 2rem 2vw !important;
+  box-sizing: border-box;
 }
 
 .main-content table th,
