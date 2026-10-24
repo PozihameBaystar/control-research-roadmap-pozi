@@ -1,0 +1,33 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* 長文の論文比較表を、画面幅に合わせて横スクロールさせる */
+.main-content {
+  max-width: 90rem;
+}
+
+.main-content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.main-content table th,
+.main-content table td {
+  min-width: 190px;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  line-height: 1.55;
+}
+
+.main-content table th:first-child,
+.main-content table td:first-child {
+  min-width: 250px;
+}
+
+.main-content a {
+  overflow-wrap: anywhere;
+}

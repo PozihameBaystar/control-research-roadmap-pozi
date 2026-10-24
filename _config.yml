@@ -1,0 +1,7 @@
+title: 制御工学・ロボティクス・学習ベース制御 研究文献総覧
+description: 107件の論文・総説・チュートリアルと推奨読書順
+lang: ja
+theme: jekyll-theme-cayman
+markdown: kramdown
+kramdown:
+  input: GFM
