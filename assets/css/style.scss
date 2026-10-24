@@ -3,42 +3,276 @@
 
 @import "{{ site.theme }}";
 
-/* 長文の論文比較表を、画面幅に合わせて横スクロールさせる */
-.main-content {
-  max-width: 90rem;
+/* ========================================
+   1. 本文の幅・文字色・フォントサイズ
+   ======================================== */
+
+body {
+  color: #151515 !important;
+  background: #ffffff;
 }
 
 .main-content {
   max-width: none !important;
   width: 100% !important;
-  margin: 0 auto;
-  padding: 2rem 2vw !important;
-  box-sizing: border-box;
+  margin: 0 auto !important;
+  padding: 1.05rem 1.5vw !important;
+  box-sizing: border-box !important;
+
+  color: #151515 !important;
+  font-size: 13.5px !important;
+  line-height: 1.47 !important;
 }
 
+/* 本文・表・引用文を黒色に統一 */
+.main-content p,
+.main-content li,
+.main-content blockquote,
+.main-content table th,
+.main-content table td,
+.main-content strong,
+.main-content em {
+  color: #151515 !important;
+}
+
+/* リンクは識別しやすい濃い青 */
+.main-content a {
+  color: #0756a5 !important;
+  overflow-wrap: anywhere;
+}
+
+.main-content a:hover {
+  color: #003b78 !important;
+}
+
+
+/* ========================================
+   2. 見出しと本文の縦余白を縮小
+   ======================================== */
+
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4 {
+  color: #174b3c !important;
+  line-height: 1.28 !important;
+}
+
+/* ページタイトル */
+.main-content > h1:first-of-type {
+  font-size: 21px !important;
+  margin: 0 0 0.65rem !important;
+  padding: 0 !important;
+}
+
+/* 大見出し */
+.main-content h2 {
+  font-size: 18px !important;
+  margin: 1.25rem 0 0.45rem !important;
+}
+
+/* 中見出し */
+.main-content h3 {
+  font-size: 15.5px !important;
+  margin: 1.05rem 0 0.35rem !important;
+}
+
+/* 小見出し */
+.main-content h4 {
+  font-size: 14px !important;
+  margin: 0.8rem 0 0.3rem !important;
+}
+
+/* 段落 */
+.main-content p {
+  margin: 0.45rem 0 !important;
+}
+
+/* リスト */
+.main-content ul,
+.main-content ol {
+  margin: 0.35rem 0 0.65rem !important;
+  padding-left: 1.35rem !important;
+}
+
+.main-content li {
+  margin: 0.12rem 0 !important;
+}
+
+/* 引用・注意書き */
+.main-content blockquote {
+  padding: 0.35rem 0.85rem !important;
+  margin: 0.55rem 0 !important;
+  border-left: 3px solid #cdd5df;
+  background: #f8fafc;
+}
+
+.main-content blockquote p {
+  margin: 0.18rem 0 !important;
+}
+
+
+/* ========================================
+   3. 論文一覧表をコンパクトに表示
+   ======================================== */
+
+.main-content table {
+  display: table !important;
+  table-layout: auto;
+  width: 100% !important;
+
+  margin: 0.55rem 0 1.05rem !important;
+
+  font-size: 12.5px !important;
+  line-height: 1.36 !important;
+
+  border-collapse: collapse;
+}
+
+/* 表の各セル */
 .main-content table th,
 .main-content table td {
-  min-width: 190px;
-  vertical-align: top;
+  min-width: 0 !important;
+
+  padding: 0.31rem 0.42rem !important;
+
+  vertical-align: top !important;
+  text-align: left;
+
   overflow-wrap: anywhere;
-  line-height: 1.55;
+  word-break: normal;
+  white-space: normal;
+
+  line-height: 1.36 !important;
+  border: 1px solid #d7dce2;
 }
 
-.main-content table th:first-child,
-.main-content table td:first-child {
-  min-width: 250px;
+/* 見出しセル */
+.main-content table th {
+  background: #eef2f5 !important;
+  font-weight: 700;
 }
 
-.main-content a {
-  overflow-wrap: anywhere;
+/* 通常セル */
+.main-content table td {
+  background: #ffffff;
 }
 
-/* 記事のメインタイトルを小さくする */
-.main-content > h1:first-of-type {
-  font-size: 1.6rem !important;
-  line-height: 1.25 !important;
-  margin-top: 0 !important;
-  margin-bottom: 0.6rem !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+/* 交互に薄い背景色 */
+.main-content table tr:nth-child(even) td {
+  background: #fafbfc;
+}
+
+/* セル内の段落余白をなくす */
+.main-content table p {
+  margin: 0 !important;
+}
+
+
+/* ========================================
+   4. 6列の論文一覧表の列幅を最適化
+   ======================================== */
+
+@media (min-width: 1100px) {
+
+  .main-content table:has(thead th:nth-child(6)) {
+    table-layout: fixed;
+  }
+
+  /* 読む価値・研究史上の位置 */
+  .main-content table:has(thead th:nth-child(6))
+  th:nth-child(1) {
+    width: 17%;
+  }
+
+  /* 年・論文名・リンク */
+  .main-content table:has(thead th:nth-child(6))
+  th:nth-child(2) {
+    width: 18%;
+  }
+
+  /* 対象・問題設定・実験 */
+  .main-content table:has(thead th:nth-child(6))
+  th:nth-child(3) {
+    width: 16%;
+  }
+
+  /* 手法・成果・定量指標 */
+  .main-content table:has(thead th:nth-child(6))
+  th:nth-child(4) {
+    width: 19%;
+  }
+
+  /* 期待される応用 */
+  .main-content table:has(thead th:nth-child(6))
+  th:nth-child(5) {
+    width: 15%;
+  }
+
+  /* 残された課題・限界 */
+  .main-content table:has(thead th:nth-child(6))
+  th:nth-child(6) {
+    width: 15%;
+  }
+}
+
+
+/* ========================================
+   5. ページ上部のタイトル領域を縮小
+   ======================================== */
+
+.page-header {
+  padding: 0.42rem 1rem !important;
+}
+
+.page-header .project-name {
+  font-size: 20px !important;
+  line-height: 1.22 !important;
+  margin: 0 !important;
+}
+
+.page-header .project-tagline {
+  font-size: 12px !important;
+  margin: 0.2rem 0 0 !important;
+}
+
+
+/* ========================================
+   6. 小さい画面への対応
+   ======================================== */
+
+@media (max-width: 1099px) {
+
+  .main-content {
+    padding: 0.8rem 2vw !important;
+  }
+
+  /* 小さい画面では表を横スクロール */
+  .main-content table {
+    display: block !important;
+    table-layout: auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .main-content table th,
+  .main-content table td {
+    min-width: 120px !important;
+  }
+}
+
+/* スマートフォン */
+@media (max-width: 767px) {
+
+  .main-content {
+    font-size: 13px !important;
+  }
+
+  .main-content table {
+    font-size: 12px !important;
+  }
+
+  .main-content > h1:first-of-type {
+    font-size: 18px !important;
+  }
 }
