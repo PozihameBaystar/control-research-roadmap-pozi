@@ -32,3 +32,13 @@
 .main-content a {
   overflow-wrap: anywhere;
 }
+
+/* 記事のメインタイトルを小さくする */
+.main-content > h1:first-of-type {
+  font-size: 1.6rem !important;
+  line-height: 1.25 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.6rem !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
