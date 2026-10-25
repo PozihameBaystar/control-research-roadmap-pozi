@@ -5,15 +5,15 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 
 # 制御工学・ロボティクス・学習ベース制御　研究文献総覧
 
-**自分自身がこれから読むための論文・総説・教材をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月25日・Explicit MPC独立・文献追加版）**
+**自分自身がこれから読むための論文・総説・教材をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月25日・Explicit MPC文献を10件に厳選した版）**
 
 > **このリストの作成経緯について**  
 > **この文献リストは、私自身がこれから読むために、ChatGPTに論文の探索・候補選定・概要説明・分類・推奨読書順の整理をさせたものです。私自身がこれらの文献を読んで内容を確認し、その知見に基づいて作成したリストではありません。**  
 > 個人の学習用に作らせた候補一覧を、同じ分野に関心のある方の参考にもなるよう公開しています。**説明文・評価・研究史上の位置づけ・推奨読書順は主にChatGPTが生成・整理した内容であり、精読済み文献の書評や、私自身による内容の検証・推奨を示すものではありません。** 誤りや不正確な記述が残り得るため、研究で引用・利用する際は原論文の該当箇所を確認してください。
 
-> **編集方針**：収録済みの127件（従来107件＋基礎文献20件）を維持し、Explicit MPCの関連文献17件を追加しました。**手法の基本原理・研究の発展・派生と接続**を中心に分類しました。近縁の枝は一つの大分類の中で整理し、文献数が少ない基盤手法は補助節にまとめています。既存の説明と定量指標を引き継いだもので、**全件の本文・定理・実験値を精査した資料ではありません。** 各研究の成果は個々の検証条件に依存します。書誌未確定の既存項目は「要照合」として残しています。
+> **編集方針**：収録済みの127件（従来107件＋基礎文献20件）を維持し、Explicit MPCの関連文献を追加しました。今回、その節を前版の19件から10件に絞りました。**手法の基本原理・研究の発展・派生と接続**を中心に分類しました。近縁の枝は一つの大分類の中で整理し、文献数が少ない基盤手法は補助節にまとめています。既存の説明と定量指標を引き継いだもので、**全件の本文・定理・実験値を精査した資料ではありません。** 各研究の成果は個々の検証条件に依存します。書誌未確定の既存項目は「要照合」として残しています。
 
-**文献数：144件（既存107件＋前回の基礎追加20件＋Explicit MPC追加17件、主表の各文献を1回ずつ計上）／関連する公開教材・ソフトウェア：24件。** 「［基礎追加］」は前回補った20件、「［Explicit MPC追加］」は今回補った17件です。Explicit MPCを独立した分類とし、既存2件の移動を含む19件をその節で扱います。年は原則として刊行年とし、プレプリント公開年と異なる場合は注記しています。既存項目には年次基準が未統一のものも残っています。
+**文献数：135件（既存107件＋前回の基礎追加20件＋Explicit MPC追加8件、主表の各文献を1回ずつ計上）／関連する公開教材・ソフトウェア：24件。** 「［基礎追加］」は前回補った20件、「［Explicit MPC追加］」は今回の厳選後に残した追加8件です。Explicit MPC節は既存2件を含む10件とし、前版から9件を削除しました。年は原則として刊行年とし、プレプリント公開年と異なる場合は注記しています。既存項目には年次基準が未統一のものも残っています。
 
 ## 目次
 
@@ -54,7 +54,7 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 | 方法族 | 核となる考え方・本リストの基準点 | 主な展開・派生・接続 |
 |---|---|---|
 | [最適制御・MPC](#sec-k) | 有限ホライズン最適制御とreceding-horizon実行。MPC安定性の体系化が理論上の基準点。 | iLQR/DDPとSQP/RTI、Tubeによるロバスト化、接触力学を組み込む最適化。制御則の事前計算と近似は独立したExplicit MPC節へ。 |
-| [Explicit MPC](#sec-explicit) | 状態・参照値をパラメータとする最適化から、最適入力を関数として事前計算する。 | mpQP／mpLPの厳密解、領域構成・探索・圧縮、近似・NN表現、非線形・ハイブリッド系、近年のソルバーとコード生成。 |
+| [Explicit MPC](#sec-explicit) | 状態・参照値をパラメータとする最適化から、最適入力を関数として事前計算する。 | mpQPの厳密解、領域構成・探索、近似・NN表現と保証、近年のソルバーとコード生成を10件で追う。 |
 | [経路積分・MPPI・IT-MPC](#sec-p) | 確率制御のHJB変換と、経路コストによる軌道分布の重み付け。 | PI²の方策改善、MPPIのオンライン系列更新、IT-MPCの情報理論的な導出。 |
 | [システム同定・状態推定](#sec-l) | 入出力やセンサ時系列からモデル・状態を推定する。 | 部分空間法、NNモデル、BPTTによる学習計算、幾何学的推定とIMU事前積分を節内の枝として整理。 |
 | [微分可能最適化](#sec-a) | パラメータ付き最適化問題の解を微分する。 | argmin感度、QP・凸最適化層、MPC/NMPC、予測・計画の共同学習と方策最適化。 |
@@ -116,55 +116,42 @@ GP・Koopman・DeePC・微分可能MPC・DPCは、それぞれの手法を中心
 <a id="sec-explicit"></a>
 ### 2. Explicit MPC：多パラメトリック最適化・制御則の事前計算と近似
 
-**核となる考え方**：MPCの最適入力を、状態・参照値などのパラメータに対する関数としてオフラインで求め、オンラインではその関数を評価する。線形モデル・二次評価・多面体制約の標準形では、多パラメトリック二次計画（mpQP）を使って区分的アフィン（PWA）制御則を構成する。critical regionは、同じアクティブ集合に対応する最適解の式が成り立つパラメータ領域を指す。厳密解では、設定したMPC問題の最適入力を事前計算によって得る。
+**核となる考え方**：MPCの最適入力を、状態・参照値などのパラメータに対する関数としてオフラインで求め、オンラインではその関数を評価する。線形モデル・二次評価・多面体制約の標準形では、多パラメトリック二次計画（mpQP）を使って区分的アフィン（PWA）制御則を構成する。critical regionは、同じアクティブ集合に対応する最適解の式が成り立つパラメータ領域を指す。
+
+**選定方針（ChatGPTによる学習用の提案）**：基礎から近年の発展までを追える10件に絞る。原理、領域構成、オンライン探索、近似、NN表現と保証、近年の求解・実装という役割を押さえ、先行会議版との重複、個別の圧縮法、特殊な制約・対象系への拡張は外した。非線形・ハイブリッド系などの広がりは、まず収録サーベイで確認する。
 
 **研究の展開**
 
 | 流れ・分岐 | 収録文献の位置づけ | 何が拡張・接続されたか |
 |---|---|---|
-| 厳密解の成立と計算・実装 | ACC先行発表（2000）、QP／LPの基礎（2002）→領域構成・二分探索木（2003）。領域削減（2008）、NNLS（2015）、低ランク保存（2016）、組合せ的隣接性（2024）、ゾノトープ構造（2025）、コード生成（2026）は課題ごとの枝。 | 最適制御則のPWA構造から、オフライン計算、オンライン探索、メモリ削減、実装の自動化へ広がる。これらを単一のソルバーの改良列とはみなさない。 |
-| 近似・学習による制御則の構成 | NN近似の先行研究（1995）、近似mpQP（2003）、ロバスト設計と統計的検証（2018）、ReLU表現・近似（2020）、データ被覆を用いる方策（2026）。 | 最適性と保存量・学習量の交換を扱い、近似誤差、制約充足、安定性をどう評価するかへ展開。NN近似の発想は古典的mpQPの成立以前にもある。 |
-| 対象系の拡張 | 非線形RHCの近似（2004）／線形ハイブリッド系の動的計画法（2005）。 | 非線形系では近似と誤差条件、ハイブリッド系ではモード選択と解構造を扱う。線形・二次評価の厳密mpQPと条件を区別する。 |
+| 厳密解を作る・使う | Bemporadら（2002）→Tøndelらの領域構成／二分探索木（2003）。近年の求解はArnström・Axehill（2024）、コード生成はSchallerら（2026）。 | PWA構造の理論から、オフラインでの領域計算、オンライン評価、現在のソルバー・実装へ進む。 |
+| 近似・学習による制御則の構成 | Bemporad・Filippi（2003）、Hertneckら（2018）、Karg・Lucia（2020）、Castellanoら（2026）。 | 最適性と複雑さのトレードオフ、ロバスト設計と統計的検証、ReLU表現、データ被覆に基づく近似は、それぞれ異なる枝。 |
+| 全体像 | Alessio・Bemporad（2009）のサーベイ。 | 初期理論と対象系の拡張を俯瞰し、2010年代以降の発展は残りの原著で補う。 |
 
-[一般のMPC・数値解法](#sec-k)から独立して、この方法族を集中して追うための節。多パラメトリック最適化自体にはさらに前史があり、ここでの基本原理・研究の枝分けと読書順は、収録文献に基づいてChatGPTが整理したものである。直接の引用関係をすべて確認した研究史ではない。
+[一般のMPC・数値解法](#sec-k)から独立した分類。[微分可能MPC](#sec-a)は最適解の感度を学習に使い、[DPC](#sec-n)は予測ロールアウトを通して方策を訓練する。厳密なExplicit解、ReLUによる表現可能性、学習した方策の近似精度・保証は区別する。以下の枝分けと読書順は学習用の整理であり、全論文の直接の継承関係を意味しない。
 
-[微分可能MPC](#sec-a)は最適解の感度を学習に使い、[DPC](#sec-n)は予測ロールアウトを通して方策を訓練する。Explicit MPCとの構成上の接点はあるが、三者を一つの解法として扱わない。厳密解の等価な圧縮、ReLUによる厳密な表現可能性、学習した方策の近似精度・保証も区別する。
-
-**収録文献**
+**収録文献（厳選10件・原則年代順）**
 
 | 読む価値・研究上の役割 | 年・論文（原文リンク） | 対象・問題設定・実験 | 手法と主な成果・定量指標 | 期待される応用 | 残された課題・限界 |
 | --- | --- | --- | --- | --- | --- |
-| **［近似・学習の前史］** **［Explicit MPC追加］** Parisini・Zoppoli。 | 1995 / **[A receding-horizon regulator for nonlinear systems and a neural approximation](https://doi.org/10.1016/0005-1098(95)00044-W)** | 状態・入力制約を持つ離散時間非線形系のreceding-horizon制御。Automatica 31(10):1443–1451。 | 終端ペナルティを用いた安定化と、制御則の多層フィードフォワードNNによるオフライン近似を扱い、近似誤差の評価を与える。 | 学習によるMPC制御則の近似の前史。 | 古典的mpQPによる厳密なExplicit MPCとは別の系統。NNで近似する発想を2010年代に始まったものと捉えない。 |
-| **［厳密解・先行発表］** **［Explicit MPC追加］** Bemporad・Morari・Dua・Pistikopoulos。 | 2000 / **[The Explicit Solution of Model Predictive Control via Multiparametric Quadratic Programming](https://cse.lab.imtlucca.it/~bemporad/publications/papers/acc00-mpqp.pdf)** | 線形・二次評価・線形制約のMPC。ACC 2000。 | 状態をパラメータとするmpQPから、最適制御則をオフラインで構成する初期の会議発表。 | Explicit MPCの成立過程を追う。 | 2002年Automatica論文と密接に関連する先行発表。研究史を追うため別文献として収録するが、独立した二つの発明とは扱わない。 |
 | **［厳密解・QPの基礎］** Bemporad・Morari・Dua・Pistikopoulos。 | 2002 / **[The Explicit Linear Quadratic Regulator for Constrained Systems](https://doi.org/10.1016/S0005-1098(01)00174-1)** | 制約付き線形系の有限ホライズンMPCと、条件を満たす制約付き無限ホライズンLQR。Automatica 38(1):3–20。 | 多パラメトリック二次計画（mpQP）として最適解の状態依存性を求め、連続な区分的アフィン（PWA）制御則を構成する。 | Explicit MPCの理論上の出発点。オンラインMPCと同じ最適入力を関数評価で得る。 | 設定したモデル・評価・制約・ホライズンに対する解。領域数と保存量が問題規模とともに増える。既存項目の誤ったDOIを訂正。 |
-| **［厳密解・LPの基礎］** **［Explicit MPC追加］** Bemporad・Borrelli・Morari。 | 2002 / **[Model Predictive Control Based on Linear Programming—The Explicit Solution](https://cse.lab.imtlucca.it/~bemporad/publications/papers/ieeetac-mpcinf.pdf)** | 混合1/∞ノルム評価によりLPとして表せる制約付き線形MPC。IEEE TAC 47(12):1974–1985。 | 多パラメトリック線形計画（mpLP）を用いてPWA制御則を構成し、安定性のための終端重みや、解の非一意性・退化を扱う。 | 二次評価以外のExplicit MPC、mpLPとmpQPの比較。 | 厳密凸QPと異なり最適解が一意でない場合があり、解の選択・退化の扱いを確認する必要がある。 |
 | **［厳密解・領域構成］** **［Explicit MPC追加］** Tøndel・Johansen・Bemporad。 | 2003 / **[An algorithm for multi-parametric quadratic programming and explicit MPC solutions](https://doi.org/10.1016/S0005-1098(02)00250-9)** | Explicit MPC用のmpQP求解。Automatica 39(3):489–497。 | アクティブ集合と隣接領域の関係を利用し、領域とそのアフィン解を構成する。初期の幾何的mpQPアルゴリズムを学ぶ。 | 基礎理論から実際のオフラインソルバーへ進む入口。 | 退化・数値精度・多面体の幾何計算が重要。オフライン構成の高速化とオンライン評価の高速化を区別する。 |
 | **［厳密解・オンライン探索］** **［Explicit MPC追加］** Tøndel・Johansen・Bemporad。 | 2003 / **[Evaluation of piecewise affine control via binary search tree](https://doi.org/10.1016/S0005-1098(02)00308-4)** | 事前に得たPWA制御則を現在状態に対して評価する問題。Automatica 39(5):945–950。 | 領域所属判定を二分探索木として構成し、オンラインで対応する制御則を探す計算を軽量化する。 | 組込みMPC、領域探索の演算量・実行時間の設計。 | 領域構成自体を速める論文とは役割が異なる。探索木の生成時間と保存量も評価する。 |
 | **［近似mpQP］** **［Explicit MPC追加］** Bemporad・Filippi。 | 2003 / **[Suboptimal Explicit Receding Horizon Control via Approximate Multiparametric Quadratic Programming](https://cse.lab.imtlucca.it/~bemporad/publications/papers/jota-submpqp.pdf)** | 厳密なPWA解の領域数を抑えたい制約付き線形MPC。JOTA 117(1):9–38。 | 最適性条件の緩和を用いて近似度と領域数を調整し、解・最適値の誤差を評価する。条件の下で制約充足と閉ループ安定性を扱う。 | 領域数と最適性のトレードオフを設計する近似Explicit MPC。 | 近似誤差と保証条件の確認が必要。厳密な解の表現圧縮と、制御則自体の近似を区別する。 |
-| **［非線形系・近似］** **［Explicit MPC追加］** Johansen。 | 2004 / **[Approximate explicit receding horizon control of constrained nonlinear systems](https://doi.org/10.1016/j.automatica.2003.09.021)** | 制約付き非線形RHC。Automatica 40:293–300。 | 非線形MPC制御則の区分的な近似と二分探索木を構成し、近似誤差を安定余裕内に抑えることで、仮定の下で安定性を確保する。 | 非線形MPCのオフライン近似と、近似誤差を考慮した設計。 | 線形・二次評価系での厳密なPWA解と同一ではない。保証する領域、誤差条件、非凸問題の求解を確認する。 |
-| **［ハイブリッド系］** **［Explicit MPC追加］** Borrelli・Baotić・Bemporad・Morari。 | 2005 / **[Dynamic programming for constrained optimal control of discrete-time linear hybrid systems](https://cse.lab.imtlucca.it/~bemporad/publications/papers/automatica-mp-hybrid.pdf)** | 連続・離散変数やモード切替えを持つ離散時間線形ハイブリッド系。Automatica 41(10):1709–1721。 | 多パラメトリック最適化と動的計画法を組み合わせ、最適状態フィードバックと価値関数の構造・構成法を示す。 | モード選択・切替えを含むExplicitな最適制御。 | モード数・ホライズンによる組合せ増大がある。領域の非凸性など、通常の厳密凸mpQPとは異なる解構造に注意する。 |
-| **［厳密解・領域削減］** **［Explicit MPC追加］** Geyer・Torrisi・Morari。 | 2008 / **[Optimal complexity reduction of polyhedral piecewise affine systems](https://www.tobiasgeyer.org/GeTM08_OptRed.pdf)** | 多面体分割で表されたPWAシステム・制御則。Automatica 44:1728–1740。 | 同じPWA写像を維持しながら領域の表現を削減する問題を扱う。与えられた超平面配置などの仮定の下で複雑さの最小化を研究する。 | Explicit制御則の等価な表現圧縮・領域統合。 | 最適な領域削減は一般に難しい。適用条件を確認し、最適性を緩める近似法と混同しない。 |
 | **［全体像・総説］** **［Explicit MPC追加］** Alessio・Bemporad。 | 2009 / **[A Survey on Explicit Model Predictive Control](https://cse.lab.imtlucca.it/~bemporad/publications/papers/nmpc08-survey-explicit.pdf)** | Explicit MPCの初期理論・計算・近似・拡張を俯瞰。LNCIS 384:345–369。 | 厳密解、mpLP/mpQP、近似、ハイブリッド系、min-max制御などを整理する総説。 | 最初の全体把握と、個別原著への索引。 | 2009年以降のNN表現、近年のソルバーやコード生成は別の収録論文で補う。総説であり、独自の共通高速化倍率はない。 |
-| **［厳密解・mpQP計算］** **［Explicit MPC追加］** Bemporad。 | 2015 / **[A Multiparametric Quadratic Programming Algorithm With Polyhedral Computations Based on Nonnegative Least Squares](https://cse.lab.imtlucca.it/~bemporad/publications/papers/ieeetac-mpqp_nnls.pdf)** | mpQPの領域構成と多面体計算。IEEE TAC 60(11):2892–2903。 | 非負最小二乗（NNLS）で空集合・次元・冗長性等の判定を処理し、双対問題を使う領域構成と退化への対応を組み合わせる。 | オフラインmpQPソルバーの計算改善と実装。 | 改善対象は主にオフラインの幾何計算。領域数の最悪時の増大自体を解消するものではない。 |
-| **［厳密解・保存量］** **［Explicit MPC追加］** Nielsen・Axehill。 | 2016〔プレプリント〕 / **[Reduced Memory Footprint in Multiparametric Quadratic Programming by Exploiting Low Rank Structure](https://arxiv.org/abs/1603.05034)** | mpQP解と領域を保存するメモリ負荷。 | 領域間のパラメトリック解の低ランク構造を利用し、完全な係数・領域表現を保存する場合に比べ必要メモリを削減する。 | 小容量メモリへのExplicit MPC実装、差分による解の保存。 | メモリ削減率は問題に依存する。領域数の削減、制御則の近似、オンライン演算量の改善は別の評価軸。 |
 | **［近似・学習と保証］** **［Explicit MPC追加］** Hertneck・Köhler・Trimpe・Allgöwer。 | 2018 / **[Learning an Approximate Model Predictive Controller with Guarantees](https://arxiv.org/abs/1806.04167)** | 非線形系を含むMPC方策の教師あり近似。IEEE Control Systems Letters 2(3):543–548。 | 入力誤差を許容するロバストMPCと、Hoeffdingの不等式に基づく学習誤差の検証を組み合わせ、安定性・制約充足の統計的保証を与える。 | NN等によるMPC近似と、学習した方策の閉ループ評価。 | 全状態に対する一様な決定論的認証とは異なる。MPC設計の仮定、許容誤差、検証データと信頼度を確認する。 |
 | **［PWAのNN表現・近似］** **［Explicit MPC追加］** Karg・Lucia。 | 2020〔プレプリント2018〕 / **[Efficient Representation and Approximation of Model Predictive Control Laws via Deep Learning](https://arxiv.org/abs/1806.10644)** | 線形MPCのPWA制御則とReLUネットワーク。IEEE Transactions on Cybernetics 50(9):3866–3878。 | ReLU NNによるPWA制御則の厳密な表現可能性とネットワーク構造の理論を示し、深層NNによる近似と省メモリ化を評価する。 | Explicit制御則の別表現、MPC近似のネットワーク設計。 | 厳密に表現できるという存在・構成上の結果と、学習したNNの精度・制約保証は別。学習だけで元の最適解が再現されるとは限らない。 |
 | **［厳密解・mpQP計算］** **［Explicit MPC追加］** Arnström・Axehill。 | 2024 / **[A High-Performant Multi-Parametric Quadratic Programming Solver](https://arxiv.org/abs/2404.05511)** | Explicit MPCのためのmpQP求解。CDC 2024:303–308。 | アクティブ集合の組合せ的隣接性による連結グラフを利用し、重い多面体の幾何計算と探索する組合せを削減する。 | 近年の厳密mpQPソルバーPDAQPを理解する入口。 | 報告される高速化はオフライン解構成のベンチマーク。オンライン制御の実行時間の改善倍率とは区別する。 |
-| **［厳密解・制約集合の構造］** **［Explicit MPC追加］** Mihai・Stoican・Mönnigmann・Ciubotaru。 | 2025〔プレプリント〕 / **[Explicit MPC for the constrained zonotope case with low-rank matrix updates](https://arxiv.org/abs/2511.02433)** | 箱・ゾノトープ制約を持つExplicit MPC。2025年11月公開版。 | 制約付きゾノトープの生成子空間への変換、低ランク行列更新、候補アクティブ集合の解析的列挙を用い、解を木構造で構成する。 | 制約集合の構造を利用する厳密解計算の発展。 | 対象の制約構造を利用する方法で、一般の任意の制約にそのまま適用できるとは限らない。ここではプレプリントとして収録する。 |
 | **［近似・データによる構成］** Castellano・Pan・Mallada。 | 2026 / **[Data-driven Acceleration of MPC with Guarantees](https://proceedings.mlr.press/v331/castellano26a.html)** | オフラインMPC解から構成する非パラメトリック方策。L4DC 2026、PMLR 331:1339–1362。 | 最適cost-to-goの上界に対してgreedyなルックアップ則を構成。十分なデータ被覆の下で再帰的実行可能性と最適性ギャップを評価し、論文の実験で通常のMPCに対し100～1000倍の高速化を報告する。 | オフライン解を蓄積してオンライン最適化を置き換える制御。 | 厳密なcritical region列挙によるExplicit MPCとは異なる近似系統。被覆条件・高次元でのデータ量・実験の比較条件を確認する。 |
 | **［厳密解・コード生成］** **［Explicit MPC追加］** Schaller・Arnström・Bemporad・Boyd。 | 2026〔プレプリント2025〕 / **[Automatic Generation of Explicit Quadratic Programming Solvers](https://web.stanford.edu/~boyd/papers/pdf/cvxpygen_mpqp.pdf)** | 高水準のパラメトリックQP記述から組込み用Explicitソルバーを生成。IEEE Control Systems Magazine、2026年10月。 | CVXPYの問題記述をPDAQPとCVXPYgenに接続し、領域・係数の事前計算からC/C++コードとPythonインターフェースの生成まで統合する。 | 理論から現在のPython試作・Cコード実装へ進む橋渡し。 | 対象となるQPの構造と領域数に実用性が依存する。通常の反復型QPソルバーのコード生成と、Explicit写像のコード生成を区別する。 |
 
-**集中して読む順番（学習用の提案）**
+**読む順番（学習用の提案）**
 
-1. Alessio・Bemporad（2009）のサーベイで、厳密解・近似・拡張の全体像をつかむ。
-2. Bemporadら（2002、QP）で、アクティブ集合とPWA制御則の関係を理解する。LP型も扱いたい場合は同年のLP論文を併読する。
-3. Tøndelら（2003、領域構成）→同年の二分探索木で、「オフラインに作る」と「オンラインに使う」を分けて学ぶ。
-4. Bemporad・Filippi（2003）で、領域数と最適性のトレードオフを確認する。
-5. Arnström・Axehill（2024）→Schallerら（2026）で、近年の厳密解ソルバーとコード生成までつなぐ。
+1. **まず読む4本**：Alessio・Bemporad（2009、サーベイ）→Bemporadら（2002、基礎理論）→Tøndelら（2003、領域構成）→Tøndelら（2003、二分探索木）。何が厳密に求まり、どう事前計算して、どう実行するかを押さえる。
+2. **近似・学習へ進む3本**：Bemporad・Filippi（2003、近似mpQP）で誤差と複雑さを学び、Karg・Lucia（2020、NN表現）とHertneckら（2018、統計的保証）を読む。表現できること、学習で近似できること、閉ループ保証が得られることを分ける。
+3. **最近の発展を追う3本**：厳密解の計算・実装はArnström・Axehill（2024）→Schallerら（2026）。Castellanoら（2026）はデータに基づく近似・保証の別の枝として比較する。
 
-メモリと厳密表現を掘る場合はGeyerら→Nielsen・Axehill、オフライン幾何計算はBemporad（2015）、制約集合の構造はMihaiらを読む。近似・学習の枝はParisini・Zoppoli→Hertneckら→Karg・Lucia→Castellanoらを比較し、非線形系とモード切替えはそれぞれJohansen、Borrelliらへ分岐する。NNの表現可能性と、学習後の保証は別の論点として読む。
-
-**この区分の収録件数：19件（既存2件の移動＋今回追加17件）。** ACC 2000の先行発表と2002年の詳しい論文は別の文献として数え、研究上の新規性や独立した成果の件数を数えるものではない。サーベイもこの節の主表に1回だけ計上する。
+**この区分の収録件数：10件。** 前版の19件から9件を削除し、全体像と主要な研究の流れを押さえる学習候補に絞った。
 
 <a id="sec-p"></a>
 ### 3. 経路積分制御：PI²・MPPI・Information-Theoretic MPC
@@ -702,8 +689,8 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 
 **6. 方法族の展開・異分野との接続・学習順を区別する。** 本文の「研究の展開」は方法の原理からの拡張や並行する枝を示し、全論文間の直接の引用関係を意味しない。別の方法を組み合わせる場合は接続として表す。新しい総説を先に読む学習順と、方法が成立した歴史順も異なる。
 
-**7. 書誌・確認範囲について。** 既存107件と前回の基礎追加20件を保持し、今回Explicit MPCの関連文献17件を追加して計144件とした。既存2件を独立したExplicit MPC節へ移動し、基礎論文のDOIを10.1016/S0005-1098(01)00174-1に訂正した。今回追加した文献は、この会話で挙げた原著・サーベイについて、出版社・著者公開版・所属機関・arXiv・公式会議録の情報を参照して整理した。2025年のゾノトープ論文などは、参照したプレプリントの状態を明記した。研究の枝分けと読書順はChatGPTによる学習用の整理であり、全引用関係を確認した研究史や全件の精読に基づく評価ではない。前回の基礎追加20件は、出版社・著者・所属機関・arXiv・公式会議録などの情報を参照して補った。MIT Cheetah 3のリンクをDOIに、2017年MPPIのリンクを掲載題名と一致するDOIに訂正した。初期MPPIの関連プレプリントは[Model Predictive Path Integral Control using Covariance Variable Importance Sampling](https://arxiv.org/abs/1509.01149)で、別の追加文献として重複計上していない。Information-Theoretic MPCは2017年のプレプリントと2018年の雑誌版を1件として扱う。既存のL1適応制御など書誌要照合の項目は残っており、全リンク・刊行年・定量値の網羅的な再確認は完了していない。
+**7. 書誌・確認範囲について。** 既存107件と前回の基礎追加20件を保持し、Explicit MPCの関連文献は追加候補17件を8件に絞って、全体を計135件とした。Explicit MPC節は既存2件を含む10件を収録する。既存2件を独立したExplicit MPC節へ移動し、基礎論文のDOIを10.1016/S0005-1098(01)00174-1に訂正した。今回追加した文献は、この会話で挙げた原著・サーベイについて、出版社・著者公開版・所属機関・arXiv・公式会議録の情報を参照して整理した。前版で扱ったACC先行発表、LP、個別の圧縮・幾何計算法、非線形・ハイブリッド系などの専門的な枝は今回の10件から外した。研究の枝分けと読書順はChatGPTによる学習用の整理であり、全引用関係を確認した研究史や全件の精読に基づく評価ではない。前回の基礎追加20件は、出版社・著者・所属機関・arXiv・公式会議録などの情報を参照して補った。MIT Cheetah 3のリンクをDOIに、2017年MPPIのリンクを掲載題名と一致するDOIに訂正した。初期MPPIの関連プレプリントは[Model Predictive Path Integral Control using Covariance Variable Importance Sampling](https://arxiv.org/abs/1509.01149)で、別の追加文献として重複計上していない。Information-Theoretic MPCは2017年のプレプリントと2018年の雑誌版を1件として扱う。既存のL1適応制御など書誌要照合の項目は残っており、全リンク・刊行年・定量値の網羅的な再確認は完了していない。
 
 ---
 
-**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。既存107件と前回追加した基礎文献20件を保持し、今回のExplicit MPC関連17件を加えた計144件を収録しています。文献を引用したり数値を研究資料に再利用したりする際は、原典の該当図表・定理を確認してください。
+**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。既存107件と前回追加した基礎文献20件を保持し、厳選したExplicit MPC関連8件を加えた計135件を収録しています。文献を引用したり数値を研究資料に再利用したりする際は、原典の該当図表・定理を確認してください。
