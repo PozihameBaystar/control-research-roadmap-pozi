@@ -5,15 +5,15 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 
 # 制御工学・ロボティクス・学習ベース制御　研究文献総覧
 
-**自分自身がこれから読むための論文・総説・教材をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月24日・用語補足を調整した版）**
+**自分自身がこれから読むための論文・総説・教材をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月25日・Explicit MPC独立・文献追加版）**
 
 > **このリストの作成経緯について**  
 > **この文献リストは、私自身がこれから読むために、ChatGPTに論文の探索・候補選定・概要説明・分類・推奨読書順の整理をさせたものです。私自身がこれらの文献を読んで内容を確認し、その知見に基づいて作成したリストではありません。**  
 > 個人の学習用に作らせた候補一覧を、同じ分野に関心のある方の参考にもなるよう公開しています。**説明文・評価・研究史上の位置づけ・推奨読書順は主にChatGPTが生成・整理した内容であり、精読済み文献の書評や、私自身による内容の検証・推奨を示すものではありません。** 誤りや不正確な記述が残り得るため、研究で引用・利用する際は原論文の該当箇所を確認してください。
 
-> **編集方針**：収録済みの127件（従来107件＋基礎文献20件）を維持し、**手法の基本原理・研究の発展・派生と接続**を中心に分類しました。近縁の枝は一つの大分類の中で整理し、文献数が少ない基盤手法は補助節にまとめています。既存の説明と定量指標を引き継いだもので、**全件の本文・定理・実験値を精査した資料ではありません。** 各研究の成果は個々の検証条件に依存します。書誌未確定の既存項目は「要照合」として残しています。
+> **編集方針**：収録済みの127件（従来107件＋基礎文献20件）を維持し、Explicit MPCの関連文献17件を追加しました。**手法の基本原理・研究の発展・派生と接続**を中心に分類しました。近縁の枝は一つの大分類の中で整理し、文献数が少ない基盤手法は補助節にまとめています。既存の説明と定量指標を引き継いだもので、**全件の本文・定理・実験値を精査した資料ではありません。** 各研究の成果は個々の検証条件に依存します。書誌未確定の既存項目は「要照合」として残しています。
 
-**文献数：127件（既存107件＋基礎追加20件、主表の各文献を1回ずつ計上）／関連する公開教材・ソフトウェア：24件。** 「［基礎追加］」は前回改訂で補った20件です。今回の調整では文献の選定・分類を変えていません。年は原則として刊行年とし、プレプリント公開年と異なる場合は注記しています。既存項目には年次基準が未統一のものも残っています。
+**文献数：144件（既存107件＋前回の基礎追加20件＋Explicit MPC追加17件、主表の各文献を1回ずつ計上）／関連する公開教材・ソフトウェア：24件。** 「［基礎追加］」は前回補った20件、「［Explicit MPC追加］」は今回補った17件です。Explicit MPCを独立した分類とし、既存2件の移動を含む19件をその節で扱います。年は原則として刊行年とし、プレプリント公開年と異なる場合は注記しています。既存項目には年次基準が未統一のものも残っています。
 
 ## 目次
 
@@ -21,20 +21,21 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 
 - [手法と研究の流れ：全体マップ](#roadmap)
 - [1. 最適制御・MPC：基本構成・数値解法・構造化](#sec-k)
-- [2. 経路積分制御：PI²・MPPI・Information-Theoretic MPC](#sec-p)
-- [3. システム同定・状態推定：部分空間法・NNモデル・幾何学的推定](#sec-l)
-- [4. 微分可能最適化：argmin微分からDifferentiable MPCへ](#sec-a) — MPCなどの最適解をパラメータで微分し、モデル・コストの学習に使う。
-- [5. Differentiable Predictive Control（DPC）：ロールアウトによる方策学習](#sec-n) — DPC：予測ロールアウトを微分して、明示的な制御方策を学習する。
-- [6. 行動的システム理論とDeePC：軌道表現から非線形局所法へ](#sec-d) — DeePC：入出力の軌道データを直接用いて予測制御を構成する。
-- [7. Koopman法：作用素近似・入力付き予測・MPC・保証](#sec-e) — Koopman：状態の関数を用いた線形予測モデルで非線形系を扱う。
-- [8. Gaussian Processに基づく予測制御：GP-MPCと計算近似](#sec-h) — GP-MPC：Gaussian Processの予測平均・分散をMPCに利用する。
-- [9. Neural Lyapunov法：証明関数の学習・反例誘導・形式検証](#sec-b) — Neural Lyapunov：Lyapunov関数・制御則をNNで学習し、安定性を検証する。
-- [10. Contraction法：収縮解析からCCM・Neural Metricへ](#sec-c) — CCM：制御によって状態差を縮められることを示す、状態依存の距離の測り方。
-- [11. 安全フィルタ法：CBF・予測フィルタ・HJ到達可能性](#sec-f) — CBF：安全集合から出ないための条件を、制御入力への制約として与える関数。
-- [12. System Level Synthesis（SLS）：応答パラメータ化からMPCへ](#sec-g) — SLS：外乱から状態・入力への閉ループ応答を設計変数にする。
-- [13. 学習による方策合成：方策勾配・モデルベースRL・模倣学習](#sec-u)
-- [14. Neural Operator法：予測作用素から物理学習・制御作用素へ](#sec-i) — Neural Operator：PDEの解作用素など、関数間の写像をNNで学習する。
-- [15. In-Context Learning法：メタ同定とWorld Model適応](#sec-j) — ICL：対象系の履歴を使い、モデルのパラメータ更新なしに予測を適応させる。
+- [2. Explicit MPC：多パラメトリック最適化・制御則の事前計算と近似](#sec-explicit) — MPCの最適制御則をオフラインで構成し、領域探索と関数評価で実行する。
+- [3. 経路積分制御：PI²・MPPI・Information-Theoretic MPC](#sec-p)
+- [4. システム同定・状態推定：部分空間法・NNモデル・幾何学的推定](#sec-l)
+- [5. 微分可能最適化：argmin微分からDifferentiable MPCへ](#sec-a) — MPCなどの最適解をパラメータで微分し、モデル・コストの学習に使う。
+- [6. Differentiable Predictive Control（DPC）：ロールアウトによる方策学習](#sec-n) — DPC：予測ロールアウトを微分して、明示的な制御方策を学習する。
+- [7. 行動的システム理論とDeePC：軌道表現から非線形局所法へ](#sec-d) — DeePC：入出力の軌道データを直接用いて予測制御を構成する。
+- [8. Koopman法：作用素近似・入力付き予測・MPC・保証](#sec-e) — Koopman：状態の関数を用いた線形予測モデルで非線形系を扱う。
+- [9. Gaussian Processに基づく予測制御：GP-MPCと計算近似](#sec-h) — GP-MPC：Gaussian Processの予測平均・分散をMPCに利用する。
+- [10. Neural Lyapunov法：証明関数の学習・反例誘導・形式検証](#sec-b) — Neural Lyapunov：Lyapunov関数・制御則をNNで学習し、安定性を検証する。
+- [11. Contraction法：収縮解析からCCM・Neural Metricへ](#sec-c) — CCM：制御によって状態差を縮められることを示す、状態依存の距離の測り方。
+- [12. 安全フィルタ法：CBF・予測フィルタ・HJ到達可能性](#sec-f) — CBF：安全集合から出ないための条件を、制御入力への制約として与える関数。
+- [13. System Level Synthesis（SLS）：応答パラメータ化からMPCへ](#sec-g) — SLS：外乱から状態・入力への閉ループ応答を設計変数にする。
+- [14. 学習による方策合成：方策勾配・モデルベースRL・模倣学習](#sec-u)
+- [15. Neural Operator法：予測作用素から物理学習・制御作用素へ](#sec-i) — Neural Operator：PDEの解作用素など、関数間の写像をNNで学習する。
+- [16. In-Context Learning法：メタ同定とWorld Model適応](#sec-j) — ICL：対象系の履歴を使い、モデルのパラメータ更新なしに予測を適応させる。
 - [補助：制御器設計の基盤手法（リレー自動調整・H₂/H∞・適応制御）](#sec-x)
 - [付録：研究の流れを俯瞰するサーベイ・総説](#sec-s)
 - [付録：各手法の導出を学ぶチュートリアル・概説](#sec-t)
@@ -44,7 +45,7 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 <a id="roadmap"></a>
 ## 手法と研究の流れ：全体マップ
 
-**この一覧は「どの目的にどの方法を使うか」ではなく、「どのような手法があり、その原理がどう拡張されてきたか」を中心に読むための地図です。** 大分類は15の方法族とし、各方法族の中に基礎・主な展開・派生をまとめました。文献数が少ない設計手法は補助節、総説・チュートリアルは付録に置いています。
+**この一覧は「どの目的にどの方法を使うか」ではなく、「どのような手法があり、その原理がどう拡張されてきたか」を中心に読むための地図です。** 大分類は16の方法族とし、各方法族の中に基礎・主な展開・派生をまとめました。文献数が少ない設計手法は補助節、総説・チュートリアルは付録に置いています。
 
 各節では、**核となる考え方 → 研究の展開 → 収録文献**の順に説明します。共通の原理に基づく拡張を「展開」、別の方法と組み合わせる関係を「接続」、並行する方法を「別の枝」として区別します。表の行をまたぐ前提関係や、全手法が一本道で発展したという関係は置きません。
 
@@ -52,7 +53,8 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 
 | 方法族 | 核となる考え方・本リストの基準点 | 主な展開・派生・接続 |
 |---|---|---|
-| [最適制御・MPC](#sec-k) | 有限ホライズン最適制御とreceding-horizon実行。MPC安定性の体系化が理論上の基準点。 | iLQR/DDPとSQP/RTI、Tubeによるロバスト化、Explicit MPC、解の近似、接触力学を組み込む最適化。 |
+| [最適制御・MPC](#sec-k) | 有限ホライズン最適制御とreceding-horizon実行。MPC安定性の体系化が理論上の基準点。 | iLQR/DDPとSQP/RTI、Tubeによるロバスト化、接触力学を組み込む最適化。制御則の事前計算と近似は独立したExplicit MPC節へ。 |
+| [Explicit MPC](#sec-explicit) | 状態・参照値をパラメータとする最適化から、最適入力を関数として事前計算する。 | mpQP／mpLPの厳密解、領域構成・探索・圧縮、近似・NN表現、非線形・ハイブリッド系、近年のソルバーとコード生成。 |
 | [経路積分・MPPI・IT-MPC](#sec-p) | 確率制御のHJB変換と、経路コストによる軌道分布の重み付け。 | PI²の方策改善、MPPIのオンライン系列更新、IT-MPCの情報理論的な導出。 |
 | [システム同定・状態推定](#sec-l) | 入出力やセンサ時系列からモデル・状態を推定する。 | 部分空間法、NNモデル、BPTTによる学習計算、幾何学的推定とIMU事前積分を節内の枝として整理。 |
 | [微分可能最適化](#sec-a) | パラメータ付き最適化問題の解を微分する。 | argmin感度、QP・凸最適化層、MPC/NMPC、予測・計画の共同学習と方策最適化。 |
@@ -82,7 +84,7 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 <a id="sec-r"></a>
 ### 1. 最適制御・MPC：基本構成・数値解法・構造化
 
-**核となる考え方**：有限ホライズンの最適制御とreceding-horizon実行を基盤に、安定性条件、数値計算、ロバスト化、明示解、接触力学の扱いへ枝分かれする。ここでは近縁の研究を一節にまとめ、節内で方法の流れを分ける。
+**核となる考え方**：有限ホライズンの最適制御とreceding-horizon実行を基盤に、安定性条件、数値計算、ロバスト化、接触力学の扱いへ枝分かれする。ここでは近縁の研究を一節にまとめ、節内で方法の流れを分ける。
 
 **研究の展開**
 
@@ -91,7 +93,7 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 | 基本構成・安定性 | MPC安定性・最適性（2000） | 終端コスト・終端集合と実行可能性・安定性の関係を体系化。本リストでの理論上の基準点であり、MPCの歴史的起源とする意味ではない。 |
 | 局所最適化・実時間計算 | iLQR（2004）→オンライン軌道最適化（2012）→Control-Limited DDP（2014）／RTI（2005） | 前後方計算によるiLQR/DDPと、SQPをサンプリングごとに進めるRTIは並行する数値解法の流れ。 |
 | ロバスト化 | Tube MPC（2005） | 名目予測・誤差フィードバック・制約引き締めを組み合わせる。 |
-| 明示化・近似 | Explicit MPC（2002）／Data-driven Acceleration（2026） | パラメトリックQPの厳密な事前計算と、データによる解の近似という二つの枝。 |
+| 制御則の事前計算・近似との接続 | [Explicit MPCの独立節](#sec-explicit)を参照 | 厳密解の構成、解の近似、NN表現とその保証を独立した方法族として追う。 |
 | 接触力学への構造化 | Contact-Implicit（2014）／接触力Convex MPC（2018） | 接触モードを相補性条件で含める枝と、接地構造を与えて接触力をQPで計画する枝。前者→後者という直接の後継関係は置かない。 |
 
 GP・Koopman・DeePC・微分可能MPC・DPCは、それぞれの手法を中心に別節で追う。予測安全フィルタは、MPCの予測・バックアップ構造とFの安全フィルタを結ぶ接点。
@@ -101,7 +103,6 @@ GP・Koopman・DeePC・微分可能MPC・DPCは、それぞれの手法を中心
 | 読む価値・研究上の役割 | 年・論文（原文リンク） | 対象・問題設定・実験 | 手法と主な成果・定量指標 | 期待される応用 | 残された課題・限界 |
 | --- | --- | --- | --- | --- | --- |
 | **［安定性理論・総説］** **［基礎追加］** Mayne・Rawlings・Rao・Scokaert。制約付きMPCの安定性理論の基本総説。 | 2000 / **[Constrained Model Predictive Control: Stability and Optimality](https://doi.org/10.1016/S0005-1098(99)00214-9)** | 線形・非線形系の有限ホライズン制御で、実行可能性と閉ループ安定性をどう保証するか。 | 終端コスト・終端集合・終端制御則などの条件を整理し、MPCの安定性と最適性の論理を体系化。特定実験の高速化倍率を示す文献ではない。 | Tube MPC、学習モデル付きMPC、Koopman MPCの保証を読む共通の土台。 | 十分条件とモデルの仮定を要する。学習誤差・確率的保証・ソルバーの実時間実装は別途扱う。 |
-| **［厳密な事前計算］** MPCを明示的方策で置き換える研究の歴史的基盤。 | 2002 / **[The Explicit Linear Quadratic Regulator for Constrained Systems](https://doi.org/10.1016/S0005-1098(02)00174-9)** | 線形制約付きMPCの最適入力を状態の区分的アフィン関数としてオフラインで計算する。 | パラメトリックQPの解をExplicit MPCとして表現する枠組みを示し、オンラインQP求解を表引きに近い評価へ置換した。 | マイクロコントローラ向けMPC、MPC方策の学習代替との比較。 | 状態次元・制約数が増えると領域数が爆発し、メモリと探索コストが課題。 |
 | **［iLQR／DDP］** **［基礎追加］** Li・Todorov。iLQRの局所近似と前後方計算を学ぶ基礎。 | 2004 / **[Iterative Linear Quadratic Regulator Design for Nonlinear Biological Movement Systems](https://doi.org/10.5220/0001143902220229)** | 非線形な身体運動系で、局所的に最適な軌道とフィードバックを反復計算する。 | 力学の線形化とコストの二次近似からLQR型の後退計算を行い、前進シミュレーションで改善する。DDPで用いる力学の二階微分との違いを確認できる。 | Tassaのオンライン軌道最適化、Differentiable MPC、ロボットNMPC。 | 局所解と初期軌道に依存する。一般の状態制約や接触モード探索をそのまま処理する方法ではない。 |
 | **［Tube MPC］** 現代のRobust MPCの基本。 | 2005 / **[Robust Model Predictive Control of Constrained Linear Systems with Bounded Disturbances](https://doi.org/10.1016/j.automatica.2005.02.005)** | 有界外乱下の制約付き線形系を予測制御する。 | 名目軌道と誤差に対する固定安定化フィードバックを分離し、制約引き締めによる実行可能性・安定性の保証を示すTube MPCを定式化した。 | ロバストMPC、GP/学習モデルの誤差集合に対する制約保証。 | 外乱集合の既知性・保守性、チューブ計算、非線形系の扱いが課題。 |
 | **［SQP・RTI］** NMPCの実時間計算の歴史を理解する要石。 | 2005 / **[A Real-Time Iteration Scheme for Nonlinear Optimization in Optimal Feedback Control](https://doi.org/10.1137/S0363012902400713)** | 非線形MPCで各サンプリング時刻にNLPを完全に収束させる時間がない問題を考える。 | SQPの一回の反復をサンプリング周期に合わせて実行するRTIを提案し、実時間のフィードバック最適化を可能にする理論と数値例を提示。制御性能・演算時間の普遍的な改善倍率はない。 | acados RTI、非線形車両MPC、ロボットのオンライン軌道最適化。 | 良い初期解、滑らかな力学、サンプリング間の変化が十分小さいこと等に依存し、単一反復のため厳密収束しない場合がある。 |
@@ -109,12 +110,64 @@ GP・Koopman・DeePC・微分可能MPC・DPCは、それぞれの手法を中心
 | **［iLQR／DDP］** **［基礎追加］** Tassa・Mansard・Todorov。入力制約を含むDDP/iLQRの基本。 | 2014 / **[Control-Limited Differential Dynamic Programming](https://doi.org/10.1109/ICRA.2014.6907001)** | アクチュエータの入力上下限制約を持つ非線形最適制御。 | 後退計算の局所制御問題をbox制約付きQPとして扱い、単なる入力クリッピングと異なる制約を考慮した軌道改善を行う。 | 入力飽和を持つロボット制御、MPCの制約処理、微分可能MPCの背景。 | 扱う入力制約と一般の非線形状態制約は異なる。局所近似と初期解依存は残る。 |
 | **［導入・導出］** Contact-implicit最適化の原典。 | 2014 / **[A Direct Method for Trajectory Optimization of Rigid Bodies Through Contact](https://doi.org/10.1177/0278364913506757)** | 接触位置や接触時刻が事前に不明な剛体系の軌道最適化。 | 相補性条件を含む直接法（contact-implicit trajectory optimization）により、接触モードをあらかじめ指定せずに接触を含む動作軌道を求める構成を示した。全タスクの最適値改善率は未確認。 | 脚ロボット、押し操作、接触計画、最適制御と接触力学の統合。 | 非凸性・相補性制約の退化・局所解依存・大規模NLPの計算量が課題。 |
 | **［導入・導出］** 四脚凸MPCの代表的な実機研究。 | 2018 / **[Dynamic Locomotion in the MIT Cheetah 3 Through Convex Model-Predictive Control](https://doi.org/10.1109/IROS.2018.8594448)** | 四脚ロボットの胴体運動と接触力を、接地制約・摩擦制約の下でオンライン計画する。 | 線形化した重心運動モデルと凸QPを用い、動的な四脚歩行・旋回・外乱下動作をMIT Cheetah 3で実証した。論文内の課題依存の数値を抜き出した共通改善率は未確認。 | Quadruped MPC、Contact-force optimization、MuJoCoでの四脚制御教材。 | 重心モデルは脚の慣性や接触切替えを簡略化する。歩容生成・状態推定・低位追従器の品質に依存する。 |
-| **［データによるMPC近似］** 古典的Explicit MPCと新しいデータ駆動方策高速化を比較する。 | 2026 / **[Data-driven Acceleration of MPC with Guarantees](https://proceedings.mlr.press/v331/castellano26a.html)** | 多数のオフラインMPC解からオンラインで制御入力を高速に得る。 | データ被覆の条件下で実行可能性と最適性ギャップの保証を与え、前回説明では対象課題で通常のオンラインMPCより約100～1000倍高速だったと報告。 | Explicit MPCの近似、MPC蒸留、組込み制御器の高速化。 | 高次元空間で必要なデータ数、分布外状態、被覆保証、制約切替えが課題。 |
 
-**この区分の収録件数：10件。**
+**この区分の収録件数：8件。**
+
+<a id="sec-explicit"></a>
+### 2. Explicit MPC：多パラメトリック最適化・制御則の事前計算と近似
+
+**核となる考え方**：MPCの最適入力を、状態・参照値などのパラメータに対する関数としてオフラインで求め、オンラインではその関数を評価する。線形モデル・二次評価・多面体制約の標準形では、多パラメトリック二次計画（mpQP）を使って区分的アフィン（PWA）制御則を構成する。critical regionは、同じアクティブ集合に対応する最適解の式が成り立つパラメータ領域を指す。厳密解では、設定したMPC問題の最適入力を事前計算によって得る。
+
+**研究の展開**
+
+| 流れ・分岐 | 収録文献の位置づけ | 何が拡張・接続されたか |
+|---|---|---|
+| 厳密解の成立と計算・実装 | ACC先行発表（2000）、QP／LPの基礎（2002）→領域構成・二分探索木（2003）。領域削減（2008）、NNLS（2015）、低ランク保存（2016）、組合せ的隣接性（2024）、ゾノトープ構造（2025）、コード生成（2026）は課題ごとの枝。 | 最適制御則のPWA構造から、オフライン計算、オンライン探索、メモリ削減、実装の自動化へ広がる。これらを単一のソルバーの改良列とはみなさない。 |
+| 近似・学習による制御則の構成 | NN近似の先行研究（1995）、近似mpQP（2003）、ロバスト設計と統計的検証（2018）、ReLU表現・近似（2020）、データ被覆を用いる方策（2026）。 | 最適性と保存量・学習量の交換を扱い、近似誤差、制約充足、安定性をどう評価するかへ展開。NN近似の発想は古典的mpQPの成立以前にもある。 |
+| 対象系の拡張 | 非線形RHCの近似（2004）／線形ハイブリッド系の動的計画法（2005）。 | 非線形系では近似と誤差条件、ハイブリッド系ではモード選択と解構造を扱う。線形・二次評価の厳密mpQPと条件を区別する。 |
+
+[一般のMPC・数値解法](#sec-k)から独立して、この方法族を集中して追うための節。多パラメトリック最適化自体にはさらに前史があり、ここでの基本原理・研究の枝分けと読書順は、収録文献に基づいてChatGPTが整理したものである。直接の引用関係をすべて確認した研究史ではない。
+
+[微分可能MPC](#sec-a)は最適解の感度を学習に使い、[DPC](#sec-n)は予測ロールアウトを通して方策を訓練する。Explicit MPCとの構成上の接点はあるが、三者を一つの解法として扱わない。厳密解の等価な圧縮、ReLUによる厳密な表現可能性、学習した方策の近似精度・保証も区別する。
+
+**収録文献**
+
+| 読む価値・研究上の役割 | 年・論文（原文リンク） | 対象・問題設定・実験 | 手法と主な成果・定量指標 | 期待される応用 | 残された課題・限界 |
+| --- | --- | --- | --- | --- | --- |
+| **［近似・学習の前史］** **［Explicit MPC追加］** Parisini・Zoppoli。 | 1995 / **[A receding-horizon regulator for nonlinear systems and a neural approximation](https://doi.org/10.1016/0005-1098(95)00044-W)** | 状態・入力制約を持つ離散時間非線形系のreceding-horizon制御。Automatica 31(10):1443–1451。 | 終端ペナルティを用いた安定化と、制御則の多層フィードフォワードNNによるオフライン近似を扱い、近似誤差の評価を与える。 | 学習によるMPC制御則の近似の前史。 | 古典的mpQPによる厳密なExplicit MPCとは別の系統。NNで近似する発想を2010年代に始まったものと捉えない。 |
+| **［厳密解・先行発表］** **［Explicit MPC追加］** Bemporad・Morari・Dua・Pistikopoulos。 | 2000 / **[The Explicit Solution of Model Predictive Control via Multiparametric Quadratic Programming](https://cse.lab.imtlucca.it/~bemporad/publications/papers/acc00-mpqp.pdf)** | 線形・二次評価・線形制約のMPC。ACC 2000。 | 状態をパラメータとするmpQPから、最適制御則をオフラインで構成する初期の会議発表。 | Explicit MPCの成立過程を追う。 | 2002年Automatica論文と密接に関連する先行発表。研究史を追うため別文献として収録するが、独立した二つの発明とは扱わない。 |
+| **［厳密解・QPの基礎］** Bemporad・Morari・Dua・Pistikopoulos。 | 2002 / **[The Explicit Linear Quadratic Regulator for Constrained Systems](https://doi.org/10.1016/S0005-1098(01)00174-1)** | 制約付き線形系の有限ホライズンMPCと、条件を満たす制約付き無限ホライズンLQR。Automatica 38(1):3–20。 | 多パラメトリック二次計画（mpQP）として最適解の状態依存性を求め、連続な区分的アフィン（PWA）制御則を構成する。 | Explicit MPCの理論上の出発点。オンラインMPCと同じ最適入力を関数評価で得る。 | 設定したモデル・評価・制約・ホライズンに対する解。領域数と保存量が問題規模とともに増える。既存項目の誤ったDOIを訂正。 |
+| **［厳密解・LPの基礎］** **［Explicit MPC追加］** Bemporad・Borrelli・Morari。 | 2002 / **[Model Predictive Control Based on Linear Programming—The Explicit Solution](https://cse.lab.imtlucca.it/~bemporad/publications/papers/ieeetac-mpcinf.pdf)** | 混合1/∞ノルム評価によりLPとして表せる制約付き線形MPC。IEEE TAC 47(12):1974–1985。 | 多パラメトリック線形計画（mpLP）を用いてPWA制御則を構成し、安定性のための終端重みや、解の非一意性・退化を扱う。 | 二次評価以外のExplicit MPC、mpLPとmpQPの比較。 | 厳密凸QPと異なり最適解が一意でない場合があり、解の選択・退化の扱いを確認する必要がある。 |
+| **［厳密解・領域構成］** **［Explicit MPC追加］** Tøndel・Johansen・Bemporad。 | 2003 / **[An algorithm for multi-parametric quadratic programming and explicit MPC solutions](https://doi.org/10.1016/S0005-1098(02)00250-9)** | Explicit MPC用のmpQP求解。Automatica 39(3):489–497。 | アクティブ集合と隣接領域の関係を利用し、領域とそのアフィン解を構成する。初期の幾何的mpQPアルゴリズムを学ぶ。 | 基礎理論から実際のオフラインソルバーへ進む入口。 | 退化・数値精度・多面体の幾何計算が重要。オフライン構成の高速化とオンライン評価の高速化を区別する。 |
+| **［厳密解・オンライン探索］** **［Explicit MPC追加］** Tøndel・Johansen・Bemporad。 | 2003 / **[Evaluation of piecewise affine control via binary search tree](https://doi.org/10.1016/S0005-1098(02)00308-4)** | 事前に得たPWA制御則を現在状態に対して評価する問題。Automatica 39(5):945–950。 | 領域所属判定を二分探索木として構成し、オンラインで対応する制御則を探す計算を軽量化する。 | 組込みMPC、領域探索の演算量・実行時間の設計。 | 領域構成自体を速める論文とは役割が異なる。探索木の生成時間と保存量も評価する。 |
+| **［近似mpQP］** **［Explicit MPC追加］** Bemporad・Filippi。 | 2003 / **[Suboptimal Explicit Receding Horizon Control via Approximate Multiparametric Quadratic Programming](https://cse.lab.imtlucca.it/~bemporad/publications/papers/jota-submpqp.pdf)** | 厳密なPWA解の領域数を抑えたい制約付き線形MPC。JOTA 117(1):9–38。 | 最適性条件の緩和を用いて近似度と領域数を調整し、解・最適値の誤差を評価する。条件の下で制約充足と閉ループ安定性を扱う。 | 領域数と最適性のトレードオフを設計する近似Explicit MPC。 | 近似誤差と保証条件の確認が必要。厳密な解の表現圧縮と、制御則自体の近似を区別する。 |
+| **［非線形系・近似］** **［Explicit MPC追加］** Johansen。 | 2004 / **[Approximate explicit receding horizon control of constrained nonlinear systems](https://doi.org/10.1016/j.automatica.2003.09.021)** | 制約付き非線形RHC。Automatica 40:293–300。 | 非線形MPC制御則の区分的な近似と二分探索木を構成し、近似誤差を安定余裕内に抑えることで、仮定の下で安定性を確保する。 | 非線形MPCのオフライン近似と、近似誤差を考慮した設計。 | 線形・二次評価系での厳密なPWA解と同一ではない。保証する領域、誤差条件、非凸問題の求解を確認する。 |
+| **［ハイブリッド系］** **［Explicit MPC追加］** Borrelli・Baotić・Bemporad・Morari。 | 2005 / **[Dynamic programming for constrained optimal control of discrete-time linear hybrid systems](https://cse.lab.imtlucca.it/~bemporad/publications/papers/automatica-mp-hybrid.pdf)** | 連続・離散変数やモード切替えを持つ離散時間線形ハイブリッド系。Automatica 41(10):1709–1721。 | 多パラメトリック最適化と動的計画法を組み合わせ、最適状態フィードバックと価値関数の構造・構成法を示す。 | モード選択・切替えを含むExplicitな最適制御。 | モード数・ホライズンによる組合せ増大がある。領域の非凸性など、通常の厳密凸mpQPとは異なる解構造に注意する。 |
+| **［厳密解・領域削減］** **［Explicit MPC追加］** Geyer・Torrisi・Morari。 | 2008 / **[Optimal complexity reduction of polyhedral piecewise affine systems](https://www.tobiasgeyer.org/GeTM08_OptRed.pdf)** | 多面体分割で表されたPWAシステム・制御則。Automatica 44:1728–1740。 | 同じPWA写像を維持しながら領域の表現を削減する問題を扱う。与えられた超平面配置などの仮定の下で複雑さの最小化を研究する。 | Explicit制御則の等価な表現圧縮・領域統合。 | 最適な領域削減は一般に難しい。適用条件を確認し、最適性を緩める近似法と混同しない。 |
+| **［全体像・総説］** **［Explicit MPC追加］** Alessio・Bemporad。 | 2009 / **[A Survey on Explicit Model Predictive Control](https://cse.lab.imtlucca.it/~bemporad/publications/papers/nmpc08-survey-explicit.pdf)** | Explicit MPCの初期理論・計算・近似・拡張を俯瞰。LNCIS 384:345–369。 | 厳密解、mpLP/mpQP、近似、ハイブリッド系、min-max制御などを整理する総説。 | 最初の全体把握と、個別原著への索引。 | 2009年以降のNN表現、近年のソルバーやコード生成は別の収録論文で補う。総説であり、独自の共通高速化倍率はない。 |
+| **［厳密解・mpQP計算］** **［Explicit MPC追加］** Bemporad。 | 2015 / **[A Multiparametric Quadratic Programming Algorithm With Polyhedral Computations Based on Nonnegative Least Squares](https://cse.lab.imtlucca.it/~bemporad/publications/papers/ieeetac-mpqp_nnls.pdf)** | mpQPの領域構成と多面体計算。IEEE TAC 60(11):2892–2903。 | 非負最小二乗（NNLS）で空集合・次元・冗長性等の判定を処理し、双対問題を使う領域構成と退化への対応を組み合わせる。 | オフラインmpQPソルバーの計算改善と実装。 | 改善対象は主にオフラインの幾何計算。領域数の最悪時の増大自体を解消するものではない。 |
+| **［厳密解・保存量］** **［Explicit MPC追加］** Nielsen・Axehill。 | 2016〔プレプリント〕 / **[Reduced Memory Footprint in Multiparametric Quadratic Programming by Exploiting Low Rank Structure](https://arxiv.org/abs/1603.05034)** | mpQP解と領域を保存するメモリ負荷。 | 領域間のパラメトリック解の低ランク構造を利用し、完全な係数・領域表現を保存する場合に比べ必要メモリを削減する。 | 小容量メモリへのExplicit MPC実装、差分による解の保存。 | メモリ削減率は問題に依存する。領域数の削減、制御則の近似、オンライン演算量の改善は別の評価軸。 |
+| **［近似・学習と保証］** **［Explicit MPC追加］** Hertneck・Köhler・Trimpe・Allgöwer。 | 2018 / **[Learning an Approximate Model Predictive Controller with Guarantees](https://arxiv.org/abs/1806.04167)** | 非線形系を含むMPC方策の教師あり近似。IEEE Control Systems Letters 2(3):543–548。 | 入力誤差を許容するロバストMPCと、Hoeffdingの不等式に基づく学習誤差の検証を組み合わせ、安定性・制約充足の統計的保証を与える。 | NN等によるMPC近似と、学習した方策の閉ループ評価。 | 全状態に対する一様な決定論的認証とは異なる。MPC設計の仮定、許容誤差、検証データと信頼度を確認する。 |
+| **［PWAのNN表現・近似］** **［Explicit MPC追加］** Karg・Lucia。 | 2020〔プレプリント2018〕 / **[Efficient Representation and Approximation of Model Predictive Control Laws via Deep Learning](https://arxiv.org/abs/1806.10644)** | 線形MPCのPWA制御則とReLUネットワーク。IEEE Transactions on Cybernetics 50(9):3866–3878。 | ReLU NNによるPWA制御則の厳密な表現可能性とネットワーク構造の理論を示し、深層NNによる近似と省メモリ化を評価する。 | Explicit制御則の別表現、MPC近似のネットワーク設計。 | 厳密に表現できるという存在・構成上の結果と、学習したNNの精度・制約保証は別。学習だけで元の最適解が再現されるとは限らない。 |
+| **［厳密解・mpQP計算］** **［Explicit MPC追加］** Arnström・Axehill。 | 2024 / **[A High-Performant Multi-Parametric Quadratic Programming Solver](https://arxiv.org/abs/2404.05511)** | Explicit MPCのためのmpQP求解。CDC 2024:303–308。 | アクティブ集合の組合せ的隣接性による連結グラフを利用し、重い多面体の幾何計算と探索する組合せを削減する。 | 近年の厳密mpQPソルバーPDAQPを理解する入口。 | 報告される高速化はオフライン解構成のベンチマーク。オンライン制御の実行時間の改善倍率とは区別する。 |
+| **［厳密解・制約集合の構造］** **［Explicit MPC追加］** Mihai・Stoican・Mönnigmann・Ciubotaru。 | 2025〔プレプリント〕 / **[Explicit MPC for the constrained zonotope case with low-rank matrix updates](https://arxiv.org/abs/2511.02433)** | 箱・ゾノトープ制約を持つExplicit MPC。2025年11月公開版。 | 制約付きゾノトープの生成子空間への変換、低ランク行列更新、候補アクティブ集合の解析的列挙を用い、解を木構造で構成する。 | 制約集合の構造を利用する厳密解計算の発展。 | 対象の制約構造を利用する方法で、一般の任意の制約にそのまま適用できるとは限らない。ここではプレプリントとして収録する。 |
+| **［近似・データによる構成］** Castellano・Pan・Mallada。 | 2026 / **[Data-driven Acceleration of MPC with Guarantees](https://proceedings.mlr.press/v331/castellano26a.html)** | オフラインMPC解から構成する非パラメトリック方策。L4DC 2026、PMLR 331:1339–1362。 | 最適cost-to-goの上界に対してgreedyなルックアップ則を構成。十分なデータ被覆の下で再帰的実行可能性と最適性ギャップを評価し、論文の実験で通常のMPCに対し100～1000倍の高速化を報告する。 | オフライン解を蓄積してオンライン最適化を置き換える制御。 | 厳密なcritical region列挙によるExplicit MPCとは異なる近似系統。被覆条件・高次元でのデータ量・実験の比較条件を確認する。 |
+| **［厳密解・コード生成］** **［Explicit MPC追加］** Schaller・Arnström・Bemporad・Boyd。 | 2026〔プレプリント2025〕 / **[Automatic Generation of Explicit Quadratic Programming Solvers](https://web.stanford.edu/~boyd/papers/pdf/cvxpygen_mpqp.pdf)** | 高水準のパラメトリックQP記述から組込み用Explicitソルバーを生成。IEEE Control Systems Magazine、2026年10月。 | CVXPYの問題記述をPDAQPとCVXPYgenに接続し、領域・係数の事前計算からC/C++コードとPythonインターフェースの生成まで統合する。 | 理論から現在のPython試作・Cコード実装へ進む橋渡し。 | 対象となるQPの構造と領域数に実用性が依存する。通常の反復型QPソルバーのコード生成と、Explicit写像のコード生成を区別する。 |
+
+**集中して読む順番（学習用の提案）**
+
+1. Alessio・Bemporad（2009）のサーベイで、厳密解・近似・拡張の全体像をつかむ。
+2. Bemporadら（2002、QP）で、アクティブ集合とPWA制御則の関係を理解する。LP型も扱いたい場合は同年のLP論文を併読する。
+3. Tøndelら（2003、領域構成）→同年の二分探索木で、「オフラインに作る」と「オンラインに使う」を分けて学ぶ。
+4. Bemporad・Filippi（2003）で、領域数と最適性のトレードオフを確認する。
+5. Arnström・Axehill（2024）→Schallerら（2026）で、近年の厳密解ソルバーとコード生成までつなぐ。
+
+メモリと厳密表現を掘る場合はGeyerら→Nielsen・Axehill、オフライン幾何計算はBemporad（2015）、制約集合の構造はMihaiらを読む。近似・学習の枝はParisini・Zoppoli→Hertneckら→Karg・Lucia→Castellanoらを比較し、非線形系とモード切替えはそれぞれJohansen、Borrelliらへ分岐する。NNの表現可能性と、学習後の保証は別の論点として読む。
+
+**この区分の収録件数：19件（既存2件の移動＋今回追加17件）。** ACC 2000の先行発表と2002年の詳しい論文は別の文献として数え、研究上の新規性や独立した成果の件数を数えるものではない。サーベイもこの節の主表に1回だけ計上する。
 
 <a id="sec-p"></a>
-### 2. 経路積分制御：PI²・MPPI・Information-Theoretic MPC
+### 3. 経路積分制御：PI²・MPPI・Information-Theoretic MPC
 
 **核となる考え方**：軌道の確率分布と経路コストの重み付けを使って最適制御を計算する。HJB方程式の変換、方策改善、オンラインMPC、情報理論的な導出という技術の広がりを整理する。
 
@@ -141,7 +194,7 @@ PI²→MPPI→IT-MPCを同一アルゴリズムの置換列とはしない。202
 **この区分の収録件数：4件。**
 
 <a id="sec-l"></a>
-### 3. システム同定・状態推定：部分空間法・NNモデル・幾何学的推定
+### 4. システム同定・状態推定：部分空間法・NNモデル・幾何学的推定
 
 **核となる考え方**：時系列から未知のモデルや状態を推定する方法を、同定と状態推定の枝に分けてまとめる。予測モデルの構造・学習計算・多様体上の推定は、それぞれ異なる発展軸を持つ。
 
@@ -168,7 +221,7 @@ GP・Koopman・ICLは方法族としてH/E/Jで整理。状態推定の収録は
 **この区分の収録件数：4件。**
 
 <a id="sec-a"></a>
-### 4. 微分可能最適化：argmin微分からDifferentiable MPCへ
+### 5. 微分可能最適化：argmin微分からDifferentiable MPCへ
 
 **核となる考え方**：パラメータ付き最適化問題の解を微分し、その解感度を外側の学習へ渡す。Differentiable MPCでは、MPC方策のモデル・コスト等をこの感度で学習する。
 
@@ -198,7 +251,7 @@ NのDPCとは、微分する計算の構造が異なる。最適解の感度計�
 **この区分の収録件数：7件。**
 
 <a id="sec-n"></a>
-### 5. Differentiable Predictive Control（DPC）：ロールアウトによる方策学習
+### 6. Differentiable Predictive Control（DPC）：ロールアウトによる方策学習
 
 **核となる考え方**：DPC（Differentiable Predictive Control）は、微分可能な予測モデルのロールアウトを通して制御損失を逆伝播し、明示的なNN方策をオフラインで学習する方法。MPCの最適解そのものを微分するAの方法とは区別する。
 
@@ -210,7 +263,7 @@ NのDPCとは、微分する計算の構造が異なる。最適解の感度計�
 | モデル群への拡張 | Function Encoder DPC（2026） | 系の集合を表現するFE-NODEと組み合わせ、追加訓練なしの適応へ展開。 |
 | 作用素モデルとの接続 | PDE-DPC（2025、I節） | TI-DeepONetを微分可能な予測器に使い、PDEの方策学習へ広げる。 |
 
-Explicit MPCとの関係は、オンライン最適化の代替という構成上の接点。DPCがパラメトリックQPの厳密解法から直接導かれた、という研究史は主張しない。
+[Explicit MPCの独立節](#sec-explicit)との関係は、オンライン最適化の代替という構成上の接点。DPCがパラメトリックQPの厳密解法から直接導かれた、という研究史は主張しない。
 
 **収録文献**
 
@@ -222,7 +275,7 @@ Explicit MPCとの関係は、オンライン最適化の代替という構成�
 **この区分の収録件数：2件。**
 
 <a id="sec-d"></a>
-### 6. 行動的システム理論とDeePC：軌道表現から非線形局所法へ
+### 7. 行動的システム理論とDeePC：軌道表現から非線形局所法へ
 
 **核となる考え方**：DeePC（Data-Enabled Predictive Control）は、入出力の軌道データを組み合わせて予測を表し、そのまま制約付き最適化に使う方法。Willemsの基本補題によるLTI軌道表現を基盤に、ノイズ・追従・非線形系への拡張が進んでいる。
 
@@ -253,7 +306,7 @@ Explicit MPCとの関係は、オンライン最適化の代替という構成�
 **この区分の収録件数：8件。**
 
 <a id="sec-e"></a>
-### 7. Koopman法：作用素近似・入力付き予測・MPC・保証
+### 8. Koopman法：作用素近似・入力付き予測・MPC・保証
 
 **核となる考え方**：Koopman法は、状態の関数（観測関数）の時間発展を線形作用素として扱う考え方。有限次元の予測モデルへ近似し、入力付きモデル、埋め込み学習、MPCと閉ループ保証へ研究が広がっている。
 
@@ -287,7 +340,7 @@ Explicit MPCとの関係は、オンライン最適化の代替という構成�
 **この区分の収録件数：11件。**
 
 <a id="sec-h"></a>
-### 8. Gaussian Processに基づく予測制御：GP-MPCと計算近似
+### 9. Gaussian Processに基づく予測制御：GP-MPCと計算近似
 
 **核となる考え方**：GP（Gaussian Process）は、未知の関数を確率的にモデル化し、予測平均と分散を求める回帰手法。GP-MPCはそれを力学・残差の予測に用い、不確実性を考慮した制約設計や計算近似へ展開する。
 
@@ -316,7 +369,7 @@ Explicit MPCとの関係は、オンライン最適化の代替という構成�
 **この区分の収録件数：6件。**
 
 <a id="sec-b"></a>
-### 9. Neural Lyapunov法：証明関数の学習・反例誘導・形式検証
+### 10. Neural Lyapunov法：証明関数の学習・反例誘導・形式検証
 
 **核となる考え方**：Neural Lyapunov法は、Lyapunov関数や制御則をNNで表し、学習と反例探索・形式検証を組み合わせて安定性条件を満たす構成を求める方法。検証法や対象系の拡張に沿って整理する。
 
@@ -344,7 +397,7 @@ SMT→MIP→Branch-and-Boundを性能の単純な優劣列とはしない。保�
 **この区分の収録件数：6件。**
 
 <a id="sec-c"></a>
-### 10. Contraction法：収縮解析からCCM・Neural Metricへ
+### 11. Contraction法：収縮解析からCCM・Neural Metricへ
 
 **核となる考え方**：Contractionは軌道間の微小な状態差が収縮する性質。CCM（Control Contraction Metric）は、適切な制御入力によってその差を収縮させられる条件を満たす、状態依存の計量（距離の測り方）である。この計量を使い、実現可能な参照軌道に追従する制御則を設計する。
 
@@ -373,7 +426,7 @@ SMT→MIP→Branch-and-Boundを性能の単純な優劣列とはしない。保�
 **この区分の収録件数：6件。**
 
 <a id="sec-f"></a>
-### 11. 安全フィルタ法：CBF・予測フィルタ・HJ到達可能性
+### 12. 安全フィルタ法：CBF・予測フィルタ・HJ到達可能性
 
 **核となる考え方**：安全フィルタは基準制御入力を必要に応じて修正する構成。CBF（Control Barrier Function）は、安全集合の前方不変性を制御入力への条件で表すための関数である。予測・バックアップに基づく方法、HJ到達可能性、高ゲイン保護則も、並行する枝としてまとめる。
 
@@ -404,7 +457,7 @@ SMT→MIP→Branch-and-Boundを性能の単純な優劣列とはしない。保�
 **この区分の収録件数：7件。**
 
 <a id="sec-g"></a>
-### 12. System Level Synthesis（SLS）：応答パラメータ化からMPCへ
+### 13. System Level Synthesis（SLS）：応答パラメータ化からMPCへ
 
 **核となる考え方**：SLS（System Level Synthesis）は、制御器の係数ではなく、外乱から状態・入力への閉ループ応答を設計変数として制御則を構成する方法。応答上に局所性・分散性・ロバスト性の条件を課せる。
 
@@ -432,7 +485,7 @@ DGKF（補助節X）とはロバスト制御における接点があるが、こ
 **この区分の収録件数：5件。**
 
 <a id="sec-u"></a>
-### 13. 学習による方策合成：方策勾配・モデルベースRL・模倣学習
+### 14. 学習による方策合成：方策勾配・モデルベースRL・模倣学習
 
 **核となる考え方**：価値・方策・モデルや行動分布をデータから学ぶ方法を、RLと模倣学習の近縁な枝としてまとめる。枝ごとに基本原理と発展を示し、PPO→TD-MPC2→Diffusion Policyという一列にはしない。
 
@@ -463,7 +516,7 @@ DGKF（補助節X）とはロバスト制御における接点があるが、こ
 **この区分の収録件数：7件。**
 
 <a id="sec-i"></a>
-### 14. Neural Operator法：予測作用素から物理学習・制御作用素へ
+### 15. Neural Operator法：予測作用素から物理学習・制御作用素へ
 
 **核となる考え方**：Neural Operatorは、PDEの解作用素など、関数から関数への写像をNNで学習する方法。FNO・DeepONetを基盤に、物理残差の利用、DPCとの結合、制御方策自体の作用素表現へ広がる。
 
@@ -491,7 +544,7 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 **この区分の収録件数：5件。**
 
 <a id="sec-j"></a>
-### 15. In-Context Learning法：メタ同定とWorld Model適応
+### 16. In-Context Learning法：メタ同定とWorld Model適応
 
 **核となる考え方**：In-Context Learning（ICL）は、対象系の入出力履歴などを文脈として与え、モデルのパラメータを更新せずに予測を適応させる仕組み。メタ同定、Transformerの表現力解析、World Model適応の枝を追う。
 
@@ -547,7 +600,7 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 
 **核となる考え方**：方法族の外側から研究史・分類・保証条件を照合するための補助索引。本文の主分類は各手法の原理と展開に基づき、この付録は文献形式で引くために残す。
 
-各分野の総説を通して、本文に収録していない前史・後続研究・異なる分類を確認する。
+各分野の総説を通して、本文に収録していない前史・後続研究・異なる分類を確認する。Explicit MPCのAlessio・Bemporad（2009）のサーベイは、[Explicit MPC節](#sec-explicit)に収録し、ここでは重複計上しない。
 
 **収録文献**
 
@@ -649,8 +702,8 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 
 **6. 方法族の展開・異分野との接続・学習順を区別する。** 本文の「研究の展開」は方法の原理からの拡張や並行する枝を示し、全論文間の直接の引用関係を意味しない。別の方法を組み合わせる場合は接続として表す。新しい総説を先に読む学習順と、方法が成立した歴史順も異なる。
 
-**7. 書誌・確認範囲について。** 既存107件と基礎追加20件の計127件を保持し、手法の原理・展開・派生を中心に分類と構成を修正した。前回の基礎追加20件は、出版社・著者・所属機関・arXiv・公式会議録などの情報を参照して補った。MIT Cheetah 3のリンクをDOIに、2017年MPPIのリンクを掲載題名と一致するDOIに訂正した。初期MPPIの関連プレプリントは[Model Predictive Path Integral Control using Covariance Variable Importance Sampling](https://arxiv.org/abs/1509.01149)で、別の追加文献として重複計上していない。Information-Theoretic MPCは2017年のプレプリントと2018年の雑誌版を1件として扱う。既存のL1適応制御など書誌要照合の項目は残っており、全リンク・刊行年・定量値の網羅的な再確認は完了していない。
+**7. 書誌・確認範囲について。** 既存107件と前回の基礎追加20件を保持し、今回Explicit MPCの関連文献17件を追加して計144件とした。既存2件を独立したExplicit MPC節へ移動し、基礎論文のDOIを10.1016/S0005-1098(01)00174-1に訂正した。今回追加した文献は、この会話で挙げた原著・サーベイについて、出版社・著者公開版・所属機関・arXiv・公式会議録の情報を参照して整理した。2025年のゾノトープ論文などは、参照したプレプリントの状態を明記した。研究の枝分けと読書順はChatGPTによる学習用の整理であり、全引用関係を確認した研究史や全件の精読に基づく評価ではない。前回の基礎追加20件は、出版社・著者・所属機関・arXiv・公式会議録などの情報を参照して補った。MIT Cheetah 3のリンクをDOIに、2017年MPPIのリンクを掲載題名と一致するDOIに訂正した。初期MPPIの関連プレプリントは[Model Predictive Path Integral Control using Covariance Variable Importance Sampling](https://arxiv.org/abs/1509.01149)で、別の追加文献として重複計上していない。Information-Theoretic MPCは2017年のプレプリントと2018年の雑誌版を1件として扱う。既存のL1適応制御など書誌要照合の項目は残っており、全リンク・刊行年・定量値の網羅的な再確認は完了していない。
 
 ---
 
-**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。既存107件と前回追加した基礎文献20件の計127件を保持しています。文献を引用したり数値を研究資料に再利用したりする際は、原典の該当図表・定理を確認してください。
+**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。既存107件と前回追加した基礎文献20件を保持し、今回のExplicit MPC関連17件を加えた計144件を収録しています。文献を引用したり数値を研究資料に再利用したりする際は、原典の該当図表・定理を確認してください。
