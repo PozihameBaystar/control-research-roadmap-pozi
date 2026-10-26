@@ -7,15 +7,15 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 
 [最新版](./) · [ゲーム理論章の改訂前（157件）](archive-2026-10-26-games.html) · [初回保存版（135件）](archive-2026-10-25.html)
 
-**自分自身がこれから読むための論文・総説・教材をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月26日・min–max系列を補強した版）**
+**自分自身がこれから読むための論文・総説・教材をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月26日・Pareto系列を補強した版）**
 
 > **このリストの作成経緯について**  
 > **この文献リストは、私自身がこれから読むために、ChatGPTに論文の探索・候補選定・概要説明・分類・推奨読書順の整理をさせたものです。私自身がこれらの文献を読んで内容を確認し、その知見に基づいて作成したリストではありません。**  
 > 個人の学習用に作らせた候補一覧を、同じ分野に関心のある方の参考にもなるよう公開しています。**説明文・評価・研究史上の位置づけ・推奨読書順は主にChatGPTが生成・整理した内容であり、精読済み文献の書評や、私自身による内容の検証・推奨を示すものではありません。** 誤りや不正確な記述が残り得るため、研究で引用・利用する際は原論文の該当箇所を確認してください。
 
-> **編集方針**：**手法の基本原理・研究の発展・派生と接続**を中心に分類しています。近縁の枝は一つの大分類の中で整理し、文献数が少ない基盤手法は補助節にまとめています。総説・チュートリアルは教育的な内容・カバー範囲・新しさ・入手しやすさを重視し、公開版は優先条件で、必須条件ではありません。前回のゲーム理論章の再選定に続き、今回はmin–max系列の原著5件を追加しました。ゲーム理論章は25件で、20件を2020年以降の原著としています。混合整数のゲーム理論的制御を加え、近年の論文から必要な基礎へ戻る読み方を示しています。関連する2024年・2026年のチュートリアル2件も追加しました。Explicit MPC節の10件と、ゲーム理論章以外の既存の選定は維持しています。改訂前の文献集も別ページで公開しています。**全件の本文・定理・実験値を精査した資料ではありません。** 書誌未確定の既存項目は「要照合」として残しています。
+> **編集方針**：**手法の基本原理・研究の発展・派生と接続**を中心に分類しています。近縁の枝は一つの大分類の中で整理し、文献数が少ない基盤手法は補助節にまとめています。総説・チュートリアルは教育的な内容・カバー範囲・新しさ・入手しやすさを重視し、公開版は優先条件で、必須条件ではありません。今回はPareto・協調制御と多目的MPCの原著8件・総説1件を追加しました。ゲーム理論章は33件で、26件を2020年以降の原著としています。既存のmin–max・Nash・Potential Games・混合整数の選定を維持し、Paretoの効率性を扱う枝と、単一対象でも成立する多目的制御との接続を区別しています。Explicit MPC節は10件を維持しています。改訂前の文献集も別ページで公開しています。**全件の本文・定理・実験値を精査した資料ではありません。** 書誌未確定の既存項目は「要照合」として残しています。
 
-**文献数：164件（ゲーム理論章の原著25件を含む。前版159件にmin–max系列5件を追加。主表の各文献を1回ずつ計上）／関連する公開教材・ソフトウェア：28件。** Explicit MPC節は10件を維持しています。「［基礎追加］」「［Explicit MPC追加］」は以前の改訂で補った文献を示す履歴タグです。年は原則として刊行年とし、プレプリント公開年・オンライン先行公開年と異なる場合は注記しています。既存項目には年次基準が未統一のものも残っています。
+**文献数：173件（ゲーム理論章の原著33件を含む。前版164件にPareto関連の原著8件・総説1件を追加。主表の各文献を1回ずつ計上）／関連する公開教材・ソフトウェア：28件。** Explicit MPC節は10件を維持しています。「［基礎追加］」「［Explicit MPC追加］」は以前の改訂で補った文献を示す履歴タグです。年は原則として刊行年とし、プレプリント公開年・オンライン先行公開年と異なる場合は注記しています。既存項目には年次基準が未統一のものも残っています。
 
 ## 目次
 
@@ -40,7 +40,7 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 - [14. 学習による方策合成：方策勾配・モデルベースRL・模倣学習](#sec-u)
 - [15. Neural Operator法：予測作用素から物理学習・制御作用素へ](#sec-i) — Neural Operator：PDEの解作用素など、関数間の写像をNNで学習する。
 - [16. In-Context Learning法：メタ同定とWorld Model適応](#sec-j) — ICL：対象系の履歴を使い、モデルのパラメータ更新なしに予測を適応させる。
-- [17. ゲーム理論に基づく制御：零和・Nash／Stackelberg・Potential Games・混合整数・Mean-Field Games](#sec-game) — 相手の選択を考慮して制御を設計し、均衡や鞍点を求める。
+- [17. ゲーム理論に基づく制御：零和・Nash／Stackelberg・Pareto・Potential Games・混合整数・Mean-Field Games](#sec-game) — 相互作用を扱い、均衡・鞍点・協調する効率的な解を求める。
 - [補助：制御器設計の基盤手法（リレー自動調整・H₂/H∞・適応制御）](#sec-x)
 - [公開実装・講義・チュートリアル資料](#implementations)
 - [文献評価・定量指標の読み方](#evaluation)
@@ -74,7 +74,7 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 | [学習による方策合成](#sec-u) | 価値・方策・モデル・行動分布をデータから学ぶ。 | TD価値学習、DPG、TRPO/PPO、TD-MPC/TD-MPC2、拡散モデルによる模倣を並行する枝として整理。 |
 | [Neural Operator法](#sec-i) | 関数から関数への写像を学習する。 | FNO/DeepONet、物理残差を使うPINO、DPCとの結合、方策自体を作用素にするCINOC。 |
 | [In-Context Learning法](#sec-j) | 系・環境を事前学習し、新しい履歴を文脈として予測を適応させる。 | 入出力のメタ同定、線形系の表現力解析、確率予測・長系列、World Modelの適応機構。 |
-| [ゲーム理論に基づく制御](#sec-game) | 複数の主体の最適応答を考え、均衡・鞍点・協調する仕組みを設計する。 | 近年の原著から、零和・非零和の学習、feedback均衡、動的Potential Games、離散判断を含む混合整数ゲーム、協調・多数主体へ進む。必要な古典は各枝の基礎として参照する。 |
+| [ゲーム理論に基づく制御](#sec-game) | 複数の主体の最適応答を考え、均衡・鞍点・協調する仕組みを設計する。 | 近年の原著から、零和・非零和の学習、feedback均衡、Paretoに基づく協調と多目的MPCへの接続、動的Potential Games、混合整数ゲーム、多数主体へ進む。必要な古典は各枝の基礎として参照する。 |
 
 ### 系譜と学習順の区別
 
@@ -93,9 +93,9 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 
 **前回の改訂**：内容が重なる総説・入門7件を最新版から外し、Koopmanのロボット応用、Dual Control、安全な物理情報付き学習の3件を追加した。外した7件を含む改訂前の135件は、[保存版](archive-2026-10-25.html)で引き続き読める。保存版へ移したことは、その文献の学術的価値を否定する意味ではない。
 
-**今回の追加（ゲーム理論と制御）**：全体の入口・risk-sensitive・MARL・自動運転の総説4件を末尾に追加した。理論の基本構成に教育的な価値がある2018年・2021年の総説を残し、2025年の応用総説を組み合わせている。本文の[方法族17](#sec-game)と併読する。
+**今回の追加（ゲーム理論と制御）**：全体の入口・risk-sensitive・MARL・自動運転の総説4件を末尾に追加した。理論の基本構成に教育的な価値がある2018年・2021年の総説を残し、2025年の応用総説を組み合わせている。本文の[方法族17](#sec-game)と併読する。Pareto系列の補強では、多目的最適制御を広く扱うPeitz–Dellnitz（2018）も追加した。2018年時点の総説であることを明記し、近年の展開は2023〜2026年の原著で補う。
 
-**収録文献：22件**
+**収録文献：23件**
 
 | 分野・選定理由 | 年・論文・入手先 | 論文の紹介：何をして、何が分かったか | カバー範囲・教育的な内容 | 関連する方法族 | 読む際の注意 |
 | --- | --- | --- | --- | --- | --- |
@@ -122,6 +122,8 @@ title: 制御工学・ロボティクス・学習ベース制御 研究文献総
 | **［risk-sensitive・理論の俯瞰］** Biswas・Borkar。確率制御と零和ゲームの接点を、広いモデル群で確認できるため選定。 | 2023 / **[Ergodic Risk-Sensitive Control—A Survey](https://doi.org/10.1016/j.arcontrol.2023.03.001)**<br>[公開版](https://arxiv.org/abs/2301.00224) | 長期平均のrisk-sensitive制御を、Markov連鎖や拡散過程を通して整理。指数型の評価基準、最適性の条件、H∞・零和ゲームとのつながりを解説する。 | 離散・連続時間、有限・無限状態、Bellman方程式や固有値問題を体系的に扱う。risk-sensitiveを一般のリスク尺度と混同しないための理論的な総説。 | 確率制御、[零和・min–maxとの接続](#sec-game)。 | ergodicな長期評価が中心で、有限ホライズンMPCの実装入門ではない。CVaR・確率制約などの一般的なリスク制御全体を覆うものではない。 |
 | **［MARL・理論を学ぶ入口］** Zhang・Yang・Başar。協調・競争・混合と、収束保証を同じ枠組みで比べられるため選定。 | 2021〔総説章・初稿2019〕 / **[Multi-Agent Reinforcement Learning: A Selective Overview of Theories and Algorithms](https://arxiv.org/abs/1911.10635)**<br>[公開版・2021年改訂](https://arxiv.org/abs/1911.10635v2) | 複数の学習者がいる強化学習を、協調・競争・両者の混合に分けて解説。Markovゲームなどの枠組みから、分散学習や方策更新の収束・非収束を整理する。 | 理論解析を伴うアルゴリズムを重視した総説章。Markovゲーム、展開型ゲーム、ネットワーク型の協調学習、mean-fieldの近似を含む。 | [ゲーム理論的な学習制御](#sec-game)、[方策合成](#sec-u)。 | 最新の深層MARL実装・ベンチマーク全体の総覧ではない。学習の収束、閉ループ安定性、安全性は別の性質として読む。 |
 | **［ゲーム理論的な運動計画・近年の応用］** Lin・Tian。相互作用計画の広がりと問題設定を比較するため選定。 | 2025〔プレプリント〕 / **[Scenario-Based Decision-Making Using Game Theory for Interactive Autonomous Driving: A Survey](https://arxiv.org/abs/2509.05777)** | 他車との相互作用を扱う自動運転のゲーム理論的な意思決定を整理。合流・交差点・ラウンドアバウト・レースなどを通じ、ゲームのモデル化と解法の違いを比較する。 | Nash・Stackelbergなどのモデルを、各運転場面の条件と対応させて調べる応用総説。2018年の制御総説を近年の運動計画側から補う。 | [iLQGames・ALGAMES](#sec-game)、車両MPC、相互作用計画。 | 自動運転に範囲を絞ったプレプリント。ここでの場面別分類は応用の比較用であり、本文の方法族の分類軸とは区別する。 |
+
+| **［Pareto・多目的最適制御の全体像］** Peitz・Dellnitz。計算法・MPC・計算量削減をまとめて学ぶ広さを評価。 | 2018 / **[A Survey of Recent Trends in Multiobjective Optimal Control—Surrogate Models, Feedback Control and Objective Reduction](https://doi.org/10.3390/mca23020030)**<br>[公開版](https://www.mdpi.com/2297-8747/23/2/30)・[公開プレプリント](https://www.preprints.org/manuscript/201805.0221) | 複数の競合する評価を持つ最適制御で、折衷解の集合をどう計算し、フィードバックへ使うかを整理。代理モデル、MPC、事前計算とオンライン計算の分担を見渡せる。 | Pareto集合、PDE制御のモデル低次元化、実時間MPC、目的数を減らす方法を横断する。新しい狭い応用論文より、まず全体像を得る教材として選定。 | [Pareto・協調制御と多目的MPC](#game-pareto)、[Explicit MPC](#sec-explicit)。 | 2018年の総説であり最新研究の総覧ではない。2023年の閉ループ解析、2025年の学習・選択法、2026年の情報制約の原著で補う。多目的制御全般をゲームとはみなさない。 |
 
 <a id="sec-t"></a>
 ## 各手法の導出を学ぶチュートリアル・概説
@@ -641,15 +643,15 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 **この区分の収録件数：4件。**
 
 <a id="sec-game"></a>
-### 17. ゲーム理論に基づく制御：零和・Nash／Stackelberg・Potential Games・混合整数・Mean-Field Games
+### 17. ゲーム理論に基づく制御：零和・Nash／Stackelberg・Pareto・Potential Games・混合整数・Mean-Field Games
 
 **核となる考え方**：制御入力を決める主体が複数あり、一人の最適な行動が相手の選択にも依存する問題を扱う。相手は実在の制御器・ロボットの場合もあれば、最悪外乱や最悪分布を選ぶ仮想的な相手の場合もある。
 
-**この節の選定方針（2026年10月26日改訂）**：前回の原著20件を保持し、min–max系列5件を加えた。**原著25件のうち20件が2020年以降、そのうち13件が2023〜2026年**の文献である。基礎の原著5件は理論の要所に残し、最初に全古典を読む順序にはしていない。必要な古典へ戻りながら、近年の解法と保証を追う。前回の再選定では8件を入れ替え、混合整数Potential Gameの自動運転論文を加えた。今回は外乱入力に対する対抗学習、未知系のH∞制御、最悪分布、minimax regretを補強した。[改訂前の157件の文献集](archive-2026-10-26-games.html#sec-game)には、外した8件も説明文ごと残している。年代の新しさは刊行年を基準にし、初稿・改訂原稿の年と区別した。
+**この節の選定方針（2026年10月26日改訂）**：min–max系列の補強に続き、Pareto・協調制御と多目的MPCの原著8件を追加した。**原著33件のうち26件が2020年以降、そのうち18件が2023〜2026年**の文献である。基礎7件は理論の要所に残し、近年の解法から必要に応じて戻る構成にしている。Paretoは効率性の基準であり、戦略主体を持つ協調ゲームと、多目的最適制御からの接続を区別する。[改訂前の157件の文献集](archive-2026-10-26-games.html#sec-game)には、以前の再選定で外した8件も説明文ごと残している。年代は刊行年を基準にし、プレプリント初出・改訂年と区別した。
 
-**まず読む入口**：MPCの知識から入るなら **Receding Horizon Control and Dissipativity（2026、公開プレプリント）**、Nash・Stackelbergと情報構造を整理するなら **A Crash Course in Differential Games and Applications（2024）**、多数主体なら **Machine Learning Methods for Large Population Games（2024）** を使う。いずれも[チュートリアル節](#sec-t)に収録した。**Game Theory and Control（2018）** は、零和・team・分散制御の基本構造を補う総説として残す。方法の枝分けと以下の読む順は、ChatGPTによる学習用の整理である。
+**まず読む入口**：MPCの知識から入るなら **Receding Horizon Control and Dissipativity（2026、公開プレプリント）**、Nash・Stackelbergと情報構造を整理するなら **A Crash Course in Differential Games and Applications（2024）**、多数主体なら **Machine Learning Methods for Large Population Games（2024）** を使う。いずれも[チュートリアル節](#sec-t)に収録した。**Game Theory and Control（2018）** は、零和・team・分散制御の基本構造を補う総説として残す。Paretoの全体像には **Peitz–Dellnitz（2018、サーベイ節）**、MPCから入る原著には **Eichfelderほか（2023）** を使う。後者は総説ではないが、定義と閉ループ解析を追える入口として読む。方法の枝分けと以下の読む順は、ChatGPTによる学習用の整理である。
 
-**用語の補足**：Nash均衡は、相手の戦略を固定したときに誰も一方的な変更で得をしない状態。零和では両者の損得が正反対になり、min–maxの鞍点を考える。Stackelbergは先手が後手の反応を考慮する構造。Generalized Nash Equilibrium（GNE）は、衝突回避などで各主体の実行可能集合が相手の選択にも依存する均衡。どの主体が何を観測し、何を戦略として選ぶかも問題設定の一部になる。
+**用語の補足**：Nash均衡は、相手の戦略を固定したときに誰も一方的な変更で得をしない状態。零和では両者の損得が正反対になり、min–maxの鞍点を考える。Stackelbergは先手が後手の反応を考慮する構造。Generalized Nash Equilibrium（GNE）は、衝突回避などで各主体の実行可能集合が相手の選択にも依存する均衡。Pareto最適は、誰かの評価を悪化させずには他の評価も改善できない効率的な解を指す。Nash均衡は一方的変更への応答、Pareto最適は入力・戦略の組をまとめて変えたときの効率を問うため、同じ条件ではない。どの主体が何を観測し、何を戦略として選ぶかも問題設定の一部になる。
 
 **研究の展開**
 
@@ -659,6 +661,7 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 | 非零和・Nash／Stackelbergとfeedback計算 | Starr–Ho（1969）、iLQGames（2020）、ALGAMES（2022）、近似GFNE（2023）、feedback Stackelberg（2024）、KLGame（2024）、分散NPG（2025）、SLS（2026） | 近年の原著から、共有制約、状態に応答する均衡、先手・後手、学習方策の取り込み、局所情報での学習、部分観測へ広がる。これらは並行する枝で、一本道の置換列ではない。 |
 | 動的Potential Games・単一OCPへの帰着と分散化 | Potential iLQR（2021）／Distributed Potential iLQR（2023）／重み付き・制約付きPotential Games（2025） | 単一の最適制御問題への帰着を基礎に、近傍ごとの分散計算と、非対称な相互作用・共有制約への拡張へ分かれる。 |
 | 混合整数Potential Games・離散判断を含む制御 | Fabiani–Grammatico（2020）／Mengほか（2024、公開プレプリント） | 車線・方向指示器などの整数・二値変数と、速度・加速度などの連続変数を併せて扱う。道路グラフ上の経路・判断へ広げる応用も追う。時間を離散化することとは別の分類。 |
+| Pareto・協調ゲームと多目的最適制御 | 協調微分ゲームの条件（2010）／分散Nash bargaining（2020）／未知系の方策反復（2024）／情報制約下の性能保証（2026）。多目的MPC（2009、2023）・学習と選好選択（2025）へ接続。 | 複数評価を保って効率的な解を求め、合意・選好によって一つを選ぶ。Nash均衡やPotential Gamesの別名ではなく、効率性を扱う枝として整理する。 |
 | 協調・利得設計と均衡の効率 | Potential Games（1996）、協調制御への接続（2009）、Price of Anarchyの評価・設計（2024） | 個体の利得を全体目的へ合わせ、均衡に落ち着いたときの性能を評価・改善する。連合形成の基本構成はFeleほか（2017、チュートリアル節）で補う。 |
 | 多数主体・Mean-Field Gamesと学習 | Huangほか（2006）／大規模ゲームの学習入門（2024、チュートリアル節） | 個々の相手ではなく集団分布との整合から近似均衡を構成する。近年の入門で計算法をつかみ、古典で仮定と理論を確認する。 |
 
@@ -671,6 +674,7 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 | feedback Nash／Stackelberg | Laineほか（2023）→Liほか（2024）。学習した参照方策との接続はKLGame（2024）。 | iLQGames（2020）で反復LQ近似、Starr–Ho（1969）で非零和の解概念を確認する。 |
 | 動的Potential Games | Bhattほか（2025）を入口に、Potential iLQR（2021）の構成とDistributed Potential iLQR（2023）の分散化を併読。 | Monderer–Shapley（1996）。 |
 | 混合整数のゲーム理論的制御 | Fabiani–Grammatico（2020）→Mengほか（2024）。 | MLD・混合整数MPCの知識と、Potential Gamesの条件を確認する。 |
+| Pareto・協調と折衷解の選択 | [Paretoの見取り図](#game-pareto)から、協調LQならZhaoほか（2024）、多目的MPCならEichfelderほか（2023）へ。交渉はCamisaほか（2020）、学習はNairほか（2025）へ分かれる。 | Engwerda（2010）とBemporad–Muñoz de la Peña（2009）を、それぞれの理論の基準点として読む。 |
 | 協調・利得設計 | Chandanほか（2024）。 | Mardenほか（2009）、Monderer–Shapley（1996）。 |
 | 多数主体 | Dayanıklı–Laurière（2024、チュートリアル節）。 | Huangほか（2006）。 |
 
@@ -688,6 +692,19 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 
 [H₂/H∞の基礎](#sec-x)と[HJ到達可能性・安全フィルタ](#sec-f)は関連する既存節も参照する。最悪の分布を**制約の評価だけ**に使う分布ロバストMPCと、最悪コストを最小化する零和ゲームは区別し、この追加では後者とminimax regretを中心に選んだ。
 
+<a id="game-pareto"></a>
+**Pareto系列の見取り図：効率的な解を求め、使う解を選ぶ**
+
+パレート解は通常一つに決まらない。実現する入力・戦略の集合をPareto set、対応する評価値の集合をPareto frontと呼ぶ。ここでは、各主体のコストを調整する協調ゲームを中心に、同じ効率性の考え方を使う多目的MPCを接続先として収録する。
+
+| 流れ・分岐 | 文献と読む順 | 核となる論点 |
+|---|---|---|
+| 協調微分ゲーム：モデル既知からデータ・情報制約へ | Zhaoほか（2024）から入り、Engwerda（2010）でパレート最適性の条件を確認。Roy–Tallapragada（2026）は情報制約による計算の難しさと性能保証へ進む別の展開。 | 複数主体の入力を協調して決める。重み付き最適制御への帰着、未知モデルでの方策反復、使える観測の制約を区別する。 |
+| 多目的MPC：解の選択と閉ループ解析 | Eichfelderほか（2023）を入口に、Bemporad–Muñoz de la Peña（2009）へ戻る。Nairほか（2025）は反復タスクの学習、Herrmann-Wicklmayr–Flaßkamp（2025初出・2026改訂）は選好の反映へ分かれる。 | 単一の制御対象でも複数目的を持てる。各時刻の効率性、閉ループ安定性、反復間の非悪化、収束先のパレート最適性は別々に確認する。 |
+| 効率的な解から合意する解へ：Nash bargaining | Camisaほか（2020） | 交渉不成立時の基準からの改善を使い、効率的な候補の中から交渉解を選ぶ。Nash均衡計算と混同しない。 |
+
+**読み方の注意**：パレート最適性だけでは公平性や全員の参加意欲は決まらず、閉ループ安定性も自動では付かない。正の重みを付けた総コストの**大域最適解**はパレート解になるが、非凸問題では重みを変えるだけで全パレート面を得られるとは限らない。Potential Gamesの共通ポテンシャルも、各主体のコストの総和とは限らず、その均衡が元の各コストについてパレート最適になる保証は別に必要である。上の分岐は学習用の整理で、全論文が直前の論文を直接継承したとする引用系譜ではない。
+
 <a id="game-potential"></a>
 **動的Potential Gamesで計算をまとめる枝**：Negar Mehrらの **Potential iLQR（Kavuncu・Yaraneri・Mehr、2021）** は、この節で読むべき計算上の重要な接続である。各主体が自分の入力だけを変えたときのコスト差を、一つのポテンシャルの差で表せる条件を使い、そのポテンシャルを評価関数とする**単一の最適制御問題（OCP）**を解く。力学や入力が一主体分になるわけではなく、複数主体の状態・入力をまとめた一つのOCPになる。
 
@@ -704,7 +721,7 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 - **協調と協力ゲーム理論は同義ではない**：共通コストを最小化するteam問題、非協力ゲームの利得設計で協調させるPotential Games、連合の価値・利益配分を扱う協力ゲームは区別する。通常の合意制御や分散最適化すべてをゲーム理論に含めない。
 - **open-loopとfeedbackの均衡は異なる**：入力列を決めるゲームをMPCとして繰り返すことと、状態への応答方策そのものを選ぶfeedback Nash均衡は同じではない。局所的な一階条件を解いたことも、厳密な均衡・大域最適性・閉ループ安定性の証明とは分けて読む。
 
-**収録文献（25件・原則年代順）**
+**収録文献（33件・原則年代順）**
 
 | 読む価値・研究上の役割 | 年・論文（原文リンク・入手先） | 論文の紹介：何をして、何が分かったか | 手法・成果の補足 | 期待される応用 | 残された課題・限界 |
 | --- | --- | --- | --- | --- | --- |
@@ -713,9 +730,12 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 | **［協調・Potential Gamesの基礎］** Monderer・Shapley。利己的な改善を共通関数に対応させる。 | 1996 / **[Potential Games](https://doi.org/10.1006/game.1996.0044)**<br>[大学公開PDF](https://people.csail.mit.edu/jrennie/trg/papers/monderer-potential-96.pdf) | 各参加者の一方的な改善が、一つのポテンシャル関数の改善と対応するゲームを整理。均衡や改善過程を、その共通関数から調べられる構造を明確にした。 | exact・weighted・ordinalなどのポテンシャルを区別する。後の協調制御では、全体の目的に対応する利得を設計する土台になる。 | 分散的な資源配分、被覆制御、利得設計。 | 元論文は静的ゲームの理論。ポテンシャルが存在しても、任意の学習則の収束や全体の大域最適性は保証されない。 |
 | **［多数主体・Mean-Field Games］** Huang・Malhamé・Caines。多数の相手を集団分布で扱う。 | 2006 / **[Large Population Stochastic Dynamic Games: Closed-Loop McKean–Vlasov Systems and the Nash Certainty Equivalence Principle](https://doi.org/10.4310/CIS.2006.v6.n3.a5)**<br>[出版社公開PDF](https://www.ims.cuhk.edu.hk/~cis/2006.3/05.pdf) | 多数の相手の行動を個別に追う代わりに、集団の分布と代表的な個体の制御を整合させる。分散制御則が、大きな有限集団で近似Nash均衡になる条件を示した。 | 個体の最適応答と集団挙動の自己整合性を用いるNash certainty equivalenceの構成。Mean-Field Gamesの制御側の基礎文献。 | 大規模な群・電力・交通などの多数主体モデル。 | 多数・弱い結合などの仮定に依存する。全体利益を最適化するMean-Field Controlとは異なり、少数の強い相互作用をそのまま近似できるとは限らない。 |
 | **［協調・利得設計］** Marden・Arslan・Shamma。Potential Gamesを協調制御に使う。 | 2009 / **[Cooperative Control and Potential Games](https://doi.org/10.1109/TSMCB.2009.2017273)**<br>[著者所属機関の公開版](https://authors.library.caltech.edu/records/xq9ws-8wp90) | 合意形成やセンサ被覆を、各主体が自分の利得を改善するゲームとして構成。ポテンシャルと学習則を使い、局所的な意思決定から協調を生む設計を示した。 | potential gameとweakly acyclic gameを協調制御へ接続し、扱える問題を広げる。全体の目的から各主体の利得を設計する読み方が重要。 | 分散協調、被覆、センサ配置。 | 協調目的でも、数学的な定式化は非協力ゲームである場合がある。利得構造・情報・更新則により収束と得られる均衡の質が変わる。 |
+| **［Pareto・多目的MPCの基礎］** Bemporad・Muñoz de la Peña。状態や時刻に応じて折衷解を選ぶ。 | 2009 / **[Multiobjective Model Predictive Control](https://doi.org/10.1016/j.automatica.2009.09.032)**<br>[著者公開PDF](https://cse.lab.imtlucca.it/~bemporad/publications/papers/automatica-mompc.pdf) | 複数の制御目標に対するパレート解から、その時点で使う入力を選ぶMPCを提案。選択を変えても閉ループを安定に保つ条件と、制御則を事前計算する構成を示した。 | 状態・時刻に依存する選択基準と多パラメトリック最適化を結ぶ。凸区分アフィンコストなどを扱い、シミュレーションで検証する。 | 複数仕様を切り替えるMPC、[Explicit MPC](#sec-explicit)との接続。 | 多目的最適制御からの接続であり、複数の戦略主体を持つゲームとは限らない。任意に選好を変更しても安定になるという保証ではない。 |
+| **［Pareto・協調微分ゲームの基礎］** Engwerda。効率的な協調戦略が存在する条件を学ぶ。 | 2010 / **[Necessary and Sufficient Conditions for Pareto Optimal Solutions of Cooperative Differential Games](https://doi.org/10.1137/080726227)**<br>[所属機関の書誌・要旨](https://research.tilburguniversity.edu/en/publications/necessary-and-sufficient-conditions-for-pareto-optimal-solutions-/) | 各参加者のコストを同時に考える協調微分ゲームで、パレート最適性の必要条件・十分条件を導く。不定符号のLQゲームを解析し、スカラー系では効率的な解を列挙する計算法を示した。 | 協調する入力の組を、各主体の評価を保って比較する理論の基準点。新しい方策反復・情報制約の論文から必要に応じて戻る。 | 協調LQ制御、複数主体間の性能調整。 | 一般の高次元非線形系で全パレート解を簡単に計算できるという結果ではない。公平な解の選択は別問題。公開全文は今回未確認。 |
 | **［動的Nash・数値解法］** Fridovich-Keilほか。iLQRからiLQGamesへの接続。 | 2020 / **[Efficient Iterative Linear-Quadratic Approximations for Nonlinear Multi-Player General-Sum Differential Games](https://doi.org/10.1109/ICRA40945.2020.9197129)**<br>[公開版](https://arxiv.org/abs/1909.04694) | 非線形な多人数ゲームを、線形力学・二次コストのゲームで繰り返し近似する解法を提案。交差点シミュレーションと実機の衝突回避で、実時間の相互作用計画を示した。 | 各主体のコストを保ったままLQゲームを反復する。相手の予測軌道を固定する単一主体MPCとの違いを、既知のiLQRと比較して学べる。 | 相互作用するロボット、車両のゲーム理論的MPC。 | 局所近似と初期化に依存する。非線形元問題の厳密なfeedback Nash均衡や大域収束を一般に保証する解法ではない。 |
 | **［混合整数Potential Games・制御への応用］** Fabiani・Grammatico。離散判断と連続入力を併せて扱う入口。 | 2020 / **[Multi-Vehicle Automated Driving as a Generalized Mixed-Integer Potential Game](https://doi.org/10.1109/TITS.2019.2901505)**<br>[大学公開PDF](https://pure.tudelft.nl/ws/portalfiles/portal/71119721/MVAD_final_version.pdf) | 車線や方向指示器の離散判断と、速度・加速度の連続変数を持つ車両間のゲームを定式化。安全制約の下で近似均衡を求め、予測に基づく分散制御へ組み込んだ。 | Mixed-Logical-Dynamicalモデルとgeneralized mixed-integer potential gameを用いる。best responseに基づく更新で近似均衡を計算し、open-loop・closed-loopの制御方式をシミュレーションで比較する。 | 離散的な行動選択を伴う車両MPC、混合整数の多主体制御。 | 連続入力だけのゲームとは計算が異なる。共有制約、整数変数、近似均衡の許容誤差とモデル上の安全条件を確認する。CartPoleそのものの実験ではない。 |
 | **［零和・対抗的RLの安定性］** Zhang・Hu・Başar。交互に学習させるだけで安定になるかを調べる。 | 2020 / **[On the Stability and Convergence of Robust Adversarial Reinforcement Learning: A Case Study on Linear Quadratic Systems](https://papers.nips.cc/paper_files/paper/2020/hash/fb2e203234df6dee15934e448ee88971-Abstract.html)**<br>[公開PDF](https://proceedings.neurips.cc/paper_files/paper/2020/file/fb2e203234df6dee15934e448ee88971-Paper.pdf) | 制御側と外乱側を交互に学習させるRARLを、LQ系で解析。単純な交互更新が系を不安定にする例を示し、頑健に安定化する初期方策の下で安定性を保つ収束法を構成した。 | 制御入力を選ぶ主体と外乱入力を選ぶ主体の零和ゲーム。double-loopの方策更新を解析し、学習中のロバスト安定性と最適コストへの収束を結び付ける。 | 対抗的な外乱によるロバスト方策学習、RARLの理論。 | LQ設定と初期方策の頑健な安定化条件が重要。任意のニューラル方策や通常の交互勾配更新に、そのまま安定性・収束保証が付くわけではない。 |
+| **［Pareto・Nash bargainingと分散計算］** Camisaほか。効率的な解から交渉で一つを選ぶ。 | 2020 / **[A Distributed Optimization Algorithm for Nash Bargaining in Multi-Agent Systems](https://doi.org/10.1016/j.ifacol.2020.12.402)**<br>[大学公開PDF](https://cris.unibo.it/retrieve/e1dcb338-0c4f-7715-e053-1705fe0a6cc9/nash_bargaining-ifac.pdf) | 局所制約・共有制約を持つネットワークで、各主体が合意するNash交渉解を分散計算する。交渉を重み付き目的の最適化へ変換し、重みの推定と分散更新を組み合わせた。 | IFAC-PapersOnLine 53(2):2684–2689。特定の設定で理論解析し、数値例で確認。制御系の最適定常点を決める問題も含む。 | 分散制御の運転点決定、複数主体の利益調整。 | Nash交渉解は非協力ゲームのNash均衡と別の解概念。交渉不成立時の基準や仮定が選択を左右する。一般の動的MPCの安定性まで保証した論文ではない。 |
 | **［動的Potential Games・単一OCPへの帰着］** Kavuncu・Yaraneri・Mehr。今回の追加でまず読む文献。 | 2021 / **[Potential iLQR: A Potential-Minimizing Controller for Planning Multi-Agent Interactive Trajectories](https://doi.org/10.15607/RSS.2021.XVII.084)**<br>[公開版](https://arxiv.org/abs/2107.04926)・[RSS公式ページ](https://www.roboticsproceedings.org/rss17/p084.html) | 多主体の動的ゲームがポテンシャル構造を持つ条件を利用し、均衡計算を一つの最適制御問題にまとめる。iLQRで解く計画法を構成し、シミュレーションと2機のクアッドロータで示した。 | 各主体の一方的なコスト変化を共通のポテンシャルで表せる構造に着目し、連立した最適制御問題を単一OCPへ帰着する。一般のLQゲームを反復するiLQGamesとは異なる計算の枝。 | ポテンシャル構造を持つ相互作用計画、既存iLQRの多主体計画への利用。 | 任意の非零和ゲームを同じ均衡のまま変換できる方法ではない。コスト・力学と戦略の条件が必要。iLQRの数値解から、一般の大域均衡や厳密なfeedback Nash均衡まで保証されたとは解釈しない。 |
 | **［min–max・分布ロバスト制御］** Yang。外乱の値から、外乱の確率分布へ相手を広げる。 | 2021 / **[Wasserstein Distributionally Robust Stochastic Control: A Data-Driven Approach](https://doi.org/10.1109/TAC.2020.3030884)**<br>[公開版](https://arxiv.org/abs/1812.09808) | 観測データの近くにある外乱分布のうち、最も不利なものを相手に制御を設計。Wasserstein距離で分布のずれを定め、動的計画法による求解と性能評価を示した。 | 制御入力を選ぶ側と分布を選ぶ側のmin–max問題。Kantorovich双対性を使って扱いやすい問題へ変換し、価値・方策反復を構成する。 | 外乱分布を信頼し切れない確率制御、データを用いる頑健設計。 | 分布集合の半径や段階ごとの不確かさの設定に性能・保守性が依存する。指数型risk-sensitiveやCVaR制御と同じ定式化ではない。 |
 | **［零和・モデルフリー方策最適化］** Zhang・Zhang・Hu・Başar。軌道データからH∞型・risk-sensitive制御を学ぶ。 | 2021 / **[Derivative-Free Policy Optimization for Linear Risk-Sensitive and Robust Control Design: Implicit Regularization and Sample Complexity](https://papers.neurips.cc/paper_files/paper/2021/hash/1714726c817af50457d810aae9d27a2e-Abstract.html)**<br>[公開版](https://arxiv.org/abs/2101.01041) | 線形のrisk-sensitive制御と外乱抑制問題を、軌道サンプルだけで方策を更新して解く方法を提案。大域収束と必要データ数を解析し、更新中に頑健性を保つ条件を示した。 | 有限ホライズンLEQGとLQ disturbance attenuationの二設定を扱い、零和LQゲームのモデルフリー学習へ接続する。implicit regularizationとサンプル数の理論を学ぶ文献。 | 未知モデルでのロバスト制御器学習、零和LQゲームの方策最適化。 | 線形・有限ホライズンなどの条件を要する。指数型確率評価と外乱抑制は対応する設定を区別し、すべてのrisk-sensitive制御をH∞問題と同一視しない。 |
@@ -724,17 +744,22 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 | **［制約付きfeedback Nash・近年の入口］** Laine・Fridovich-Keil・Chiu・Tomlin。open-loopの再計画と異なる解概念を学ぶ。 | 2023〔初稿2021〕 / **[The Computation of Approximate Generalized Feedback Nash Equilibria](https://doi.org/10.1137/21M142530X)**<br>[公開版](https://arxiv.org/abs/2101.02900) | 状態・入力制約を持つ動的ゲームで、局所的なfeedback Nash均衡の条件を整理。計算しやすい近似条件と反復LQゲームの解法を構成し、自動運転の例で示した。 | GFNEの必要・十分条件と、必要条件を近似したGeneralized Feedback Quasi-Nash Equilibria（GFQNE）を区別する。等式・不等式制約付きLQゲームの数値計算を詳しく扱う。 | 共有制約を持つ相互作用計画、feedback均衡の数値解法。 | 近似条件を満たすGFQNEと、元の問題の厳密なGFNEは区別する。局所条件・入れ子の微分計算・初期化に依存し、一般の大域均衡を保証しない。 |
 | **［min–max・Wasserstein罰則とRiccati］** Kim・Yang。最悪の分布を選ぶ相手を、LQ構造で解析する。 | 2023〔初稿2021〕 / **[Distributional Robustness in Minimax Linear Quadratic Control with Wasserstein Distance](https://doi.org/10.1137/22M1494105)**<br>[公開版](https://arxiv.org/abs/2102.12715) | 外乱の分布を悪化させる相手にWasserstein距離の罰則を課すmin–max LQ制御を提案。Riccati方程式から制御側と相手側の方策を導き、安定性と分布ずれへの性能を解析した。 | 有限ホライズンから無限ホライズン平均コストへ広げ、罰則係数と性能上界を扱う。H∞制御との理論的な接続を示し、Yang（2021）の分布集合による設計と比較できる。 | 外乱分布が不確かな線形制御、確率制御とH∞の接続。 | Wasserstein罰則を用いるゲームと、分布球内の最悪期待コストを直接最小化する問題を区別する。罰則係数・可解性・安定化の条件に依存する。 |
 | **［minimax regret・性能差の頑健設計］** Al Taha・Yan・Bitar。最悪コストに加え、先読みできる理想制御器との性能差を見る。 | 2023 / **[A Distributionally Robust Approach to Regret Optimal Control Using the Wasserstein Distance](https://doi.org/10.1109/CDC49753.2023.10384311)**<br>[著者公開PDF](https://bitar.engineering.cornell.edu/papers/MROC2023.pdf)・[公開原稿](https://arxiv.org/abs/2304.06783) | 将来の外乱をすべて知る理想的な制御器との性能差を、最悪の外乱分布に対して小さくする制御を提案。Wasserstein分布球を用い、minimax設計を半正定値計画へ変換した。 | 離散時間線形系・二次コストと、strictly causalな線形外乱フィードバックを扱う。最悪期待コストの設計と最悪期待regretの設計を、数値例で比較する。 | 予測できない外乱下の性能保証、分布ロバスト制御とregret設計の比較。 | 比較対象は未来の外乱を知る非因果制御器で、実装する制御器とは異なる。ここでのregretはオンライン学習の累積regretと同一ではない。線形構造と分布集合の条件を要する。 |
+| **［Pareto・多目的MPCの閉ループ保証］** Eichfelder・Grüne・Krügel・Schießl。安定性に必要な仮定を緩める。 | 2023〔オンライン公開2022〕 / **[Relaxed Dissipativity Assumptions and a Simplified Algorithm for Multiobjective MPC](https://doi.org/10.1007/s10589-022-00398-4)**<br>[公開全文](https://link.springer.com/article/10.1007/s10589-022-00398-4) | 複数の競合するコストを持つ非線形MPCで、各時刻に効率的な解を選ぶ方法を解析。一つの目的に厳密散逸性と適合する終端コストを要求する構成へ仮定を緩め、安定性と各評価の性能を調べた。 | Computational Optimization and Applications 86:1081–1116。解の選択則による違いも数値比較する。MPCの知識から読む理論の入口。 | 経済性と安定化を併せて扱うMPC、複数評価の性能解析。 | 終端条件、効率解の存在・選択、初期状態などの仮定がある。毎時刻パレート解を選ぶだけで閉ループ全体もパレート最適になるとは限らない。 |
 | **［協調・利得設計・近年の入口］** Chandan・Paccagnan・Marden。均衡での全体性能を評価し、改善する設計。 | 2024 / **[Methodologies for Quantifying and Optimizing the Price of Anarchy](https://rahul-chandan.github.io/publications/23-0363_MS_full.pdf)**<br>[刊行版DOI](https://doi.org/10.1109/TAC.2024.3401787) | 各主体が個別に判断した結果、全体の性能がどこまで悪くなるかをPrice of Anarchyで評価。その限界を計算し、最悪の均衡性能を改善する利得設計へつなげる枠組みを示した。 | generalized smoothnessと最適化により、混雑ゲーム・welfare最大化などのクラスで性能比を特徴付け、局所目的関数の設計を行う。2009年の協調制御と利得設計を近年の性能保証へつなぐ。 | 分散資源配分、個体の利得と全体目的を揃える設計。 | 主に均衡の効率を扱う。実プラントの過渡応答・閉ループ安定性や、任意のゲームの最良利得設計を直接保証する論文ではない。 |
 | **［学習と動的ゲームの接続・KLGame］** Lidard・Huほか。データから得た行動方策をゲーム計算に取り込む。 | 2024 / **[Blending Data-Driven Priors in Dynamic Games](https://doi.org/10.15607/RSS.2024.XX.020)**<br>[公開版](https://arxiv.org/abs/2402.14174)・[著者解説・コード](https://kl-games.github.io/) | 学習した行動方策とゲーム理論的な計画を、KL正則化によって組み合わせるKLGameを提案。複数の行動候補を持つ近似feedback Nash方策を計算し、運転場面で検証した。 | 参照方策からのずれとタスクコストを両立する確率的ゲーム。LQ・Gaussianの解析から一般の非線形・多峰性の参照方策へ広げ、シミュレーションと実機・実データで評価する。 | 人の行動予測を使う相互作用計画、学習方策とモデルベース計画の融合。 | KL正則化を加えたゲームの均衡を扱う。参照方策の品質と正則化の強さに依存し、元の非正則化ゲームや現実の人の行動と均衡が一致する保証ではない。 |
 | **［feedback Stackelberg・近年の入口］** Li・Sojoudi・Tomlin・Fridovich-Keil。先手・後手の応答と共有制約を扱う。 | 2024〔公開原稿は2025年に訂正〕 / **[The Computation of Approximate Feedback Stackelberg Equilibria in Multiplayer Nonlinear Constrained Dynamic Games](https://doi.org/10.1137/24M1634709)**<br>[公開版](https://arxiv.org/abs/2401.15745) | 先手と後手の関係を持つ非線形・制約付き動的ゲームで、局所的なfeedback Stackelberg均衡を近似計算する方法を提案。入れ子の最適化条件と反復LQ近似を使い、収束を解析した。 | KKT条件と二階十分条件を整理し、制約付きLQゲームを主双対内点法で解く構成から非線形ゲームへ進む。近年の動的なStackelberg計算を原著から追う入口。 | 階層的なロボット計画、先手の行動への応答を考慮する制御。 | 連続状態・入力と局所的な近似均衡が対象。戦略の順序と情報構造を指定する必要があり、任意のゲームの大域解を保証しない。2025年改訂は新しい別論文として数えない。 |
 | **［混合整数Potential Games・道路構造への展開］** Meng・Huang・Ma。2020年の入口と併読する近年の応用。 | 2024〔プレプリント〕 / **[A Universal Multi-Vehicle Cooperative Decision-Making Approach in Structured Roads by Mixed-Integer Potential Game](https://arxiv.org/abs/2409.16190)** | 複数車両の判断を道路上の経路探索として表し、混合整数Potential Gameで計算する方式を提案。更新する車両の順序も工夫し、複数の都市交通シナリオで計算効率を評価した。 | waypoint graph上でMILPとして表した問題からMIPGを構成し、二つのGauss–Seidel更新を比較する。高速道路の車線選択から、異なる道路構造へ広げる一例として読む。 | 離散的な経路・行動選択を含む多車両計画。 | 実験は設定した道路グラフ・シナリオに依存する。一般の整数ゲームの大域解法や、全体最適とNash均衡の一致を主張するものとして読まない。掲載版は今回未確認。 |
+| **［Pareto・未知モデルの協調LQゲーム］** Zhaoほか。モデルからRiccatiを解く構成をデータへ広げる。 | 2024 / **[Policy Iteration Based Cooperative Linear Quadratic Differential Games with Unknown Dynamics](https://doi.org/10.1016/j.jfranklin.2024.107301)**<br>[出版社の要旨・書誌](https://www.sciencedirect.com/science/article/pii/S0016003224007221) | ダイナミクスが一部または全部未知の協調LQゲームで、状態・入力データを使う方策反復を提案。重み付きRiccati方程式に対応するパレート戦略を求め、数値例で動作を示した。 | Journal of the Franklin Institute 361(18):107301。既知モデルの協調最適制御から、データに基づく計算への展開として読む。 | モデルが十分に分からない多主体の協調制御。 | データ量・励起、初期方策などの条件は本文で確認する。重みを定めた解と全パレート集合の探索は別。公開全文は今回未確認で、紹介は出版社の要旨・節概要に基づく。 |
 | **［重み付き・制約付きPotential Games］** Bhatt・Jia・Mehr。単一OCPへの帰着を、非対称な相互作用と共有制約へ広げる。 | 2025〔初稿2023〕 / **[Strategic Decision-Making in Multi-Agent Domains: A Weighted Constrained Potential Dynamic Game Approach](https://doi.org/10.1109/TRO.2025.3552325)**<br>[公開版・2025年改訂](https://arxiv.org/abs/2308.05876) | 重み付きポテンシャルを持つ制約付き動的ゲームの条件を整理し、open-loop GNEを単一の制約付き最適制御問題から求める。複数主体の計画と、2機のドローンによる共同運搬で検証した。 | 対称な結合コストに限られていた構成を広げ、weighted constrained potential dynamic gamesを扱う。定理の前提の下で単一OCPの解がopen-loop GNEになることを示す。[先行する制約付き計画の公開原稿](https://arxiv.org/abs/2206.08963)は関連資料として参照する。 | 衝突回避・共同運搬など、共有制約を持つ多主体の軌道計画。 | ポテンシャルの存在条件と最適性の条件を確認する。単一OCPは依然として非凸になり得る。open-loop均衡のreceding-horizon実行とfeedback Nash均衡は異なる。 |
 | **［零和LQ・学習の近年の入口］** Wu・Barakat・Fatkhullin・He。必要データ数と最後の更新値の収束を改善する。 | 2025〔初稿2023〕 / **[Learning Zero-Sum Linear Quadratic Games with Improved Sample Complexity and Last-Iterate Convergence](https://doi.org/10.1137/23M1626104)**<br>[公開版・2025年改訂](https://arxiv.org/abs/2309.04272) | 有限ホライズンの零和LQゲームで、モデルを使わず均衡を学ぶ入れ子型の更新法を提案。必要サンプル数の評価を改善し、更新値そのものが均衡へ近づく条件を示した。 | deterministicな設定でのlast-iterate線形収束と、モデルフリー設定のzeroth-order推定を解析する。2019年の基礎的な方策最適化論文は改訂前の保存版から参照できる。 | ロバスト制御と対抗的な方策学習の理論。 | 有限ホライズン・LQ構造とアルゴリズムの仮定に依存する。一般の非線形な対抗学習へ収束率やサンプル数をそのまま持ち込めない。 |
 | **［非零和LQ・分散的な方策学習］** Shibl・Suttle・Gupta。全員の情報を持たず、近傍情報で学ぶ。 | 2025 / **[Scalable Natural Policy Gradient for General-Sum Linear Quadratic Games with Known Parameters](https://proceedings.mlr.press/v283/shibl25a.html)**<br>[公開PDF](https://raw.githubusercontent.com/mlresearch/v283/main/assets/shibl25a/shibl25a.pdf) | 複数主体の一般和LQゲームで、近傍の状態・行動情報だけを使う自然方策勾配法を提案。扱う近傍の広さに応じて、Nash均衡の近くへ収束する条件を示した。 | 既知パラメータ・有限ホライズン・確率的力学の設定。力学またはコストの結合グラフを利用し、局所情報での計算と近似誤差の関係を解析する。 | 大規模な非協力的制御、分散的な方策最適化。 | モデルパラメータは既知。近傍を限定した場合は一般に厳密な均衡ではなく近傍への収束であり、未知モデル・任意の非線形ゲームの保証ではない。 |
+| **［接続：Pareto・Learning MPC］** Nair・Vallon・Borrelli。繰り返すタスクで各評価の悪化を防ぐ。 | 2025〔SysDO 2024・原稿初出2024〕 / **[Multi-Objective Learning Model Predictive Control](https://doi.org/10.1007/978-3-031-83191-1_17)**<br>[公開版](https://arxiv.org/abs/2405.11698)・[著者コード](https://github.com/shn66/Multi-Objective-LMPC) | 反復タスクの軌道データからMPCの終端集合・終端コストを更新し、複数の評価が前回より悪くならない制御を構成。線形系と凸コストの設定で、実行可能性・安定性と条件付きのパレート最適性を示した。 | 学習は同じタスクを繰り返すLMPCの意味。公開版では、追加仮定と反復軌道が有限回で固定される条件の下で、収束先のパレート最適性を証明する。 | 繰り返し運転、時間・エネルギーなど複数の消費量の改善。 | 反復の収束自体を無条件に保証したものではない。各回の非悪化と、全目的が必ず厳密に改善することを区別する。複数主体ゲームであることは必須ではない。 |
+| **［接続：Pareto・選好を変更するMPC］** Herrmann-Wicklmayr・Flaßkamp。折衷解の選択と安定性を両立する。 | 2025〔プレプリント初出・2026年4月改訂〕 / **[Individual Minima-Informed Multi-Objective Model Predictive Control for Fixed Point Stabilization](https://arxiv.org/abs/2510.23454)**<br>[公開全文・改訂版](https://arxiv.org/html/2510.23454v2) | 各目的を単独で最適化した基準点を使い、指定した選好をパレート面上の解へ対応させるMPCを提案。選択法6種を整理し、制限を緩めたコスト減少条件の下で閉ループ安定性を保つ構成を示した。 | 目的数によらず二段階の最適化で選択を実装する枠組み。室内環境制御の数値例で、運転中に選好を変更する効果を確認する。 | 評価の優先度が変わる多目的MPC、選択則の設計。 | 査読刊行版として扱わない。終端要素と減少条件が必要で、任意の選好変更・任意の非凸問題に対する安定性や大域最適性の一般保証ではない。 |
 | **［GNE・SLS・部分観測］** Neto・Mulas・Corona。閉ループ応答を使って均衡と安定性を扱う。 | 2026〔オンライン先行公開〕 / **[A System-Level Approach to Generalized Feedback Nash Equilibrium Seeking in Partially Observed Games](https://doi.org/10.1109/TCYB.2026.3711940)**<br>[公開版・2026年改訂](https://arxiv.org/abs/2503.24159) | 部分観測の線形確率系で、複数の制御器のfeedback Nash均衡を探す方法を提案。SLSで安定性や通信制約を組み込み、分散電力網のシミュレーションで示した。 | 閉ループ応答を均衡探索の変数にし、単調作用素を使って収束条件を与える。既存のSLS節と、制約付き動的ゲームを結ぶ近年の展開。 | 部分観測下の非協力的な分散制御、電力系。 | 線形モデルと選んだ方策表現・作用素の条件に依存する。任意の非線形ゲームの全feedback均衡を列挙する方法ではない。 |
 | **［H∞・未知モデルの確率系］** Sun・Jia。連続時間の零和微分ゲームをデータから解く。 | 2026〔オンライン公開2025・初稿2024〕 / **[Robust Policy Iteration for the Continuous-Time Stochastic H∞ Control Problem with Unknown Dynamics](https://doi.org/10.1016/j.matcom.2025.09.009)**<br>[公開版](https://arxiv.org/abs/2402.04721) | 未知の連続時間線形確率系で、H∞制御を零和微分ゲームとして学ぶ方策反復を提案。一度集めた状態・入力データを利用し、反復誤差が小さいと鞍点近傍へ収束する条件を示した。 | 確率的なgame algebraic Riccati equationをデータから解き、内側・外側の反復の頑健性と収束を解析する。二つのシミュレーション例を報告する。 | モデル未知の連続時間確率的H∞制御、対抗的外乱下の学習。 | データのランク条件と、反復誤差・初期条件などの仮定を確認する。有限データや誤差がある場合の鞍点近傍への収束と、厳密な最適方策への収束を区別する。 |
+| **［Pareto・情報制約と性能保証への展開］** Roy・Tallapragada。観測が限られる協調ゲームの計算を扱う。 | 2026〔公開プレプリント・CDC 2026採択、開催前〕 / **[Guaranteed Cost Structured Control in Infinite-Horizon Linear-Quadratic Cooperative Differential Games](https://arxiv.org/abs/2605.13103)**<br>[公開原稿・2026年8月改訂](https://arxiv.org/abs/2605.13103v3) | 出力フィードバックの構造制約があると、協調LQゲームのパレート制御も計算が難しくなる点を扱う。重み付き総コストを指定上限以下に抑える制御へ設計目標を広げ、凸LMIによる条件と数値例を示した。 | パレート解が存在すれば提案するguaranteed cost structured controlのクラスに含まれることを示し、性能差を評価。マイクログリッドの追従同期例を含む。 | 局所観測の協調制御、分散された情報の下での性能設計。 | 得られた制御器が必ず厳密なパレート最適解になるわけではない。情報構造を満たした性能保証の枝として読む。2026年10月時点で会議刊行済みとはしない。 |
 
-**この区分の収録件数：25件。** 関連する総説4件・チュートリアル4件は冒頭の対応する節に収録し、重複計上しない。[SLS](#sec-g)・[方策合成](#sec-u)・[微分可能最適化](#sec-a)とも接続する。
+**この区分の収録件数：33件。** 関連する総説5件・チュートリアル4件は冒頭の対応する節に収録し、重複計上しない。[SLS](#sec-g)・[方策合成](#sec-u)・[微分可能最適化](#sec-a)とも接続する。
 
 <a id="sec-x"></a>
 ### 補助：制御器設計の基盤手法（リレー自動調整・H₂/H∞・適応制御）
@@ -818,8 +843,10 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 
 **min–max系列の補強について（2026年10月26日）。** 前版の159件を維持し、対抗的RLの安定性（2020）、微分不要の頑健方策最適化（2021）、Wasserstein罰則のminimax LQ制御（2023）、分布ロバストなminimax regret（2023）、未知系の連続時間確率的H∞制御（2026）の5件を追加した。Sun–Jia論文は巻号年2026、オンライン公開2025、原稿初出2024を区別した。原著・出版社・公式会議録の情報を参照し、最悪外乱入力、最悪分布、最悪性能差の違いを明示している。
 
+**Pareto系列の補強について（2026年10月26日）。** 前版164件を維持し、協調微分ゲームの基礎、分散Nash bargaining、未知モデルの方策反復、多目的MPCの安定性・反復学習・選好選択、出力フィードバックの性能保証に関する原著8件と、広い計算法を学ぶ総説1件を加えた。Nairほかは会議名・原稿初出の2024年と刊行年2025年、Eichfelderほかはオンライン公開2022年と巻号年2023年を区別した。2025年初出の選好選択論文は2026年改訂のプレプリント、Roy–Tallapragada（2026）はCDC採択済みの公開原稿として記載した。公開全文が確認できない2件は、その確認範囲を行内に示した。
+
 **8. 論文紹介について。** 前回の改訂で全135件の紹介文を、何に取り組み何を示した文献かが伝わる短い日本語に書き直した。その後に追加・入れ替えた文献も同じ方針で記述した。著者・出版社・所属機関・公式会議録などの要旨や本文を参照し、取り組みと主要な貢献を独立した文章に整理している。Abstractの逐語訳や、原文の文構造をなぞる翻訳の転載ではない。原典を特定できていないL1適応制御の1件は、書誌要照合の注記を維持し、成果を確定して記述していない。
 
 ---
 
-**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。最新版は164件、[今回の改訂前の保存版](archive-2026-10-26-games.html)は157件、[初回保存版](archive-2026-10-25.html)は135件を収録しています。文献を引用したり数値を研究資料に再利用したりする際は、原典の該当図表・定理を確認してください。
+**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。最新版は173件、[今回の改訂前の保存版](archive-2026-10-26-games.html)は157件、[初回保存版](archive-2026-10-25.html)は135件を収録しています。文献を引用したり数値を研究資料に再利用したりする際は、原典の該当図表・定理を確認してください。
