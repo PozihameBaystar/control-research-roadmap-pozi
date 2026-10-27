@@ -5,9 +5,9 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 
 # 現代制御編：最適制御・MPCと関連手法
 
-[最新版](./) · [今回の構成変更前・173件](archive-2026-10-26-before-modern.html) · [ゲーム理論改訂前・157件](archive-2026-10-26-games.html) · [初回保存版・135件](archive-2026-10-25.html)
+[最新版](./) · [論文の前に読む日本語書籍](japanese-foundations.html) · [今回の構成変更前・173件](archive-2026-10-26-before-modern.html) · [ゲーム理論改訂前・157件](archive-2026-10-26-games.html) · [初回保存版・135件](archive-2026-10-25.html)
 
-**自分自身がこれから読むための文献をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月26日改訂）**
+**自分自身がこれから読むための文献をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月27日改訂）**
 
 > **このリストの作成経緯について**  
 > **この文献リストは、私自身がこれから読むために、ChatGPTに論文の探索・候補選定・概要説明・分類・推奨読書順の整理をさせたものです。私自身がこれらの文献を読んで内容を確認し、その知見に基づいて作成したリストではありません。**  
@@ -15,13 +15,14 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 
 > **選定・構成の方針**：最適制御・MPCと、それに組み合わせる予測モデル・学習・保証・ゲーム理論を中心にする。手法の原理と発展を追い、教育的な説明、汎用的な設計知識、深い理論、後続研究への影響を優先する。同程度なら新しく公開版のあるものを選ぶ。新しさや件数をそろえるための追加はしない。各章の冒頭に総説・チュートリアルを示し、良い共通教材を複数章で使う。一般的なシステム同定・状態推定の独立章は設けない。
 
-**主表の文献：162件／19章。** 冒頭のサーベイ15件・チュートリアル18件と、各章の129件を重複なく計上する。章内にも総説を含むため、129件すべてを原著とは呼ばない。公開講義・ソフトウェア等は別に35件。前版173件から39件を保存版へ移し、28件を追加した。Explicit MPCの10件とゲーム理論の33件は維持している。
+**主表の文献：162件／19章。** 冒頭のサーベイ15件・チュートリアル18件と、各章の129件を重複なく計上する。章内にも総説を含むため、129件すべてを原著とは呼ばない。公開講義・ソフトウェア等は別に35件。論文の前提を補う[日本語書籍17冊](japanese-foundations.html)も別枠で掲載している。前版173件から39件を保存版へ移し、28件を追加した。Explicit MPCの10件とゲーム理論の33件は維持している。
 
 このページを**現代制御編**と位置づける。古典制御は今後の別編として予定する。
 
 ## 目次
 
 - [手法と研究の流れ：全体マップ](#roadmap)
+- [論文の前に読む日本語書籍：17冊と章別の対応〔別ページ〕](japanese-foundations.html)
 - [研究の流れを俯瞰するサーベイ・総説](#sec-s)
 - [各手法の導出を学ぶチュートリアル・概説](#sec-t)
 - [1. 最適制御・MPCの共通理論：安定性・ロバスト化・確率的な拡張](#sec-k) — 有限ホライズンの解を繰り返し使う制御の保証を学ぶ。
@@ -76,6 +77,11 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 | [19. ゲーム理論に基づく制御：min–max・Nash／Stackelberg・Pareto・Potential Games](#sec-game) | min–max／Nash・Stackelberg／Pareto／Potential Games → 混合整数・多数主体。 |
 
 **学習順と研究史を分ける**：入口の総説を先に読み、関心のある枝の原著へ戻ってよい。章内の矢印は原理の拡張や学習上の接続を示す整理であり、全論文の直接の引用関係や厳密な優先権を確認した系譜ではない。プレプリント、オンライン先行公開、巻号の年は分けて記す。
+
+<a id="japanese-books"></a>
+**論文の前に基礎を補いたい方へ**：[日本語書籍17冊と、各章へのつながり](japanese-foundations.html)を別ページにまとめた。最適制御・MPC・数値最適化を共通の土台とし、GP・Koopman・深層学習・ゲーム理論などは関心のある枝に応じて補う。すべての本を読む前提ではなく、先に読む範囲も示している。各章の冒頭から対応する書籍へ移れる。
+
+> **書籍の選定について**：掲載する書籍をすべて読んだわけではなく、公開された目次・内容紹介から、同じ分野を扱い基礎を学べる可能性が高いとChatGPTが判断した候補である。私自身の読了・検証に基づく推薦一覧ではない。書籍ページでは、確認できた内容とChatGPTによる読み方の提案を分けている。
 
 <a id="sec-s"></a>
 ## 研究の流れを俯瞰するサーベイ・総説
@@ -142,6 +148,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 <a id="sec-r"></a>
 ### 1. 最適制御・MPCの共通理論：安定性・ロバスト化・確率的な拡張
 
+**論文の前に補う日本語書籍**：[非線形最適制御入門](japanese-foundations.html#book-oc)／[モデル予測制御](japanese-foundations.html#book-mpc)／[システム制御のための安定論](japanese-foundations.html#book-stability)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Caillauほか（2023）：最適制御の数値解法の全体像](#ref-an-algorithmic-guide-for-finite-dimensional-optimal-control-problems)。MPCの構成とゲーム・不確かさへの展開は[Hallほか（2026）](#ref-receding-horizon-control-and-dissipativity-optimal-control-games-and-uncertainty)、確率制約は[確率的MPCの2018年チュートリアル](#ref-stochastic-model-predictive-control-how-does-it-work)へ。
 
 **核となる考え方**：最適制御問題の解法を選ぶ前に、制約付きのreceding-horizon実行がいつ実行可能で安定になるかを押さえる。数値解法の枝は次の各章に分け、ここは共通理論とモデル誤差の扱いを基準点にする。
@@ -168,6 +176,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 
 <a id="sec-sqp"></a>
 ### 2. SQP／RTIによるNMPC：直接法・感度計算・構造化ソルバー
+
+**論文の前に補う日本語書籍**：[非線形最適化法](japanese-foundations.html#book-nlp)／[非線形最適制御入門](japanese-foundations.html#book-oc)／[PythonとCasADiで学ぶMPC](japanese-foundations.html#book-casadi)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[Caillauほか（2023）](#ref-an-algorithmic-guide-for-finite-dimensional-optimal-control-problems)で直接法の全体を学び、[Aoyamaほか（2026）](#ref-second-order-constrained-dynamic-optimization)でSQPとDDP・内点法などの制約処理を比較する。
 
@@ -197,6 +207,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 
 <a id="sec-ddp"></a>
 ### 3. iLQR／DDP：前後方計算から制約・初期化・収束理論へ
+
+**論文の前に補う日本語書籍**：[非線形最適制御入門](japanese-foundations.html#book-oc)／[非線形最適化法](japanese-foundations.html#book-nlp)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[Aoyamaほか（2026）](#ref-second-order-constrained-dynamic-optimization)を最初に読み、導出後は[Rouletほか（2025）](#ref-on-global-and-local-convergence-of-iterative-linear-quadratic-optimization-algor)で収束理論を深める。
 
@@ -228,6 +240,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 <a id="sec-p"></a>
 ### 4. MPPI・経路積分制御：PI²・Information-Theoretic MPC・ロバスト化
 
+**論文の前に補う日本語書籍**：[非線形最適制御入門](japanese-foundations.html#book-oc)／[モンテカルロ法と準モンテカルロ法](japanese-foundations.html#book-mc)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[確率推論MPCのチュートリアル・総説（2026）](#ref-model-predictive-control-via-probabilistic-inference-a-tutorial-and-survey)で、経路積分と情報理論の関係をつかむ。
 
 **核となる考え方**：軌道分布と経路コストを使う最適制御の方法族。経路積分による理論的導出、方策改善、オンライン入力列の更新、追従制御器を含むロバスト化を分けて追う。
@@ -256,6 +270,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 
 <a id="sec-explicit"></a>
 ### 5. Explicit MPC：多パラメトリック最適化・制御則の事前計算と近似
+
+**論文の前に補う日本語書籍**：[モデル予測制御](japanese-foundations.html#book-mpc)／[非線形最適化法](japanese-foundations.html#book-nlp)／[しっかり学ぶ数理最適化](japanese-foundations.html#book-opt)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[Alessio–Bemporad（2009）](#ref-a-survey-on-explicit-model-predictive-control)を研究史の入口にする。学習による近似は[Amos（2023、公開版2025改訂）](#ref-tutorial-on-amortized-optimization)を併読する。
 
@@ -299,6 +315,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 <a id="sec-sparse"></a>
 ### 6. スパース最適制御：maximum hands-off・予測入力列・疎なフィードバック
 
+**論文の前に補う日本語書籍**：[スパースモデリング](japanese-foundations.html#book-sparse)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Nagahara–Yamamoto（2024）：基礎とMATLAB例](#ref-a-survey-on-compressed-sensing-approach-to-systems-and-control)から入り、[Ballottaほか（2026、公開原稿）](#ref-sparsity-in-control-problems-recent-trends-and-open-challenges)で近年の広がりを確認する。
 
 **核となる考え方**：最小にしたいのは入力の大きさだけでなく、入力を出す時間、使う入力の数、制御器の結合数などである。時間方向のmaximum hands-off、予測入力列の圧縮、フィードバック構造の疎化を同じ章の枝として扱う。
@@ -328,6 +346,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 <a id="sec-nn"></a>
 ### 7. 深層モデルを使うMPC：NNダイナミクス・RNN・残差学習
 
+**論文の前に補う日本語書籍**：[深層学習](japanese-foundations.html#book-dl)／[PythonとCasADiで学ぶMPC](japanese-foundations.html#book-casadi)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Renほか（2022）](#ref-a-tutorial-review-of-neural-network-modeling-approaches-for-model-predictive-con)でモデル構築を学び、[Wuほか（2025）](#ref-a-tutorial-review-of-machine-learning-based-model-predictive-control-methods)で実装と閉ループ保証を俯瞰する。
 
 **核となる考え方**：物理モデル全体または残差をNNで表し、そのモデルで将来を予測しながらオンライン最適化する。独立したシステム同定の一覧ではなく、観測器・予測誤差・制約・計算時間までMPCへつながる研究を選ぶ。
@@ -356,6 +376,8 @@ NNで**予測モデル**を作る本章、MPCの**解を微分**する[微分可
 
 <a id="sec-h"></a>
 ### 8. Gaussian Processに基づく予測制御：GP-MPCと計算近似
+
+**論文の前に補う日本語書籍**：[ガウス過程と機械学習](japanese-foundations.html#book-gp)／[モデル予測制御](japanese-foundations.html#book-mpc)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[GP-MPCチュートリアル（2024）](#ref-a-tutorial-on-gaussian-process-learning-based-model-predictive-control)で回帰・多段予測・確率制約を順に学び、章内の[GPダイナミクス総説（2025）](#ref-gaussian-processes-for-dynamics-learning-in-model-predictive-control)へ進む。
 
@@ -388,6 +410,8 @@ NNで**予測モデル**を作る本章、MPCの**解を微分**する[微分可
 <a id="sec-e"></a>
 ### 9. Koopman MPC：作用素近似・入力付き予測・閉ループ保証
 
+**論文の前に補う日本語書籍**：[クープマン解析](japanese-foundations.html#book-koopman)／[モデル予測制御](japanese-foundations.html#book-mpc)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Koopmanの理論・制御チュートリアル（2026）](#ref-koopman-operator-theory-fundamentals-control-and-applications)、[誤差境界と閉ループ保証の総説](#ref-an-overview-of-koopman-based-control-from-error-bounds-to-closed-loop-guarantees)を入口にする。
 
 **核となる考え方**：観測関数に作用するKoopman作用素を近似し、非線形系を高次元の線形予測で扱う。一般的な同定の網羅ではなく、入力付き表現、MPCへの組込み、近似誤差と閉ループ保証を追う。
@@ -419,6 +443,8 @@ NNで**予測モデル**を作る本章、MPCの**解を微分**する[微分可
 
 <a id="sec-d"></a>
 ### 10. DeePC：軌道データによる予測から非線形・保証へ
+
+**論文の前に補う日本語書籍**：[モデル予測制御](japanese-foundations.html#book-mpc)／[しっかり学ぶ数理最適化](japanese-foundations.html#book-opt)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[Berberich–Allgöwerの総説（2025）](#ref-an-overview-of-systems-theoretic-guarantees-in-data-driven-model-predictive-cont)と[著者のDeePCチュートリアル](#ref-deepc-lecture)を使う。
 
@@ -453,6 +479,8 @@ NNで**予測モデル**を作る本章、MPCの**解を微分**する[微分可
 <a id="sec-a"></a>
 ### 11. 微分可能最適化：解感度からDifferentiable MPCへ
 
+**論文の前に補う日本語書籍**：[非線形最適化法](japanese-foundations.html#book-nlp)／[非線形最適制御入門](japanese-foundations.html#book-oc)／[深層学習](japanese-foundations.html#book-dl)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[IJCAI 2022 Differentiable Optimizationチュートリアル](#ref-diffopt-tutorial)で最適化を層として使う導出を学ぶ。制御との統合の全体像は[ML-MPCチュートリアル](#ref-a-tutorial-review-of-machine-learning-based-model-predictive-control-methods)を併読する。
 
 **核となる考え方**：モデルやコストなどのパラメータを変えたとき、最適化問題の解がどう変わるかを微分する。最適性条件の感度を使う方法と反復計算を展開して微分する方法を区別し、MPCの学習へ接続する。
@@ -483,6 +511,8 @@ NNで**予測モデル**を作る本章、MPCの**解を微分**する[微分可
 <a id="sec-n"></a>
 ### 12. Differentiable Predictive Control（DPC）：ロールアウトによる方策学習
 
+**論文の前に補う日本語書籍**：[深層学習](japanese-foundations.html#book-dl)／[PythonとCasADiで学ぶMPC](japanese-foundations.html#book-casadi)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Amos（2023、公開版2025改訂）](#ref-tutorial-on-amortized-optimization)で解を学習する共通原理を学び、[著者のNeuromancerチュートリアル](#ref-dpc-tutorial)でDPCの実装へ進む。前者はDPCを含む解の近似学習に関連する共通教材、後者はDPCの実装教材として読む。
 
 **核となる考え方**：DPC（Differentiable Predictive Control）は、微分可能な予測モデルのロールアウトを通して制御損失を逆伝播し、明示的なNN方策をオフラインで学習する方法。MPCの最適解そのものを微分する[微分可能最適化](#sec-a)とは区別する。
@@ -508,6 +538,8 @@ NNで**予測モデル**を作る本章、MPCの**解を微分**する[微分可
 
 <a id="sec-u"></a>
 ### 13. MPCと強化学習の統合：価値・モデル・初期解・方策パラメータ
+
+**論文の前に補う日本語書籍**：[強化学習](japanese-foundations.html#book-rl)／[モデル予測制御](japanese-foundations.html#book-mpc)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[Reiterほか（2026）：MPCとRLの統合の総説](#ref-synthesis-of-model-predictive-control-and-reinforcement-learning-survey-and-clas)を入口に、必要な計算法は[Amosのチュートリアル](#ref-tutorial-on-amortized-optimization)で補う。
 
@@ -536,6 +568,8 @@ TD-MPC系の潜在計画を、物理制約を厳密に満たすNMPCと同じ保�
 
 <a id="sec-f"></a>
 ### 14. 安全フィルタ法：CBF・予測フィルタ・HJ到達可能性
+
+**論文の前に補う日本語書籍**：[システム制御のための安定論](japanese-foundations.html#book-stability)／[非線形最適化法](japanese-foundations.html#book-nlp)／[非線形最適制御入門](japanese-foundations.html#book-oc)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：[CBFの実用課題のチュートリアル](#ref-advances-in-the-theory-of-control-barrier-functions-addressing-practical-challen)と[学習とCBFのチュートリアル](#ref-learning-for-feasible-and-safe-control-with-control-barrier-functions-a-tutorial)を使う。共通の保証関数は[Dawsonほか（2023）](#ref-safe-control-with-learned-certificates-a-survey-of-neural-lyapunov-barrier-and-c)で補う。
 
@@ -567,6 +601,8 @@ TD-MPC系の潜在計画を、物理制約を厳密に満たすNMPCと同じ保�
 <a id="sec-b"></a>
 ### 15. Neural Lyapunov法：保証関数の学習・検証と制御への接続
 
+**論文の前に補う日本語書籍**：[システム制御のための安定論](japanese-foundations.html#book-stability)／[深層学習](japanese-foundations.html#book-dl)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Dawsonほか（2023、コード付き）](#ref-safe-control-with-learned-certificates-a-survey-of-neural-lyapunov-barrier-and-c)で、学習・検証・制御の関係をつかむ。MPCへの接続は、終端コスト・終端集合などに利用できる条件を別途確認する。
 
 **核となる考え方**：制御則と、安定性を示すLyapunov関数をNNで構成し、学習と条件の検証を結ぶ。MPCに利用する場合は、終端関数・局所補助制御器などの要件と学習した証明条件が一致するかを確認する。
@@ -593,6 +629,8 @@ TD-MPC系の潜在計画を、物理制約を厳密に満たすNMPCと同じ保�
 
 <a id="sec-c"></a>
 ### 16. Contraction・CCM：軌道間の収束から追従・ロバスト化へ
+
+**論文の前に補う日本語書籍**：[システム制御のための安定論](japanese-foundations.html#book-stability)／[LMIによるシステム制御](japanese-foundations.html#book-lmi)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：章内の[収縮理論チュートリアル（2021）](#ref-contraction-theory-for-nonlinear-stability-analysis-and-learning-based-control-a)を最初に読む。CCMは、制御によって状態差を縮めることを示す状態依存の計量。
 
@@ -621,6 +659,8 @@ TD-MPC系の潜在計画を、物理制約を厳密に満たすNMPCと同じ保�
 
 <a id="sec-g"></a>
 ### 17. System Level Synthesis（SLS）：閉ループ応答からロバストMPCへ
+
+**論文の前に補う日本語書籍**：[LMIによるシステム制御](japanese-foundations.html#book-lmi)／[マルチエージェントシステムの制御](japanese-foundations.html#book-mas)／[モデル予測制御](japanese-foundations.html#book-mpc)。補う範囲と先に読む箇所はリンク先に記す。
 
 **入口（総説・チュートリアル）**：章内の[SLS総説（2019）](#ref-system-level-synthesis)で、応答表現と制約の扱いを学ぶ。
 
@@ -652,6 +692,8 @@ DGKF（補助節X）とはロバスト制御における接点があるが、こ
 <a id="sec-i"></a>
 ### 18. Neural OperatorとPDE制御：予測モデルから方策表現へ
 
+**論文の前に補う日本語書籍**：[偏微分方程式の計算数理](japanese-foundations.html#book-pde)／[深層学習](japanese-foundations.html#book-dl)。補う範囲と先に読む箇所はリンク先に記す。
+
 **入口（総説・チュートリアル）**：[Neural Operator実践入門（2026）](#ref-from-theory-to-application-a-practical-introduction-to-neural-operators-in-scien)でFNO／DeepONetを学び、[統計理論の総説](#ref-operator-learning-a-statistical-perspective)で予測誤差の考え方を補う。PDEモデルを使う制御と、方策自体を作用素にする枝を区別する。
 
 **核となる考え方**：Neural Operatorは、PDEの解作用素など、関数から関数への写像をNNで学習する方法。FNO・DeepONetを基盤に、物理残差の利用、DPCとの結合、制御方策自体の作用素表現へ広がる。
@@ -681,6 +723,8 @@ PINO→PDE-DPC→CINOCを同一アーキテクチャの改良列とはしない�
 
 <a id="sec-game"></a>
 ### 19. ゲーム理論に基づく制御：min–max・Nash／Stackelberg・Pareto・Potential Games
+
+**論文の前に補う日本語書籍**：[ゲーム理論](japanese-foundations.html#book-game)／[最適化アルゴリズム〔12章：多目的〕](japanese-foundations.html#book-multiopt)／[しっかり学ぶ数理最適化](japanese-foundations.html#book-opt)。min–max・分散制御の基礎と、枝ごとの選び方は[書籍ページの章別対応](japanese-foundations.html#chapter-map)を参照する。
 
 **入口（総説・チュートリアル）**：[Hallほか（2026）](#ref-receding-horizon-control-and-dissipativity-optimal-control-games-and-uncertainty)でMPCとの接続、[de Zeeuw（2024）](#ref-a-crash-course-in-differential-games-and-applications)で解概念を学ぶ。枝ごとの総説・チュートリアルと読む順も章内に示す。
 
@@ -847,7 +891,9 @@ H₂/H∞の状態空間理論を補う場合は[DGKF（1989）の原典](https:
 <a id="evaluation"></a>
 ## 選定変更と文献の読み方
 
-**今回の変更（2026年10月26日）**：前版の173件を[構成変更前の保存版](archive-2026-10-26-before-modern.html)として残し、主表を162件へ再編した。保存版へ移した39件と、追加した28件は別々に数えている。追加は各章の21件と、総説・チュートリアル7件。
+**今回の追加（2026年10月27日）**：[論文の前に読む日本語書籍17冊](japanese-foundations.html)を追加し、19章すべてに書籍への導線を設けた。公開目次等で確認した内容と、ChatGPTが提案する読み方を分けて記載している。論文の主表162件と既存の保存版は変更していない。
+
+**前回の構成変更（2026年10月26日）**：前版の173件を[構成変更前の保存版](archive-2026-10-26-before-modern.html)として残し、主表を162件へ再編した。保存版へ移した39件と、追加した28件は別々に数えている。追加は各章の21件と、総説・チュートリアル7件。
 
 | 主表から外した範囲 | 件数 | 再編した理由・参照先 |
 |---|---:|---|
