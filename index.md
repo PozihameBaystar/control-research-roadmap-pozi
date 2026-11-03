@@ -5,17 +5,17 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 
 # 現代制御編：最適制御・MPCと関連手法
 
-[最新版](./) · [論文の前に読む日本語書籍](japanese-foundations.html) · [今回の構成変更前・173件](archive-2026-10-26-before-modern.html) · [ゲーム理論改訂前・157件](archive-2026-10-26-games.html) · [初回保存版・135件](archive-2026-10-25.html)
+[最新版](./) · [論文の前に読む日本語書籍](japanese-foundations.html) · [力制御章追加前・162件](archive-2026-11-03-before-force.html) · [今回の構成変更前・173件](archive-2026-10-26-before-modern.html) · [ゲーム理論改訂前・157件](archive-2026-10-26-games.html) · [初回保存版・135件](archive-2026-10-25.html)
 
-**自分自身がこれから読むための文献をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年10月27日改訂）**
+**自分自身がこれから読むための文献をChatGPTにリストアップさせ、学習候補として公開している資料です。（2026年11月3日改訂）**
 
 > **このリストの作成経緯について**  
 > **この文献リストは、私自身がこれから読むために、ChatGPTに論文の探索・候補選定・概要説明・分類・推奨読書順の整理をさせたものです。私自身がこれらの文献を読んで内容を確認し、その知見に基づいて作成したリストではありません。**  
 > 個人の学習用に作らせた候補一覧を、同じ分野に関心のある方の参考にもなるよう公開しています。**説明文・評価・研究史上の位置づけ・推奨読書順は主にChatGPTが生成・整理した内容であり、精読済み文献の書評や、私自身による内容の検証・推奨を示すものではありません。** 誤りや不正確な記述が残り得るため、研究で引用・利用する際は原論文の該当箇所を確認してください。
 
-> **選定・構成の方針**：最適制御・MPCと、それに組み合わせる予測モデル・学習・保証・ゲーム理論を中心にする。手法の原理と発展を追い、教育的な説明、汎用的な設計知識、深い理論、後続研究への影響を優先する。同程度なら新しく公開版のあるものを選ぶ。新しさや件数をそろえるための追加はしない。各章の冒頭に総説・チュートリアルを示し、良い共通教材を複数章で使う。一般的なシステム同定・状態推定の独立章は設けない。
+> **選定・構成の方針**：最適制御・MPCと、それに組み合わせる予測モデル・学習・保証・ゲーム理論を中心にする。手法の原理と発展を追い、教育的な説明、汎用的な設計知識、深い理論、後続研究への影響を優先する。同程度なら新しく公開版のあるものを選ぶ。新しさや件数をそろえるための追加はしない。各章の冒頭に総説・チュートリアルを示し、良い共通教材を複数章で使う。公開博士論文も、基礎・導出・実装を体系的に学べるものは文献種別と読む範囲を示して採用する。一般的なシステム同定・状態推定の独立章は設けない。
 
-**主表の文献：162件／19章。** 冒頭のサーベイ15件・チュートリアル18件と、各章の129件を重複なく計上する。章内にも総説を含むため、129件すべてを原著とは呼ばない。公開講義・ソフトウェア等は別に35件。論文の前提を補う[日本語書籍17冊](japanese-foundations.html)も別枠で掲載している。前版173件から39件を保存版へ移し、28件を追加した。Explicit MPCの10件とゲーム理論の33件は維持している。
+**主表の文献：179件／20章。** 冒頭のサーベイ17件・チュートリアル18件と、各章の144件を重複なく計上する。各章の表には公開博士論文3件を含み、原著・総説・博士論文の種類を区別する。公開教科書・講義・ソフトウェア等は別に40件。論文の前提を補う[日本語書籍17冊](japanese-foundations.html)も別枠で掲載している。今回の追加は力制御の総説2件・原著12件・公開博士論文3件。Explicit MPCの10件とゲーム理論の33件は維持している。
 
 このページを**現代制御編**と位置づける。古典制御は今後の別編として予定する。
 
@@ -44,6 +44,7 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 - [17. System Level Synthesis（SLS）：閉ループ応答からロバストMPCへ](#sec-g) — 外乱に対する状態・入力の応答を設計する。
 - [18. Neural OperatorとPDE制御：予測モデルから方策表現へ](#sec-i) — 分布定数系の予測や制御を、関数間の写像として学ぶ。
 - [19. ゲーム理論に基づく制御：min–max・Nash／Stackelberg・Pareto・Potential Games](#sec-game) — 複数主体や最悪外乱との相互作用を最適制御へ組み込む。
+- [20. ロボットの力制御：インピーダンス／アドミッタンスから位置・力MPCへ](#sec-force) — 接触中の位置・運動と力を、動特性・予測・実測値のフィードバックから設計する。
 - [公開実装・講義・チュートリアル資料](#implementations)
 - [選定変更と文献の読み方](#evaluation)
 
@@ -52,7 +53,7 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 
 最初にMPCの共通理論を押さえ、**SQP／RTI、iLQR／DDP、MPPI、Explicit MPC**を独立した章で追う。スパース最適制御も独立させ、予測表現・学習・保証の各方法を組み合わせる関係で読む。制御工学の基本知識を前提に、個別手法に固有の用語だけ補足する。
 
-**分類の階層**：SQPやDDPは数値解法、NN・GP・Koopmanは主に予測表現、スパース性は評価・構造の設計、CBFやCCMは保証や補助制御の道具である。例えば深層モデルMPCをSQPで解き、安全フィルタを組み合わせられる。これらを排他的な競合手法として並べない。Explicit MPCやDPCはオンライン計算の構成も変える。
+**分類の階層**：SQPやDDPは数値解法、NN・GP・Koopmanは主に予測表現、スパース性は評価・構造の設計、CBFやCCMは保証や補助制御の道具である。例えば深層モデルMPCをSQPで解き、安全フィルタを組み合わせられる。これらを排他的な競合手法として並べない。Explicit MPCやDPCはオンライン計算の構成も変える。力制御の章は、これらの数値解法や予測モデルを使って、接触中の運動・力と相互作用の動特性を設計する構成をまとめる。
 
 | 方法族・章 | 核となる考え方と研究の広がり |
 |---|---|
@@ -75,6 +76,7 @@ title: 現代制御編：最適制御・MPCと関連手法の研究文献
 | [17. System Level Synthesis（SLS）：閉ループ応答からロバストMPCへ](#sec-g) | 閉ループ応答の表現 → 局所・分散制約 → ロバストMPC。 |
 | [18. Neural OperatorとPDE制御：予測モデルから方策表現へ](#sec-i) | FNO／DeepONet → 物理残差 → PDEの予測・方策表現。 |
 | [19. ゲーム理論に基づく制御：min–max・Nash／Stackelberg・Pareto・Potential Games](#sec-game) | min–max／Nash・Stackelberg／Pareto／Potential Games → 混合整数・多数主体。 |
+| [20. ロボットの力制御：インピーダンス／アドミッタンスから位置・力MPCへ](#sec-force) | 位置・力の分担／インピーダンス・アドミッタンス → 位置・力MPC → 実測力のフィードバック・未知接触・接触作業。 |
 
 **学習順と研究史を分ける**：入口の総説を先に読み、関心のある枝の原著へ戻ってよい。章内の矢印は原理の拡張や学習上の接続を示す整理であり、全論文の直接の引用関係や厳密な優先権を確認した系譜ではない。プレプリント、オンライン先行公開、巻号の年は分けて記す。
 
@@ -90,7 +92,7 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 
 **選定方針**：教育的な説明と範囲の広さを最優先にし、同程度なら新しいもの、公開版・著者原稿があるものを優先する。狭い最新論文で良い基礎総説を置き換えず、古い総説の射程は新しい原著で補う。一般的な同定・World Model・汎用RLの広い総説は今回の主表から外した。
 
-**収録文献：15件**
+**収録文献：17件**
 
 | 分野・選定理由 | 年・論文・入手先 | 論文の紹介：何をして、何が分かったか | カバー範囲・教育的な内容 | 関連する章 | 読む際の注意 |
 |---|---|---|---|---|---|
@@ -109,6 +111,8 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 | <a id="ref-multi-agent-reinforcement-learning-a-selective-overview-of-theories-and-algorith"></a> **［MARL・理論を学ぶ入口］** Zhang・Yang・Başar。協調・競争・混合と、収束保証を同じ枠組みで比べられるため選定。 | 2021〔総説章・初稿2019〕 / **[Multi-Agent Reinforcement Learning: A Selective Overview of Theories and Algorithms](https://arxiv.org/abs/1911.10635)**<br>[公開版・2021年改訂](https://arxiv.org/abs/1911.10635v2) | 複数の学習者がいる強化学習を、協調・競争・両者の混合に分けて解説。Markovゲームなどの枠組みから、分散学習や方策更新の収束・非収束を整理する。 | 理論解析を伴うアルゴリズムを重視した総説章。Markovゲーム、展開型ゲーム、ネットワーク型の協調学習、mean-fieldの近似を含む。 | [ゲーム理論的な学習制御](#sec-game)、[方策合成](#sec-u)。 | 最新の深層MARL実装・ベンチマーク全体の総覧ではない。学習の収束、閉ループ安定性、安全性は別の性質として読む。 |
 | <a id="ref-scenario-based-decision-making-using-game-theory-for-interactive-autonomous-driv"></a> **［ゲーム理論的な運動計画・近年の応用］** Lin・Tian。相互作用計画の広がりと問題設定を比較するため選定。 | 2025〔プレプリント〕 / **[Scenario-Based Decision-Making Using Game Theory for Interactive Autonomous Driving: A Survey](https://arxiv.org/abs/2509.05777)** | 他車との相互作用を扱う自動運転のゲーム理論的な意思決定を整理。合流・交差点・ラウンドアバウト・レースなどを通じ、ゲームのモデル化と解法の違いを比較する。 | Nash・Stackelbergなどのモデルを、各運転場面の条件と対応させて調べる応用総説。2018年の制御総説を近年の運動計画側から補う。 | [iLQGames・ALGAMES](#sec-game)、車両MPC、相互作用計画。 | 自動運転に範囲を絞ったプレプリント。ここでの場面別分類は応用の比較用であり、本文の方法族の分類軸とは区別する。 |
 | <a id="ref-a-survey-of-recent-trends-in-multiobjective-optimal-control-surrogate-models-fee"></a> **［Pareto・多目的最適制御の全体像］** Peitz・Dellnitz。計算法・MPC・計算量削減をまとめて学ぶ広さを評価。 | 2018 / **[A Survey of Recent Trends in Multiobjective Optimal Control—Surrogate Models, Feedback Control and Objective Reduction](https://doi.org/10.3390/mca23020030)**<br>[公開版](https://www.mdpi.com/2297-8747/23/2/30)・[公開プレプリント](https://www.preprints.org/manuscript/201805.0221) | 複数の競合する評価を持つ最適制御で、折衷解の集合をどう計算し、フィードバックへ使うかを整理。代理モデル、MPC、事前計算とオンライン計算の分担を見渡せる。 | Pareto集合、PDE制御のモデル低次元化、実時間MPC、目的数を減らす方法を横断する。新しい狭い応用論文より、まず全体像を得る教材として選定。 | [Pareto・協調制御と多目的MPC](#game-pareto)、[Explicit MPC](#sec-explicit)。 | 2018年の総説であり最新研究の総覧ではない。2023年の閉ループ解析、2025年の学習・選択法、2026年の情報制約の原著で補う。多目的制御全般をゲームとはみなさない。 |
+| <a id="ref-contact-and-physical-interaction"></a> **［力制御・相互作用の共通基礎］** Hogan。受動性と接触安定性から制御方式を比較する。 | 2022〔先行公開2021〕 / **[Contact and Physical Interaction](https://doi.org/10.1146/annurev-control-042920-010933)**<br>[出版社の書誌・要旨](https://www.annualreviews.org/content/journals/10.1146/annurev-control-042920-010933) | 位置・力のハイブリッド制御と、インピーダンス／アドミッタンスによる相互作用制御を比較。接触で不安定になる原因を、エネルギーの授受やアクチュエータの特性から整理する。 | Annual Review of Control, Robotics, and Autonomous Systems 5:179–203。MPCへ入る前に、力の追従と接触時の動特性を区別するための総説。 | [ロボットの力制御](#sec-force)、[安定論・散逸性](#sec-k)。 | MPCの定式化を導出する総説ではない。公開全文は今回確認できていないため、閲覧条件は出版社で確認する。 |
+| <a id="ref-hybrid-motion-force-control-a-review"></a> **［位置・力ハイブリッド制御・専用の入口］** Ortenzi・Stolkin・Kuo・Mistry。運動と力の分離を比較する。 | 2017 / **[Hybrid Motion/Force Control: A Review](https://doi.org/10.1080/01691864.2017.1364168)**<br>[大学の公開著者原稿・PDF](https://www.research.ed.ac.uk/files/45288384/main_1_.pdf)・[書誌](https://www.research.ed.ac.uk/en/publications/hybrid-motionforce-control-a-review/) | 接触面に沿った運動と、面を押す力を同時に扱う制御方式を比較。両者をどこまで分離できるか、分離を緩めると関節トルクにどんな利点があるかを整理する。 | Advanced Robotics。タスク座標、運動・力の分担、動力学的な結合を数式で追うために残す。新しいMPCの計算法は後続の原著・博士論文で補う。 | [ロボットの力制御](#sec-force)の最初の入口。 | 古いが、今回の中心である位置・力の分担を直接扱う公開総説として採用。一般の接触モード計画を網羅するものではない。 |
 
 <a id="sec-t"></a>
 ## 各手法の導出を学ぶチュートリアル・概説
@@ -142,7 +146,7 @@ MPCを中心に、予測表現・誤差保証・学習・ゲーム理論のど�
 
 ## 文献一覧（手法とその発展ごと）
 
-各章は、入口の教材、核となる考え方、研究の展開、主表の順で読む。主表は原則年代順。各文献を一度だけ計上し、同じ総説を複数章の入口として参照する。紹介文はAbstractの逐語訳ではなく、何に取り組み何を示したかを短い独立した日本語で記す。
+各章は、入口の教材、核となる考え方、研究の展開、主表の順で読む。主表は原則年代順。各文献を一度だけ計上し、同じ総説を複数章の入口として参照する。公開博士論文も教育用文献として採用し、短い原著を補う役割・読む範囲・学位年と公開年を示す。紹介文はAbstractの逐語訳ではなく、何に取り組み何を示したかを短い独立した日本語で記す。
 
 <a id="sec-k"></a>
 <a id="sec-r"></a>
@@ -845,10 +849,76 @@ H₂/H∞の状態空間理論を補う場合は[DGKF（1989）の原典](https:
 
 **この区分の収録件数：33件。** 関連する総説5件・チュートリアル4件は冒頭の対応する節に収録し、重複計上しない。[SLS](#sec-g)・[方策合成](#sec-u)・[微分可能最適化](#sec-a)とも接続する。
 
+<a id="sec-force"></a>
+### 20. ロボットの力制御：インピーダンス／アドミッタンスから位置・力MPCへ
+
+**主に学ぶこと**：接触中の手先の位置・姿勢や経路と、接触力を一緒に扱う制御。**モデル予測制御による位置・力のハイブリッド制御を中心**に、インピーダンス／アドミッタンス制御の原理、力の予測・フィードバック、未知接触への拡張を追う。数値解法は[SQP／RTI](#sec-sqp)や[iLQR/DDP](#sec-ddp)、力モデルの学習は[GP-MPC](#sec-h)と接続して読む。
+
+**論文の前に補う日本語書籍**：[非線形最適制御入門](japanese-foundations.html#book-oc)／[PythonとCasADiで学ぶMPC](japanese-foundations.html#book-casadi)／[システム制御のための安定論](japanese-foundations.html#book-stability)。ロボット固有のヤコビアン・力学・力制御の導出は、[Modern Roboticsの公開教科書](#ref-modern-robotics-force-text)の5・8章と11.5〜11.7節で補える。
+
+**入口（総説・長編教材）**：[Ortenziほか（2017）](#ref-hybrid-motion-force-control-a-review)で位置・力の役割分担、[Hogan（2022）](#ref-contact-and-physical-interaction)で動特性・接触安定性を確認する。MPCへの導出を詳しく読むなら[Bednarczyk（2020）](#ref-bednarczyk-thesis)、力と運動の定式化・保証なら[Matschek（2021）](#ref-matschek-thesis)、実測力を返すNMPCなら[Kleff（2024）](#ref-kleff-thesis)の公開博士論文へ進む。
+
+**核となる考え方**：位置・力のハイブリッド制御は、例えば面に沿う方向は運動、押し付ける方向は力というようにタスクを分担する。インピーダンス／アドミッタンス制御は、外力と運動の間に望ましい動特性を持たせる。MPCではこれらの目標と力・速度・関節・トルク等の制約を予測区間で扱い、計測に応じて解き直す。
+
+**同時制御の意味**：接触の拘束と環境の変形特性に整合する位置・力の目標を設計する。同じ方向の位置と力を独立に任意指定できるわけではない。また、力誤差をコストへ入れること、インピーダンスを整形すること、力センサを閉ループへ返すことは別の設計項目である。
+
+| 流れ・分岐 | 何をモデル化・制御するか | 読む文献 |
+|---|---|---|
+| 位置・力の分担と相互作用の動特性 | タスク座標で運動と力を分ける／力と運動の関係を設計する。 | Raibert–Craig → Hogan → Ottほか。 |
+| コンプライアンス・位置・力を予測して最適化 | 所望の柔らかさ、運動・力の目標、下位サーボ、環境モデルをOCPへ組み込む。 | Bednarczykほか／Goldほか。GPによる拡張はHaningerほか／Matschekほか。 |
+| 実測力を閉ループへ返し、未知接触・作業へ広げる | 関節トルクの状態拡大、力モデル誤差の推定、手先力の状態拡大、接触位置・力の推定。 | Kleff（2022）／Jordana（2024）／Han（2024）／Soft Contact（2026）→ バリ取り（2026）。 |
+
+**略称の注意**：BednarczykほかのMPICは **Model Predictive Impedance Control**、GoldほかのMPICは **Model Predictive Interaction Control**。同じ略称でも、同一のアルゴリズムとして扱わない。上の矢印や並列関係は学習用の整理である。
+
+**収録文献：15件（原著12件・公開博士論文3件）。** 入口の総説2件は冒頭のサーベイ節で一度だけ計上する。
+
+<a id="force-foundations"></a>
+#### 基礎：位置・力の分担、インピーダンス／アドミッタンス
+
+| 読む価値・研究上の役割 | 年・文献（原文リンク・入手先） | 文献の紹介：何をして、何が分かったか | 手法・教材としての補足 | 関連する制御・応用 | 条件・限界 |
+|---|---|---|---|---|---|
+| <a id="ref-hybrid-position-force-control-of-manipulators"></a> **［位置・力の役割分担の原点］** Raibert・Craig。最初に押さえる制御構成。 | 1981 / **[Hybrid Position/Force Control of Manipulators](https://doi.org/10.1115/1.3139652)**<br>[MIT公開PDF](https://fab.cba.mit.edu/classes/865.15/classes/measurement/hybrid-position-force.pdf) | 作業に合わせた座標系で、位置を追う方向と力を追う方向を分ける構成を提示。位置センサと手首の力センサを使い、接触作業で両方の目標を扱えることを実験で示す。 | 選択行列、自然拘束と人工拘束、位置・力フィードバックの構成を読む。MPCの目的・制約を書く前の基準になる。 | 接線方向の軌道追従と法線方向の押付け力。 | 同じ拘束方向の位置と力を独立に任意指定できるという意味ではない。座標と力・速度の対応、動的な結合は後続総説で補う。 |
+| <a id="ref-impedance-control-part-i-theory"></a> **［インピーダンス制御の原理］** Hogan。力と運動の動的関係を設計する理由を学ぶ。 | 1985 / **[Impedance Control: An Approach to Manipulation: Part I—Theory](https://doi.org/10.1115/1.3140702)**<br>[著者研究室の公開PDF](https://bpb-us-e1.wpmucdn.com/sites.mit.edu/dist/5/1384/files/2025/02/1985-impedance-control-an-approach-to-manipulation-part-I-theory.pdf) | ロボットと対象物が機械的につながる作業では、位置や力だけでなく、接触に対してどう動くかも制御すべきと論じる。力と運動の関係を見かけの機械特性として設計する枠組みを示す。 | インピーダンスとアドミッタンスの因果関係、相互作用ポート、非線形な要素の合成が核。本表では三部作のPart Iを1件として採用する。 | インピーダンスMPC、接触安定性、予期しない外力への応答。 | 力目標の誤差を必ずゼロにする直接力制御とは目的が異なる。実装の詳細はOttほかと公開教科書で補う。 |
+| <a id="ref-unified-impedance-and-admittance-control"></a> **［インピーダンス／アドミッタンスの実装比較］** Ott・Mukherjee・Nakamura。内側のサーボまで含めて読む。 | 2010 / **[Unified Impedance and Admittance Control](https://doi.org/10.1109/ROBOT.2010.5509861)**<br>[大学公開の会議論文PDF](https://fileadmin.cs.lth.se/ai/Proceedings/ICRA2010/MainConference/data/papers/1462.pdf) | インピーダンス制御とアドミッタンス制御を両端に持つ制御器群を構成。1自由度の解析・比較と軽量アームの実験から、自由空間での追従と硬い環境との接触における特性を調べる。 | ICRA 2010:554–561。力・トルク指令を出す構成と、力を運動指令へ変える構成を、内側の位置制御も含めて比較できる。 | 力制御できるアーム／位置指令中心の産業ロボットでの実装選択。 | ここでのhybridは制御方式の切替・補間であり、位置方向と力方向を分けるhybrid position/force controlとは別の意味。 |
+
+<a id="force-mpc"></a>
+#### 中心：位置・力を扱うMPCと、力フィードバックへの発展
+
+| 読む価値・研究上の役割 | 年・文献（原文リンク・入手先） | 文献の紹介：何をして、何が分かったか | 手法・教材としての補足 | 関連する制御・応用 | 条件・限界 |
+|---|---|---|---|---|---|
+| <a id="ref-model-predictive-impedance-control"></a> **［所望の柔らかさを制約付き最適化へ］** Bednarczyk・Omran・Bayle。公開博士論文とコードで導出を補う。 | 2020 / **[Model Predictive Impedance Control](https://doi.org/10.1109/ICRA40945.2020.9196969)**<br>[公開原稿（HAL）](https://hal.science/hal-04330309)・[著者コード](https://github.com/mcbed/interaction_controllers) | インピーダンス制御の望ましい応答をMPCの評価へ組み込み、ロボットの運動制限も一緒に扱う。協働ロボットの実験で、柔らかな相互作用と制約処理を両立する構成を検証する。 | ICRA 2020:4702–4708。制約がない場合のICとの関係と、制約が有効になったときの応答を読む。長い導出は[博士論文](#ref-bednarczyk-thesis)の3章へ。 | 制約付きコンプライアンス、接触時の速度・エネルギー等の管理。 | 接触力の目標追従を主目的とするMPCとは区別する。略称MPICはGoldほかのModel Predictive Interaction Controlとは別の語を指す。 |
+| <a id="ref-introducing-force-feedback-in-model-predictive-control"></a> **［実測トルクをMPCへ返す］** Kleff・Dantec・Saurel・Mansard・Righetti。フィードバック構造の転換点。 | 2022 / **[Introducing Force Feedback in Model Predictive Control](https://doi.org/10.1109/IROS47612.2022.9982003)**<br>[著者機関の説明・公開PDFリンク](https://gepettoweb.laas.fr/articles/skleff_iros22.html)・[公開原稿](https://hal.science/hal-03594295) | 位置・速度だけを初期値にする剛体接触MPCでは、実測した力情報を直接使いにくい理由を示す。アクチュエータの応答をモデルへ加え、実測トルクに応じて運動を更新する方式を実機で検証する。 | IROS 2022:13379–13385。トルクを状態へ含める設計と、通常の位置・速度フィードバックとの差を読む。 | トルク制御アーム、ヒューマノイドの接触作業。 | この段階は主に関節側のトルクフィードバック。手先の接触力を状態にするSoft Contactの構成と混同しない。 |
+| <a id="ref-model-predictive-interaction-control-for-robotic-manipulation-tasks"></a> **［位置・力MPCの中核］** Gold・Völz・Graichen。複数の接触作業を共通の最適化で記述する。 | 2023〔オンライン2022〕 / **[Model Predictive Interaction Control for Robotic Manipulation Tasks](https://doi.org/10.1109/TRO.2022.3196607)**<br>[所属大学の書誌](https://cris.fau.de/publications/268555977/)・[研究室の説明・実験動画](https://www.ac.tf.fau.eu/research/robotics/) | ロボットの動きと接触力を予測し、費用・制約を変えることで異なる操作を同じMPCの枠組みで表す。環境と下位制御器の柔らかさを考慮し、7自由度ロボットの接触操作で検証する。 | IEEE T-RO 39(1):76–89。位置・力の目標、接触モデル、下位PD制御を含む階層構成を対応づけて読む。 | 位置・力の協調、操作プリミティブ、接触を伴うマニピュレーション。 | 公開全文は今回未確認。モデルの接触特性と下位サーボの仮定を確認する。MPICはこの論文ではInteraction Controlの略。 |
+| <a id="ref-model-predictive-impedance-control-with-gaussian-processes"></a> **［軌道とインピーダンスの同時設計］** Haninger・Hegeler・Peternel。接触作業の不確かさをMPCへ組み込む。 | 2023〔公開初稿2022〕 / **[Model Predictive Impedance Control with Gaussian Processes for Human and Environment Interaction](https://doi.org/10.1016/j.robot.2023.104431)**<br>[公開原稿](https://arxiv.org/abs/2208.07035)・[大学リポジトリ](https://repository.tudelft.nl/record/uuid%3A8e8b61b4-0289-4d29-a65e-2a350c77306a) | 少数の教示からGPで作業モデルを学び、人の目標や接触条件の不確かさを考慮して軌道とインピーダンスを選ぶ。協調研磨・組立などで、作業に合わせて柔らかさを変える構成を検証する。 | Robotics and Autonomous Systems 165:104431。[GP-MPC](#sec-h)への接続として、GPが何を予測し、MPCが何を決めるかを読む。 | 可変インピーダンス、協調研磨、人と環境への適応。 | 目標力を直接フィードバックする方式と、相互作用の動特性を選ぶ方式を区別する。作業モデル・教示範囲と不確かさの表現に依存する。 |
+| <a id="ref-safe-learning-supported-model-predictive-force-motion-control"></a> **［学習した力モデルと確率制約］** Matschek・Bethge・Findeisen。力と運動の目標を同じMPCへ入れる。 | 2023 / **[Safe Machine-Learning-Supported Model Predictive Force and Motion Control in Robotics](https://doi.org/10.1109/TCST.2023.3262987)**<br>[公開原稿](https://arxiv.org/abs/2303.04569) | 状態から力・モーメントへの未知の関係をGPで学び、運動と力の目標をMPCで扱う。予測の分散で制約に余裕を持たせ、特定の仮定の下で実行可能性・収束を解析し、軽量アームで検証する。 | IEEE TCST 31(6):2380–2392。接触力を未知の出力関数として扱うモデル、確率制約、終端条件を対応づける。 | 位置・力追従、GP-MPC、力上限を伴う接触作業。 | 理論は静的な不確かさ等の設定に依存する。任意の未知接触やオンライン学習中の全挙動へ、そのまま保証を広げない。 |
+| <a id="ref-force-feedback-mpc-via-online-estimation"></a> **［接触モデル誤差を推定して補う］** Jordana・Kleff・Carpentier・Mansard・Righetti。力の発展モデルを簡略化する枝。 | 2024 / **[Force Feedback Model-Predictive Control via Online Estimation](https://doi.org/10.1109/ICRA57147.2024.10611156)**<br>[著者機関の説明・公開PDFリンク](https://gepettoweb.laas.fr/articles/jordana__icra2024.html)・[著者コード](https://github.com/machines-in-motion/force_observer) | 力の予測と実測のずれをオンライン推定し、高周波の非線形MPCへ反映する。接触力の時間変化を詳しくモデル化する負担を抑えながら、実機の接触作業で力追従を改善する。 | ICRA 2024:11503–11509。推定器とOCPの変更が力フィードバックをどう実現するかを読む。 | モデル誤差のある接触、トルク制御マニピュレータ。 | 推定モデル、計測雑音、更新速度の仮定を確認する。Soft Contact法とは別のモデル化・補償の選択肢。 |
+| <a id="ref-online-multi-contact-feedback-mpc"></a> **［未知の複数接触へ拡張］** Han・Iskandar・Lee・Kim。手先以外への接触も閉ループへ返す。 | 2024 / **[Online Multi-Contact Feedback Model Predictive Control for Interactive Robotic Tasks](https://doi.org/10.1109/ICRA57147.2024.10611151)**<br>[所属機関の公開PDF・書誌](https://elib.dlr.de/208582/) | 接触する位置と力を推定し、ばねモデルを通じてDDPベースのMPCへ組み込む。手先で運動・力の作業を続けながら、別のリンクへの予期しない接触にも対応する構成を7自由度アームで実証する。 | ICRA 2024:11556–11562。[iLQR/DDP](#sec-ddp)の接触制御への接続。接触推定、力予測、最適化の更新周期を分けて読む。 | 位置・力のハイブリッド作業、複数リンクの接触、人との相互作用。 | 接触位置・力の推定精度に依存し、用いる推定器は1リンクにつき最大1接触という制限がある。計算周波数をそのまま全系の制御帯域とはしない。 |
+| <a id="ref-force-feedback-mpc-soft-contact"></a> **［実測した手先力を状態へ組み込む中核］** Kleff・Jordana・Khorrambakht・Mansard・Righetti。モデルとコードを併読する。 | 2026〔8月改訂v3・プレプリント〕 / **[Force Feedback in Model-Predictive Control: A Soft Contact Approach](https://hal.science/hal-04572399v3)**<br>[公開PDF](https://hal.science/hal-04572399v3/document)・[著者コード](https://github.com/machines-in-motion/force_feedback_mpc) | 手先の接触力を粘弾性モデルで表し、力を含む状態からMPCを解き直す。位置・速度だけを使う構成や関節トルクを使う構成と比較し、接触作業で手先の力計測を使う利点を実機とシミュレーションで示す。 | HALのv3を採用。著者実装には法線力を保ちつつ手先で円を描く研磨例があり、位置・力の目標、拡大状態、コストと制約をつなげて追える。 | 位置・姿勢と接触力のMPC、表面追従、接触フィードバック。 | 査読刊行済みとは扱わない。粘弾性接触モデルの仮定、接触方向、摩擦や滑りを表す範囲を確認する。 |
+| <a id="ref-learning-guided-force-feedback-mpc-deburring"></a> **［位置・力MPCを実作業へ］** Wojciechowskiほか。力追従・障害物回避・学習初期解を結ぶ近年の例。 | 2026〔公開原稿／著者書誌はICRA 2026〕 / **[Learning-Guided Force-Feedback Model Predictive Control with Obstacle Avoidance for Robotic Deburring](https://arxiv.org/abs/2604.06133)**<br>[公開全文](https://arxiv.org/html/2604.06133v1)・[著者実装](https://github.com/agimus-project/agimus-demos/tree/humble-devel) | 穴への工具挿入と円運動によるバリ取りを、押付け力の追従・トルク制約・衝突回避を含むMPCで扱う。拡散モデルが初期軌道を用意し、制御は力フィードバックMPCが担う構成をPanda実機で示す。 | 法線力を保ちながら工具を動かすOCPを、力の状態拡大、コスト、制約、実験へ順に読む。学習は動作候補・初期化に使われる。 | 位置・力ハイブリッドMPC、バリ取り、狭い作業空間での接触。 | 公開版に基づく紹介。学習器単独による力制御ではない。局所最適化、接触・摩擦モデル、実験した工具・対象の範囲を確認する。 |
+
+<a id="force-theses"></a>
+#### 公開博士論文：導出と実装の背景を長い文章で補う
+
+**教育目的での選定**：短い原著に比べ、背景・モデル・導出・実験構成を続けて読めることを重視する。博士論文と会議・雑誌論文では審査の仕組みが異なるため、種類を明記する。以下の読み順・教材としての位置づけはChatGPTによる提案で、全頁を精読して評価したものではない。公開目次・要旨・確認できた本文箇所と関連する原著から選定している。リポジトリによってはPDF取得時にブラウザでの確認が必要になる。
+
+| 読む価値・研究上の役割 | 年・文献（原文リンク・入手先） | 文献の紹介：何をして、何が分かったか | 手法・教材としての補足 | 関連する制御・応用 | 条件・限界 |
+|---|---|---|---|---|---|
+| <a id="ref-bednarczyk-thesis"></a> **［博士論文・インピーダンスからMPCへ］** Maciej Bednarczyk。最初の長編教材の候補。 | 2020〔博士論文・Strasbourg〕 / **[Advanced Control of Interactions in Robotics: Application to Robot-Assisted Medical Procedures](https://publication-theses.unistra.fr/public/theses_doctorat/2020/Bednarczyk_Maciej_2020_ED269.pdf)**<br>大学公開の本文PDF〔英語〕 | 相互作用制御の基礎から、インピーダンスと制約付きMPCの統合、動特性を変更する際の安全性へ進む博士論文。協働ロボットの実験を通じて、接触への柔らかさと実機の制限を同時に扱う方法を説明する。 | 2章でIC/AC、3章でMPCへの変換・3.2.3節でACとの関係、3.3節で実装と実験を読む候補。4章は可変インピーダンスと受動性を補う。 | インピーダンス／アドミッタンスの背景、MPCへの接続、受動性。 | 医療応用も含むため、全章を先に読む必要はない。所望の力の直接追従と所望の機械特性の実現を分けて読む。 |
+| <a id="ref-matschek-thesis"></a> **［博士論文・力と運動のMPCを体系的に学ぶ］** Janine Matschek。基礎・保証・GPまでつなぐ。 | 2021〔博士論文・Magdeburg〕 / **[Learning-Supported and Force Feedback Model Predictive Control in Robotics](https://opendata.uni-halle.de/handle/1981185920/37443)**<br>[大学公開PDF](https://opendata.uni-halle.de/bitstream/1981185920/37443/1/Matschek_Janine_Dissertation_2021.pdf) | 通常のMPCから、力・運動のタスク定義、接触力のモデル化、安定性、学習モデルの利用へ段階的に進む博士論文。力制御を単なる追加項ではなく、予測モデルとタスク・保証の設計として学ぶ候補になる。 | 公開目次では2章がMPC、3章がModel Predictive Force Control、5章がLearning-supported MPC。3章のモデル化・タスク・安定性・実装例を軸に読み、GPの枝へ進む。 | 位置・力MPC、経路追従、GP-MPC、[2023年TCST論文](#ref-safe-learning-supported-model-predictive-force-motion-control)。 | 同大学の現書誌ではJanine Himmel名義の記録もある。本文の前提と後続論文の保証を同一視しない。 |
+| <a id="ref-kleff-thesis"></a> **［博士論文・実測力を使うNMPCの中核］** Sébastien Kleff。モデル・推定・最適化・実機をつなぐ。 | 2024〔博士論文・NYU／HAL登録2025〕 / **[Toward Force Feedback in Model-Predictive Control](https://hal.science/tel-05157604)**<br>[公開PDF](https://hal.science/tel-05157604/document)〔英語〕・[著者書誌](https://skleff1994.github.io/publications/) | 高周波で動く非線形MPCを出発点に、位置・速度だけの接触制御の限界を整理し、状態拡大とオンライン推定で力の実測値を取り込む。制約付き最適制御と力推定、実機検証までまとめた博士論文。 | 導入で問題設定をつかみ、力フィードバックの状態拡大・推定に関する説明を選んで読む候補。2022・2024年の原著を共通の背景から理解するための長編教材。 | 位置・力NMPC、[状態拡大](#ref-introducing-force-feedback-in-model-predictive-control)、[オンライン推定](#ref-force-feedback-mpc-via-online-estimation)、SQP/DDP。 | 学位年2024と公開リポジトリ登録年2025を区別する。2026年のSoft Contact改訂版は別途読む。 |
+
+**読み順〔ChatGPTの提案〕**：まずOrtenzi総説とRaibert–Craigで位置・力の分担を確認し、Hogan・Ottでインピーダンス／アドミッタンスを整理する。その後は次から関心に合う一本を軸にする。
+
+- **位置・力MPCの問題設定を学ぶ**：Matschek博士論文の3章 → Gold（2023）→ Matschek（2023）。
+- **制約を守りつつ柔らかく接触する**：Bednarczyk博士論文の3章 → ICRA 2020 → Haninger（2023）。
+- **力センサを使う非線形MPCを実装する**：Kleff博士論文 → IROS 2022 → Jordana（2024）とSoft Contact（2026）の比較 → 著者コードの研磨例 → バリ取り（2026）。複数の未知接触にはHan（2024）。
+
+博士論文と対応する原著は内容が重なる。全冊・全論文の通読を必須とせず、長編で導出を補い、原著で対象と成果、後続論文で拡張を確認する。
+
 <a id="implementations"></a>
 ## 公開実装・講義・チュートリアル資料
 
-**以下の35件は主表の文献件数に含めない。** 再現実装の入口として収録する。対応する章から参照して使う。講義・Notebook・ソフトウェアを査読論文と区別する。
+**以下の40件は主表の文献件数に含めない。** 再現実装の入口として収録する。対応する章から参照して使う。講義・Notebook・ソフトウェアを査読論文と区別する。
 
 | 種別 | 教材・コード | どの論文と併読するか・用途 |
 |---|---|---|
@@ -887,11 +957,18 @@ H₂/H∞の状態空間理論を補う場合は[DGKF（1989）の原典](https:
 | 制約付きDDP・ProxDDP | [ALIGATOR](https://simple-robotics.github.io/aligator/) | ProxDDPのアルゴリズムとwarm startを実装で確認する。 |
 | 深層モデルを使うNMPC | [Real-Time Neural MPC](https://github.com/TUM-AAS/neural-mpc) | Salzmannほか（2023）のモデル学習・微分・NMPCへの統合。 |
 | 解を予測する学習の教材 | [Amortized Optimization Tutorialのコード](https://github.com/facebookresearch/amortized-optimization-tutorial) | Amos（2023）の数値例・図を再現する。 |
+| <a id="ref-modern-robotics-force-text"></a> 力制御の公開教科書〔英語〕 | [Modern Robotics：著者公式ページ・全文PDF](https://hades.mech.northwestern.edu/index.php/Modern_Robotics) | Lynch–Park。5章の速度・静力学、8章のロボット力学、11.5〜11.7節の力制御・hybrid motion/force・impedance/admittanceを、式と演習のある本文で学ぶ。スライドではなく公開教科書。 |
+| 力の状態拡大・MPCの著者実装 | [force_feedback_mpc](https://github.com/machines-in-motion/force_feedback_mpc) | [Soft Contact](#ref-force-feedback-mpc-soft-contact)と併読。Crocoddylのモデル拡張と、法線力を保つ円運動・研磨の例を追う。 |
+| 推定を使う力MPCの著者実装 | [force_observer](https://github.com/machines-in-motion/force_observer) | [Jordanaほか（2024）](#ref-force-feedback-mpc-via-online-estimation)。推定器・残差・作用モデルと接触／研磨のデモを読む。 |
+| IC／AC／予測インピーダンスの著者実装 | [interaction_controllers](https://github.com/mcbed/interaction_controllers) | [Bednarczykほか（2020）](#ref-model-predictive-impedance-control)。ROS 2のIC・AC・MPC・可変インピーダンスを比較する入口。 |
+| バリ取りMPCの公開実装 | [agimus-demos〔humble-devel〕](https://github.com/agimus-project/agimus-demos/tree/humble-devel) | [Wojciechowskiほか（2026）](#ref-learning-guided-force-feedback-mpc-deburring)の著者が示すコード入口。論文の力制御・動作初期化とROS 2のデモ構成を対応づける。 |
 
 <a id="evaluation"></a>
 ## 選定変更と文献の読み方
 
-**今回の追加（2026年10月27日）**：[論文の前に読む日本語書籍17冊](japanese-foundations.html)を追加し、19章すべてに書籍への導線を設けた。公開目次等で確認した内容と、ChatGPTが提案する読み方を分けて記載している。論文の主表162件と既存の保存版は変更していない。
+**今回の追加（2026年11月3日）**：ロボットの力制御を20章として追加。インピーダンス／アドミッタンスを基礎に、位置・力MPCと実測力のフィードバックを中心に選んだ。総説2件・原著12件・公開博士論文3件を加え、主表は179件とした。博士論文は長編教材としての役割と読む範囲を明記した。追加前の162件は[保存版](archive-2026-11-03-before-force.html)で参照できる。公開教科書・著者コードも5件追加した。
+
+**前回の書籍追加（2026年10月27日）**：[論文の前に読む日本語書籍17冊](japanese-foundations.html)を追加し、19章すべてに書籍への導線を設けた。公開目次等で確認した内容と、ChatGPTが提案する読み方を分けて記載している。論文の主表162件と既存の保存版は変更していない。
 
 **前回の構成変更（2026年10月26日）**：前版の173件を[構成変更前の保存版](archive-2026-10-26-before-modern.html)として残し、主表を162件へ再編した。保存版へ移した39件と、追加した28件は別々に数えている。追加は各章の21件と、総説・チュートリアル7件。
 
@@ -906,9 +983,11 @@ H₂/H∞の状態空間理論を補う場合は[DGKF（1989）の原典](https:
 | 細分化された保証・解析・個別応用など | 10 | Neural Lyapunov・CCM・Koopman・安全フィルタ・微分可能最適化の重複と細分化を抑え、基準文献と汎用的な展開を残す。 |
 | **計** | **39** | 外した文献の題名・紹介・リンクは173件の保存版に残す。 |
 
-**入口の教材について**：19章すべてに総説・チュートリアルへの導線を用意した。微分可能最適化では会議チュートリアル、DPCでは共通理論の長編チュートリアルと著者Notebookを組み合わせる。各章に専用の新しい総説が存在すると主張するものではなく、教材の範囲と種類を明記する。
+**入口の教材について**：20章すべてに総説・チュートリアルへの導線を用意した。力制御では公開博士論文3件と公開教科書も組み合わせる。微分可能最適化では会議チュートリアル、DPCでは共通理論の長編チュートリアルと著者Notebookを組み合わせる。各章に専用の新しい総説が存在すると主張するものではなく、教材の範囲と種類を明記する。
 
-**年次と確認範囲**：新規採用分は出版社、公式会議・誌面、著者・所属機関の公開原稿を参照し、書誌、要旨、教材の構成と必要な本文箇所を確認した。例えばacadosはオンライン2021年と巻号2022年、Maximum Hands-Offはオンライン2015年と巻号2016年、AC4MPCはオンライン2025年と巻号2026年を区別する。2026年のスパース制御総説とロバストhands-offは公開原稿として扱う。既存文献まで含めた全証明・全実験の再検証ではない。
+**力制御章の年次・確認範囲（2026年11月3日）**：出版社・著者・所属機関・大学リポジトリの書誌、公開目次・要旨と確認できた本文箇所、著者実装の説明を参照した。Goldほかはオンライン2022／巻号2023、Haningerほかは公開初稿2022／刊行2023、Kleff博士論文は学位2024／HAL登録2025を区別する。Soft ContactはHALの2026年8月改訂v3であり、査読刊行済みとしない。博士論文・原著・コードの全頁精読や実機再現を済ませた評価ではない。
+
+**2026年10月26日再編時の年次と確認範囲**：当時の新規採用分は出版社、公式会議・誌面、著者・所属機関の公開原稿を参照し、書誌、要旨、教材の構成と必要な本文箇所を確認した。例えばacadosはオンライン2021年と巻号2022年、Maximum Hands-Offはオンライン2015年と巻号2016年、AC4MPCはオンライン2025年と巻号2026年を区別する。2026年のスパース制御総説とロバストhands-offは公開原稿として扱う。既存文献まで含めた全証明・全実験の再検証ではない。
 
 **論文紹介と解釈**：Abstractを逐語訳せず、問題・方法・主な成果を独立した短い日本語で記す。研究の分岐、読み順、教材としての選定はChatGPTによる整理。特定論文の主張と、複数論文をつないだ学習上の見取り図を分けて読む。
 
@@ -916,4 +995,4 @@ H₂/H∞の状態空間理論を補う場合は[DGKF（1989）の原典](https:
 
 ---
 
-**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。[構成変更前の173件](archive-2026-10-26-before-modern.html)、[ゲーム理論改訂前の157件](archive-2026-10-26-games.html)、[初回保存版の135件](archive-2026-10-25.html)も引き続き参照できます。
+**資料の性格**：私自身がこれから読むためにChatGPTへ作成・整理を依頼した学習候補一覧であり、私自身が全件を読んで作成したレビューではありません。[力制御章追加前の162件](archive-2026-11-03-before-force.html)、[構成変更前の173件](archive-2026-10-26-before-modern.html)、[ゲーム理論改訂前の157件](archive-2026-10-26-games.html)、[初回保存版の135件](archive-2026-10-25.html)も引き続き参照できます。
